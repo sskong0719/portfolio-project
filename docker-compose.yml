@@ -1,42 +1,22 @@
 version: '3.3'
 services:
-  backend:
-    build:
-      context: ./django
-    command: gunicorn core.wsgi --bind 0.0.0.0:8000
-    ports: 
-      - "8000:8000"
-  frontend:
-    build:
-      context: ./react-project
-    volumes:
-      - react_build:/react-project/build
   nginx:
     build: ./nginx
     ports:
-      - 80:80
-      - 443:443
-    
-volumes:
-  react_build:
-  # nginx:
-  #   build: ./nginx
-  #   ports:
-  #     - '80:80'
-  #     - '443:443'
-  # mongo:
-  #   image: mongo:6.0.4
-  # backend:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.backend
-  #   environment:
-  #     DOCKER: 1 # Environment variable for Vlad
-  #     WAIT_HOSTS: mongo:27017
-  # frontend:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.frontend
-  #   environment:
-  #     - DANGEROUSLY_DISABLE_HOST_CHECK=true
-  #     - WDS_SOCKET_PORT=0
+      - '80:80'
+      - '443:443'
+  mongo:
+    image: mongo:6.0.4
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      WAIT_HOSTS: mongo:27017
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    environment:
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
+      - WDS_SOCKET_PORT=0
