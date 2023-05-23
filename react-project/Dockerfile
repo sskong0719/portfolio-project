@@ -1,8 +1,6 @@
 FROM node:16-alpine
 
-ENV HOME /root
-
-WORKDIR /root
+WORKDIR /react-project
 
 COPY . .
 
