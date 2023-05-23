@@ -1,0 +1,186 @@
+body {
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+}
+
+body.popup-open {
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.listings {
+    margin-top: 15vh;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 5rem;
+    padding: 0 5%;
+    width: 90%;
+}
+
+.listing-card {
+    background-color: var(--secondary);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    height: 100%;
+    width: 20%;
+    margin-bottom: 30px;
+
+}
+
+.listing-card:hover {
+    transform: translateY(-0.2rem);
+}
+
+.listing-card img {
+    display: block;
+    width: 100%;
+    height: 296px;
+    /* Set a fixed height */
+    object-fit: cover;
+    /* Ensure images are cropped to fit */
+}
+
+.listing-card h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    color: var(--main);
+    height: auto;
+    font-size: calc(15px + 0.3vw);
+    padding: 1rem;
+    text-align: center;
+}
+
+.popup {
+    border-radius: 20px;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: auto;
+    max-height: 70%;
+    z-index: 3;
+    /* Adjust the z-index value as needed */
+}
+
+.popup .left-content {
+    background-color: var(--main);
+    width: 50%;
+    /* Adjust the width as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Ensure the image doesn't overflow the container */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.popup .left-content img {
+    backdrop-filter: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.popup .right-content {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: var(--secondary);
+    opacity: 0.95;
+    flex: 1;
+    padding: 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: calc(15px + 0.3vw);
+    color: var(--main);
+    overflow-y: auto;
+}
+
+.popup .right-content h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: calc(30px + 0.3vw);
+}
+
+.popup .right-content h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: calc(15px + 0.3vw);
+
+}
+
+.popup .right-content h3 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: calc(15px + 0.3vw);
+    margin-bottom: 20px;
+}
+
+.popup .right-content .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.popup .right-content .skills-list li {
+    margin-right: 20px;
+}
+
+.link {
+    margin: 5% 0;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: var(--main);
+    --c: #5c5c5c;
+    /* the color*/
+    box-shadow: 0 0 0 .1em inset var(--c);
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background:
+        var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+        var(--_g) calc(200% - var(--_p, 0%)) 0%,
+        var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+        var(--_g) calc(200% - var(--_p, 0%)) 100%;
+    background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: calc(15px + 0.3vw);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 15px;
+    border: none;
+}
+
+.link:hover {
+    color: var(--secondary);
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+}
+
+.link:active {
+    box-shadow: 0 0 9e9q inset rgba(0, 0, 0, 0.6);
+    background-color: var(--main);
+}

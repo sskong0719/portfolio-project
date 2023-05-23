@@ -1,0 +1,168 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: var(--main);
+    font-family: 'inter';
+    font-weight: 200;
+    height: 80px;
+    z-index: 999;
+    position: fixed;
+    /* Added property */
+    width: 100%;
+    /* Added property */
+}
+
+
+.logo-container {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0rem 0.5rem 12vw;
+    text-decoration: none;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+.logo-img {
+    height: 70px;
+    margin-right: 0.5rem;
+}
+
+.logo-text {
+    margin-left: 20px;
+    font-size: 23px;
+}
+
+.menu-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 70%;
+    max-width: 300px;
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Updated */
+    justify-content: flex-end;
+    /* Updated */
+    z-index: 1;
+}
+
+.dark-light-mode-container {
+    margin-top: auto;
+    padding: 20px;
+}
+
+
+.menu-button {
+    border-style: none;
+    border-radius: 100px;
+    padding: 10px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    right: 230px;
+    color: var(--secondary);
+    transition: all 0.2s ease-out;
+
+}
+
+.menu-button:hover {
+    color: rgb(44, 44, 44);
+    background-color: var(--secondary);
+    transition: all 0.2s ease-in;
+}
+
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+    padding-left: 30px;
+    text-align: end;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--main);
+    text-decoration: none;
+    transition: all 0.5s ease-out;
+    box-sizing: border-box;
+    z-index: 3;
+    background-image: linear-gradient(to right, var(--main), var(--main) 0%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link:hover {
+    color: var(--secondary);
+    background-size: 100% 100%;
+    transition: color 0.5s ease-out, background-size 0.5s ease-in;
+}
+
+
+.close-row {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: 300px;
+    background-image: linear-gradient(to right, var(--main), var(--main) 0%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
+
+
+}
+
+
+
+.close-button {
+    padding: 20px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    right: 218px;
+    color: var(--main);
+    transition: all 0.5s ease-in-out;
+}
+
+.close-button:hover {
+    color: var(--secondary);
+    z-index: 2;
+}
+
+.close-row:hover {
+    color: var(--secondary);
+    background-size: 100% 100%;
+    transition: color 0.5s ease-out, background-size 0.5s ease-in;
+    z-index: 1;
+}
+
+.close-row:hover>.close-button {
+    color: var(--secondary);
+}
+
+@media only screen and (max-width: 880px) {
+    .logo-text {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .logo-text {
+        display: none;
+    }
+}

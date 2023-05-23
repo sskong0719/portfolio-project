@@ -1,0 +1,109 @@
+.contact-box {
+    display: flex;
+    /* Use flexbox to create a horizontal layout */
+    height: 70%;
+    width: 50%;
+    position: fixed;
+    top: 52%;
+    left: 50%;
+    padding-bottom: 2vh;
+    transform: translate(-50%, -50%);
+    background-color: var(--secondary);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+
+    /* Center the contents vertically */
+
+}
+
+.form {
+    flex: 1;
+    /* Take up 50% of the width */
+    padding: 20px;
+    /* Add some padding around the form */
+    text-align: center;
+}
+
+.description {
+    flex: 0.5;
+    /* Take up 50% of the width */
+    padding: 20px;
+    /* Add some padding around the description */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.contact-box h1 {
+    padding-top: 5%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 40px;
+    color: var(--main);
+
+}
+
+.info-title,
+.message-title {
+    padding-left: 3vw;
+    max-width: 700px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--main);
+    display: flex;
+}
+
+.info,
+.message {
+    width: 80%;
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    height: 2rem;
+    padding: 5px 10px;
+    /* Added left and right padding */
+    margin: 10px 0;
+    /* Added margin for spacing */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.message {
+    resize: none;
+    height: 30vh;
+
+}
+
+.info.typed,
+.message.typed {
+    font-weight: 400;
+}
+
+button {
+    width: 30%;
+    padding: 10px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: var(--secondary);
+    color: var(--main);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #888888;
+}

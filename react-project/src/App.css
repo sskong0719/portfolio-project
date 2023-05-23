@@ -1,0 +1,27 @@
+:root {
+  --main: rgb(44, 44, 44);
+  --secondary: white;
+  --tertiary: rgb(85, 85, 85);
+}
+
+[data-theme="light"] {
+  --main: white;
+  --secondary: rgb(44, 44, 44);
+  --tertiary: rgb(85, 85, 85);
+
+}
+
+* {
+  padding: 0;
+  margin: 0;
+
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--main);
+  /* Example: 50% opacity */
+  height: 100vh;
+
+}

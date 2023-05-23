@@ -1,0 +1,66 @@
+.social-container {
+  position: fixed;
+  top: 50%;
+  right: -3px;
+  /* Adjust the right value according to your preference */
+  transform: translateY(-50%);
+  z-index: 2;
+  border-color: var(--main);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: var(--secondary);
+  /* Set the border radius for the social bar */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  /* Add a box shadow for a subtle effect */
+}
+
+.first {
+  display: block;
+  padding: 10px;
+  color: var(--main);
+  background-color: var(--secondary);
+  border-top-left-radius: 10px;
+  transition: background-color 0.5s ease-in;
+}
+
+.first:hover {
+  border-top-left-radius: 10px;
+  background-color: var(--main);
+  color: var(--secondary);
+  cursor: pointer;
+  transition: background-color 0.5s ease-out;
+}
+
+.in-between {
+  background-color: var(--secondary);
+  color: var(--main);
+
+  display: block;
+  padding: 10px;
+  transition: background-color 0.5s ease-in;
+}
+
+.in-between:hover {
+  background-color: var(--main);
+  color: var(--secondary);
+  cursor: pointer;
+  transition: background-color 0.5s ease-out;
+}
+
+.last {
+  background-color: var(--secondary);
+  border-bottom-left-radius: 10px;
+  color: var(--main);
+
+  display: block;
+  padding: 10px;
+  transition: background-color 0.5s ease-in;
+}
+
+.last:hover {
+  border-bottom-left-radius: 10px;
+  background-color: var(--main);
+  color: var(--secondary);
+  cursor: pointer;
+  transition: background-color 0.5s ease-out;
+}
