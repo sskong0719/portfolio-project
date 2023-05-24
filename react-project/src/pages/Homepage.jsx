@@ -5,7 +5,7 @@ const Homepage = () => {
     const divRef = useRef(null);
 
     useEffect(() => {
-        document.body.classList.remove('popup-open');
+
         const handleMouseMove = (event) => {
             const div = divRef.current;
             if (div) {
@@ -31,10 +31,7 @@ const Homepage = () => {
                 }
             }
         };
-
-
         window.addEventListener('mousemove', handleMouseMove);
-
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
@@ -44,14 +41,14 @@ const Homepage = () => {
             <div className="body1">
                 <div className="welcome" ref={divRef}>
                     <div className="welcome-title">
-                        Hi I'm Samuel Kong.
+                        Hi I'm Samuel Kong
                         <br />
-                        <span className="role">Fullstack & Software Developer.</span>
+                        <span className="role">Fullstack & Software Developer</span>
                     </div>
                     <div className="welcome-body">
-                        A senior student studying <span className="major">Computer Science.</span>
+                        A senior student studying <span className="major">Computer Science</span>
                         <br />
-                        Feel free to explore and don’t hesitate to get in touch if you have any questions or opportunities to collaborate.
+                        Feel free to explore and don’t hesitate to get in touch if you have any questions or opportunities to collaborate
                     </div>
                 </div>
             </div>

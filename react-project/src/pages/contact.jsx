@@ -1,22 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles/contact.css';
 
 export default function Contact() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const [nameTyped, setNameTyped] = useState(false);
-    const [emailTyped, setEmailTyped] = useState(false);
-    const [messageTyped, setMessageTyped] = useState(false);
-    useEffect(() => {
-        document.body.classList.remove('popup-open');
-    }, []);
-    //TODO: ADD HEADER
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+
+        fetch('/submit-contact-form', {
+            method: 'POST',
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response from the server if needed
+            })
+            .catch((error) => console.error(error));
+    };
+
     return (
         <div className="body">
             <div className="contact-box">
-
-                <div className="header"><h1>Get In Touch</h1>
+                <div className="header">
+                    <h1>Get In Touch</h1>
                 </div>
 
                 <div className="description">
@@ -28,50 +41,40 @@ export default function Contact() {
                     <br />
                     Looking forward to connecting with you!
                 </div>
+
                 <div className="form">
-                    <form action="/submit-contact" method="post" encType="multipart/form-data">
-                        <label className="info-title">
-                            Name
-                        </label>
+                    <form onSubmit={handleSubmit}>
+                        <label className="info-title">Name</label>
                         <input
-                            className={`info ${nameTyped ? 'typed' : ''}`}
+                            className={`info ${name !== '' ? 'typed' : ''}`}
                             type="text"
                             name="name"
                             placeholder="Enter Your Name"
                             value={name}
-                            onChange={(e) => {
-                                setName(e.target.value);
-                                setNameTyped(e.target.value !== '');
-                            }}
+                            onChange={(e) => setName(e.target.value)}
                         />
-                        <label className="info-title">
-                            Email
-                        </label>
+
+                        <label className="info-title">Email</label>
                         <input
-                            className={`info ${emailTyped ? 'typed' : ''}`}
+                            className={`info ${email !== '' ? 'typed' : ''}`}
                             type="text"
                             name="email"
                             placeholder="Enter Your Email"
                             value={email}
-                            onChange={(e) => {
-                                setEmail(e.target.value);
-                                setEmailTyped(e.target.value !== '');
-                            }}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
+
                         <br />
-                        <label className="info-title">
-                            Message
-                        </label>
+
+                        <label className="info-title">Message</label>
                         <textarea
-                            className={`message ${messageTyped ? 'typed' : ''}`}
+                            className={`message ${message !== '' ? 'typed' : ''}`}
                             name="message"
                             placeholder="Enter Your Message"
                             value={message}
-                            onChange={(e) => {
-                                setMessage(e.target.value);
-                                setMessageTyped(e.target.value !== '');
-                            }}
+                            onChange={(e) => setMessage(e.target.value)}
                         ></textarea>
+
                         <button className="submit" type="submit">Submit</button>
                     </form>
                 </div>

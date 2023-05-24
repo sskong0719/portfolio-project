@@ -1,20 +1,21 @@
+/* Initial values of the page*/
 :root {
   --main: rgb(44, 44, 44);
   --secondary: white;
   --tertiary: rgb(85, 85, 85);
 }
 
+/* light mode*/
 [data-theme="light"] {
   --main: white;
   --secondary: rgb(44, 44, 44);
+  /* Redundant */
   --tertiary: rgb(85, 85, 85);
-
 }
 
 * {
   padding: 0;
   margin: 0;
-
 }
 
 body {

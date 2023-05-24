@@ -3,8 +3,7 @@ FROM node:16-alpine
 ENV HOME /root
 WORKDIR /root
 
-COPY /react-project .
-COPY /react-project/package_for_docker.json ./package.json
+COPY . .
 RUN npm install
 
 EXPOSE 3000

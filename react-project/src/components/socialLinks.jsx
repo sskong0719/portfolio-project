@@ -13,9 +13,7 @@ export default function Contact() {
         {socialLinks.map((item, index) => (
           <li
             key={index}
-            className={
-              index === 0 ? 'first' : index === socialLinks.length - 1 ? 'last' : 'in-between'
-            }
+            className={'in-between'}
             onClick={() => handleLinkClick(item.link)}
           >
             {item.icon}

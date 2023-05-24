@@ -50,8 +50,6 @@
     flex-direction: column;
     align-items: center;
     /* Updated */
-    justify-content: flex-end;
-    /* Updated */
     z-index: 1;
 }
 
@@ -72,7 +70,6 @@
     right: 230px;
     color: var(--secondary);
     transition: all 0.2s ease-out;
-
 }
 
 .menu-button:hover {
@@ -155,14 +152,73 @@
     color: var(--secondary);
 }
 
-@media only screen and (max-width: 880px) {
+@media only screen and (max-width: 1040px) {
     .logo-text {
         font-size: 18px;
     }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 900px) {
     .logo-text {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .close-row {
+
+        height: 80px;
+        width: 100vw;
+
+    }
+
+    .close-button {
+        left: 50vw;
+        transform: translateX(-50%);
+    }
+
+    .close-button:hover {
+        color: var(--secondary);
+        z-index: 2;
+    }
+
+    .menu-container {
+        height: 100%;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .nav-link {
+        padding: 0;
+        width: 100vw;
+        text-align: center;
+        justify-content: center;
+        /* Add this property to center the content horizontally */
+        align-items: center;
+        /* Add this property to center the content vertically */
+    }
+
+    .nav-link:hover {
+        color: var(--secondary);
+        background-size: 100% 100%;
+        transition: color 0.5s ease-out, background-size 0.5s ease-in;
+    }
+
+    .menu-container.open {
+        transform: translateY(0);
+        /* Update transform to move the menu into view */
+    }
+
+    .logo-container {
+        display: none;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .menu-button {
+        left: 50vw;
+        transform: translateX(-50%);
     }
 }

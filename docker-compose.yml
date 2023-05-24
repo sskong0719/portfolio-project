@@ -8,15 +8,11 @@ services:
   mongo:
     image: mongo:6.0.4
   backend:
-    build:
-      context: .
-      dockerfile: Dockerfile.backend
+    build: ./backend
     environment:
       WAIT_HOSTS: mongo:27017
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
+    build: ./react-project
     environment:
       - DANGEROUSLY_DISABLE_HOST_CHECK=true
       - WDS_SOCKET_PORT=0
