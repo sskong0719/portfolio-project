@@ -30,54 +30,55 @@ export default function Contact() {
         <div className="body">
             <div className="contact-box">
                 <div className="header">
-                    <h1>Get In Touch</h1>
+                    Get In Touch
                 </div>
-
-                <div className="description">
-                    Feel free to contact me with any job opportunities!
-                    <br />
-                    <br />
-                    Fill out the form or email me, and I'll respond promptly within 24-48 hours.
-                    <br />
-                    <br />
-                    Looking forward to connecting with you!
-                </div>
-
-                <div className="form">
-                    <form onSubmit={handleSubmit}>
-                        <label className="info-title">Name</label>
-                        <input
-                            className={`info ${name !== '' ? 'typed' : ''}`}
-                            type="text"
-                            name="name"
-                            placeholder="Enter Your Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-
-                        <label className="info-title">Email</label>
-                        <input
-                            className={`info ${email !== '' ? 'typed' : ''}`}
-                            type="text"
-                            name="email"
-                            placeholder="Enter Your Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-
+                <div className="not-header">
+                    <div className="description">
+                        Feel free to contact me with any job opportunities!
                         <br />
+                        <br />
+                        Fill out the form or email me, and I'll respond promptly within 24-48 hours.
+                        <br />
+                        <br />
+                        Looking forward to connecting with you!
+                    </div>
 
-                        <label className="info-title">Message</label>
-                        <textarea
-                            className={`message ${message !== '' ? 'typed' : ''}`}
-                            name="message"
-                            placeholder="Enter Your Message"
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                        ></textarea>
+                    <div className="form">
+                        <form onSubmit={handleSubmit}>
+                            <label className="info-title">Name</label>
+                            <input
+                                className={`info ${name !== '' ? 'typed' : ''}`}
+                                type="text"
+                                name="name"
+                                placeholder="Enter Your Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
 
-                        <button className="submit" type="submit">Submit</button>
-                    </form>
+                            <label className="info-title">Email</label>
+                            <input
+                                className={`info ${email !== '' ? 'typed' : ''}`}
+                                type="text"
+                                name="email"
+                                placeholder="Enter Your Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+
+                            <br />
+
+                            <label className="info-title">Message</label>
+                            <textarea
+                                className={`message ${message !== '' ? 'typed' : ''}`}
+                                name="message"
+                                placeholder="Enter Your Message"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                            ></textarea>
+
+                            <button className="submit" type="submit">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

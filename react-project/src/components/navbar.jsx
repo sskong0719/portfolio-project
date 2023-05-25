@@ -33,9 +33,9 @@ const Navbar = () => {
     { title: 'Contact', path: '/contact' },
   ];
 
-  const mobileInitial = { y: '-100%' };
+  const mobileInitial = { y: '-100%', x: '0%' };
   const mobileAnimate = { y: isOpen ? '0%' : '-100%' };
-  const desktopInitial = { x: '100%' };
+  const desktopInitial = { x: '100%', y: '0%' };
   const desktopAnimate = { x: isOpen ? '0%' : '100%' };
 
   return (

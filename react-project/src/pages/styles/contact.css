@@ -1,56 +1,55 @@
 .contact-box {
     display: flex;
-    /* Use flexbox to create a horizontal layout */
-    height: 70%;
-    width: 50%;
+    height: 770px;
+    width: 960px;
     position: fixed;
     top: 52%;
     left: 50%;
-    padding-bottom: 2vh;
     transform: translate(-50%, -50%);
     background-color: var(--secondary);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    backdrop-filter: blur(10px);
     justify-content: center;
     align-items: center;
-
-    /* Center the contents vertically */
-
+    flex-direction: column;
 }
 
-.form {
-    flex: 1;
-    /* Take up 50% of the width */
-    padding: 20px;
-    /* Add some padding around the form */
-    text-align: center;
+.contact-box .header {
+    padding-top: 40px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 60px;
+    color: var(--main);
+}
+
+.contact-box .not-header {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
 }
 
 .description {
     flex: 0.5;
-    /* Take up 50% of the width */
-    padding: 20px;
-    /* Add some padding around the description */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    color: var(--main);
+}
+
+.form {
+    flex: 1;
+    text-align: center;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 200;
     font-size: 20px;
 }
 
-.contact-box h1 {
-    padding-top: 5%;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 40px;
-    color: var(--main);
-
-}
-
 .info-title,
 .message-title {
-    padding-left: 3vw;
+    padding-left: 50px;
     max-width: 700px;
     font-family: 'Inter';
     font-style: normal;
@@ -71,9 +70,7 @@
     font-size: 1rem;
     height: 2rem;
     padding: 5px 10px;
-    /* Added left and right padding */
     margin: 10px 0;
-    /* Added margin for spacing */
     font-family: 'Inter';
     font-style: normal;
     font-weight: 200;
@@ -82,8 +79,7 @@
 
 .message {
     resize: none;
-    height: 30vh;
-
+    height: 240px;
 }
 
 .info.typed,
@@ -105,5 +101,6 @@ button {
 }
 
 button:hover {
-    background-color: #888888;
+    background-color: var(--main);
+    color: var(--secondary);
 }
