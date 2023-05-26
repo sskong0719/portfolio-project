@@ -15,6 +15,7 @@ function App() {
       <Router>
         <CursorFollower />
         <Navbar />
+        <Socialbar />
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path='/contact' element={<Contact />} />

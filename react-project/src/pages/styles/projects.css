@@ -11,7 +11,7 @@ body.popup-open {
 }
 
 .listings {
-    margin-top: 15vh;
+    margin-top: 200px;
     position: absolute;
     display: flex;
     flex-wrap: wrap;
@@ -29,10 +29,8 @@ body.popup-open {
     cursor: pointer;
     overflow: hidden;
     transition: transform 0.2s ease-in-out;
-    height: 100%;
-    width: 20%;
-    margin-bottom: 30px;
-
+    height: 355px;
+    width: 461px;
 }
 
 .listing-card:hover {
@@ -54,7 +52,7 @@ body.popup-open {
     font-weight: 400;
     color: var(--main);
     height: auto;
-    font-size: calc(15px + 0.3vw);
+    font-size: 15px;
     padding: 1rem;
     text-align: center;
 }

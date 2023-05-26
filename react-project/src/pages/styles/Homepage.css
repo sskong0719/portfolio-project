@@ -5,7 +5,7 @@
 .welcome {
     padding: 50px;
     background-color: transparent;
-    position: relative;
+    position: fixed;
     top: 30%;
     left: 12vw;
     max-width: 1000px;
@@ -42,7 +42,10 @@
     font-weight: 400;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
+    .welcome{
+        left:0px
+    }
     /* Styles for screens up to 768px wide (tablets and smaller) */
     .welcome-title {
       font-size: 30px;

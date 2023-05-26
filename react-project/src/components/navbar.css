@@ -12,11 +12,10 @@
     /* Added property */
 }
 
-
 .logo-container {
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 0rem 0.5rem 12vw;
+    padding: 0.5rem 0rem 0.5rem 230px;
     text-decoration: none;
 }
 
@@ -43,8 +42,6 @@
     top: 0;
     right: 0;
     bottom: 0;
-    width: 70%;
-    max-width: 300px;
     background-color: var(--secondary);
     display: flex;
     flex-direction: column;
@@ -82,9 +79,8 @@
 .nav-link {
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 120px;
     width: 300px;
-    padding: 10px;
     padding-left: 30px;
     text-align: end;
     font-size: 30px;
@@ -122,9 +118,6 @@
 
 
 }
-
-
-
 .close-button {
     padding: 20px;
     position: absolute;
@@ -152,19 +145,19 @@
     color: var(--secondary);
 }
 
-@media only screen and (max-width: 1040px) {
+@media only screen and (max-width: 1130px) {
     .logo-text {
         font-size: 18px;
     }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1010px) {
     .logo-text {
         display: none;
     }
 }
 
-@media only screen and (max-width: 520px) {
+@media only screen and (max-width: 600px) {
     .close-row {
 
         height: 80px;
