@@ -1,9 +1,26 @@
 import './styles/resume.css';
 import React, { useEffect } from 'react';
+import { resumeData } from './resumeData';
 
 export default function Resume() {
   useEffect(() => {
     document.body.classList.remove('popup-open');
+    const smoothScroll = (target) => {
+      const element = document.querySelector(target);
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: 'smooth',
+      });
+    };
+
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.getAttribute('href');
+        smoothScroll(target);
+      });
+    });
   }, []);
 
   return (
@@ -19,36 +36,61 @@ export default function Resume() {
           </p>
           <br />
           <ul>
-            <li>Skills</li>
-            <li>Projects</li>
-            <li>Language</li>
-            <li>Experience</li>
+            <li><a href="#Skills">Skills</a></li>
+            <li><a href="#Projects">Projects</a></li>
+            <li><a href="#Languages">Languages</a></li>
           </ul>
+          <br />
+          <br />
+          <br />
+          <h3> Feel free to get a copy of my resume</h3>
+          <a className="pdf" href={process.env.PUBLIC_URL + '/SamuelSiuyinKong_Resume.pdf'} target="_blank" rel="noreferrer">View PDF</a>
         </div>
         <div className="resume">
+          <div className="fake-anchor" id="Skills"></div>
           <h2>Skills</h2>
           <br />
-          <p>
-            asd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f f
-          </p>
+          <ul className="skills-list">
+            {resumeData.map((item, index) => (
+              <li key={index}>
+                {item.Skills.map((skill, skillIndex) => (
+                  <span key={skillIndex}>{skill}</span>
+                ))}
+              </li>
+            ))}
+          </ul>
           <br />
-          <h2>Projects</h2>
+          {resumeData.map((item, index) => (
+            <div className="projects" key={index}>
+              <div className="fake-anchor" id="Projects"></div>
+              <h2>Projects</h2>
+              {Object.entries(item.Project[0]).map(([projectName, projectDescription], i) => (
+                <div key={i}>
+                  <br />
+                  <h3>{projectName}</h3><h4>Date</h4>
+                  <br />
+                  <ul className="project-list">
+                    {projectDescription.map((desc, j) => (
+                      <li className='description' key={j}>{desc}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ))}
           <br />
-          <p>
-            asd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f f
-          </p>
+          <div className="fake-anchor" id="Languages"></div>
+          <h2>Languages</h2>
           <br />
-          <h2>Language</h2>
-          <br />
-          <p>
-            asd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f f
-          </p>
-          <br />
-          <h2>Experience</h2>
-          <br />
-          <p>
-            asd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f fasd f f
-          </p>
+          <ul className="languages-list">
+            {resumeData.map((item, index) => (
+              <li key={index}>
+                {item.Language.map((language, languageIndex) => (
+                  <span key={languageIndex}>{language}</span>
+                ))}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>

@@ -8,14 +8,16 @@
   /* Set the border radius for the social bar */
   /* Add a box shadow for a subtle effect */
 }
-.in-between {
+
+.social-container .in-between {
   color: var(--secondary);
   opacity: 0.4;
   display: inline-block;
   padding: 10px;
   transition: opacity 0.3s ease-in;
 }
-.in-between:hover {
+
+.social-container .in-between:hover {
   color: var(--secondary);
   opacity: 0.8;
   cursor: pointer;

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response, send_from_directory
+from flask import Flask, jsonify, request, make_response, send_from_directory, render_template
 from database import Database
 import validate
 import smtp
@@ -8,12 +8,11 @@ app = Flask(__name__)
 db = Database()
 
 
-@app.route('/', methods=['GET'])
-def index():
-    return {
-        "channel": "The Show",
-        "tutorial": "React, Flask and Docker"
-    }
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    # Render the main React application with the path
+    return render_template('index.html', path=path)
 
 
 @app.route("/submit-contact-form", methods=['POST'])

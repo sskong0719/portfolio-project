@@ -1,23 +1,58 @@
+body {
+    overflow: auto;
+    margin: 0;
+}
+
 .content {
-    position: fixed;
+    position: relative;
     top: 150px;
     padding: 0 17%;
-    height: 500px;
     width: 66%;
     text-align: left;
     justify-content: center;
     display: flex;
+    padding-bottom: 200px;
 }
 
 .content .self {
+    position: sticky;
+    top: 150px;
     flex: 1;
+    padding-right: 40px;
+    height: 0;
 }
 
 .content .resume {
     flex: 1;
+    padding-right: 40px;
 }
 
-ul li {
+.content .self .pdf{
+    display:flex;
+
+    border-radius: 10px;
+    border-style: solid;
+
+    padding:5px;
+    background-color: var(--secondary);
+    height:30px;
+    width:100px;
+    text-decoration: none;
+    color: var(--main);
+
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+}
+.self ul li,
+.self ul li a,
+.skills-list li,
+.languages-list li {
     list-style: none;
     font-family: 'Inter';
     font-style: normal;
@@ -27,12 +62,17 @@ ul li {
     color: var(--secondary);
 }
 
-p {
+.skills-list li,
+.languages-list li {
+    padding-left: 2em;
+}
+
+.self p {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 200;
     font-size: 15px;
-    line-height: 30px;
+    line-height: 20px;
     color: var(--secondary);
 }
 
@@ -48,8 +88,47 @@ h1 {
 h2 {
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 30px;
     line-height: 40px;
     color: var(--secondary);
+}
+
+h3 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 22px;
+    line-height: 20px;
+    color: var(--secondary);
+}
+
+.projects h3 {
+    padding-left: 1em;
+
+}
+
+.projects .project-list {
+    padding-left: 2em;
+}
+
+.projects .description {
+    list-style-type: '- ';
+    margin-bottom: 10px;
+    padding-left: 1em;
+    color: var(--secondary);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--secondary);
+}
+
+.skills-list li span {
+    margin-right: 10px;
+}
+
+.languages-list li span {
+    margin-right: 20px;
 }

@@ -6,24 +6,51 @@ import pythonLogo from '../images/python-logo-only.svg'
 import css3Logo from '../images/css3.svg'
 import figmaLogo from '../images/figma.svg'
 import mysqlLogo from '../images/mysql.svg'
+import html5Logo from '../images/html5.svg'
 
+/* Programming Languages*/
 let python = <img src={pythonLogo} width="40" height="40" alt="Python Logo" />;
-let figma = <img src={figmaLogo} width="40" height="40" alt="Python Logo" />;
-let github = <AiIcons.AiFillGithub size={40} />;
-let css3 = <img src={css3Logo} width="40" height="40" alt="Python Logo" />;
 let php = <SiIcons.SiPhp size={40} color='#787CB5' />;
-let mysql = <img src={mysqlLogo} width="40" height="40" alt="Python Logo" />;
-let reactjs = <GrIcons.GrReactjs size={40} color='#61dbfb' />;
+
+/* Databases */
+let mysql = <img src={mysqlLogo} width="40" height="40" alt="MySQL Logo" />;
 let mongodb = <SiIcons.SiMongodb size={40} color='#27C937' />;
-let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
+
+/* Front-End Technologies*/
+let html5 = <img src={html5Logo} width="40" height="40" alt="HTML5 Logo" />;
+let css3 = <img src={css3Logo} width="40" height="40" alt="CSS3 Logo" />;
+let reactjs = <GrIcons.GrReactjs size={40} color='#61dbfb' />;
+
+/* Framework / Libraries*/
 let flask = <SiIcons.SiFlask size={40} />;
+
+/* Tools*/
+let figma = <img src={figmaLogo} width="40" height="40" alt="Figma Logo" />;
+let github = <AiIcons.AiFillGithub size={40} />;
+let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
 
 export const resumeData = [
     {
-        Skills: {
-            icon: <AiIcons.AiFillGithub size={40} />,
-            link: 'https://github.com/sskong0719'
-        },
+        Skills: [python, php, css3, html5, reactjs, mysql, mongodb, flask, figma, github, docker],
+        Project: [{
+            "Campus Living Rating Web App": [
+                "Developed a fully functional web app using ReactJS, PHP, and MySQL.",
+                "Implemented a rating system that allows users to rate various aspects of on and off campus housing options.",
+                "Designed an intuitive and user-friendly interface that makes it easy for users to submit reviews and browse housing options."
+            ],
+            "Auction House Web App": [
+                "In progress for developing an eBay like auction web app using ReactJS, Flask, Python, and MongoDB.",
+                "Implemented an auction system that allows sellers to create listings for products they want to auction off, including photos, descriptions, starting bids, and auction end dates.",
+                "One of the challenges I faced during the development of this project was integrating different technologies such as ReactJS, Flask, Python, and MongoDB to create a seamless and user - friendly auction platform.Another challenge was designing the bidding process to ensure a fair and secure auction system that maintains the privacy of all users."
+            ],
+            "Brick Breaker Game Project": [
+                "Designed and developed a Brick Breaker game using ARM Assembly language and low-level hardware programming techniques such as GPIO, Timer, and UART.",
+                "Implemented GPIO to control input/output operations, Timer for game mechanics and frame rate control, and UART to display score and other game information on a serial terminal.",
+                "Challenges encountered during the development process were mostly optimizing performance and calculation challenges for the ball and paddle to move accurately and smoothly"
+            ]
+        }]
+        ,
+        Language: ["Chinese", "Cantonese", "English"],
     },
 
 ];

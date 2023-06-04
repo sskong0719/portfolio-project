@@ -8,11 +8,11 @@ import DarkLightMode from './DarkLightMode';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 521);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 601);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 521);
+      setIsMobile(window.innerWidth < 601);
     };
 
     window.addEventListener('resize', handleResize);

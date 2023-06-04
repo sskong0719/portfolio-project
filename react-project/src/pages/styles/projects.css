@@ -113,6 +113,8 @@ body.popup-open {
     font-style: normal;
     font-weight: 400;
     font-size: calc(30px + 0.3vw);
+    color: var(--main);
+
 }
 
 .popup .right-content h2 {
@@ -120,7 +122,7 @@ body.popup-open {
     font-style: normal;
     font-weight: 200;
     font-size: calc(15px + 0.3vw);
-
+    color: var(--main);
 }
 
 .popup .right-content h3 {
@@ -129,6 +131,7 @@ body.popup-open {
     font-weight: 200;
     font-size: calc(15px + 0.3vw);
     margin-bottom: 20px;
+    color: var(--main);
 }
 
 .popup .right-content .skills-list {
@@ -141,9 +144,10 @@ body.popup-open {
 
 .popup .right-content .skills-list li {
     margin-right: 20px;
+    color: var(--main);
 }
 
-.link {
+.popup .link {
     margin: 5% 0;
     display: inline-block;
     text-align: center;
