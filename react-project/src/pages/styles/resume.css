@@ -27,16 +27,16 @@ body {
     padding-right: 40px;
 }
 
-.content .self .pdf{
-    display:flex;
+.content .self .pdf {
+    display: flex;
 
     border-radius: 10px;
     border-style: solid;
 
-    padding:5px;
+    padding: 5px;
     background-color: var(--secondary);
-    height:30px;
-    width:100px;
+    height: 30px;
+    width: 100px;
     text-decoration: none;
     color: var(--main);
 
@@ -49,6 +49,7 @@ body {
     font-size: 20px;
     line-height: 20px;
 }
+
 .self ul li,
 .self ul li a,
 .skills-list li,
@@ -56,7 +57,7 @@ body {
     list-style: none;
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 15px;
     line-height: 30px;
     color: var(--secondary);
@@ -70,7 +71,7 @@ body {
 .self p {
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 15px;
     line-height: 20px;
     color: var(--secondary);
@@ -79,7 +80,7 @@ body {
 h1 {
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 60px;
     line-height: 75px;
     color: var(--secondary);
@@ -97,7 +98,7 @@ h2 {
 h3 {
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 22px;
     line-height: 20px;
     color: var(--secondary);
@@ -116,10 +117,9 @@ h3 {
     list-style-type: '- ';
     margin-bottom: 10px;
     padding-left: 1em;
-    color: var(--secondary);
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 15px;
     line-height: 20px;
     color: var(--secondary);

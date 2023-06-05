@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response, send_from_directory, render_template
+from flask import Flask, jsonify, request, make_response, send_from_directory, render_template, Response
 from database import Database
 import validate
 import smtp
@@ -13,6 +13,8 @@ db = Database()
 def catch_all(path):
     # Render the main React application with the path
     return render_template('index.html', path=path)
+
+# Submit Contact form to database and send to my email
 
 
 @app.route("/submit-contact-form", methods=['POST'])
@@ -46,6 +48,7 @@ def contact():
             }
 
     return jsonify(response)
+
 
 
 if __name__ == "__main__":

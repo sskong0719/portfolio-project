@@ -1,29 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
-import './DarkLightMode.css'
+import './DarkLightMode.css';
 
 const DarkLightMode = () => {
+    const [isLightMode, setisLightMode] = useState(false);
 
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    useEffect(() => {
+        const selectedTheme = localStorage.getItem('selectedTheme');
+
+        if (selectedTheme === 'dark') {
+            setisLightMode(true);
+            document.querySelector('body').setAttribute('data-theme', 'light');
+        } else {
+            setisLightMode(false);
+            document.querySelector('body').setAttribute('data-theme', 'dark');
+        }
+    }, []);
 
     const handleToggle = () => {
-        setIsDarkMode(!isDarkMode);
-        if (isDarkMode) {
-            document.querySelector("body").setAttribute("data-theme", "dark");
-            localStorage.setItem("selectedTheme", "dark")
-        }
-        else {
-            document.querySelector("body").setAttribute("data-theme", "light");
-            localStorage.setItem("selectedTheme", "light")
+        setisLightMode(!isLightMode);
+        console.log(isLightMode)
+        if (isLightMode) {
+            document.querySelector('body').setAttribute('data-theme', 'light');
+            localStorage.setItem('selectedTheme', 'light');
+        } else {
+            document.querySelector('body').setAttribute('data-theme', 'dark');
+            localStorage.setItem('selectedTheme', 'dark');
         }
     };
 
-    // const selectedTheme = localStorage.getItem("selectedTheme");
     return (
-        <div className={`dark-mode-switch ${isDarkMode ? 'dark' : ''}`}>
+        <div className={`dark-mode-switch ${isLightMode ? '' : 'dark'}`}>
             <div className="toggle" onClick={handleToggle}>
-                <div className={`slider ${isDarkMode ? 'dark' : ''}`}></div>
-                {isDarkMode ? <MdLightMode /> : <MdDarkMode />}
+                <div className={`slider ${isLightMode ? '' : 'dark'}`}></div>
+                {isLightMode ? <MdDarkMode /> : <MdLightMode />}
             </div>
         </div>
     );
