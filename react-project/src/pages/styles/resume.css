@@ -32,13 +32,15 @@ body {
 
     border-radius: 10px;
     border-style: solid;
+    border-width: 1px;
 
+    margin-top: 20px;
     padding: 5px;
-    background-color: var(--secondary);
+    background-color: var(--main);
     height: 30px;
     width: 100px;
     text-decoration: none;
-    color: var(--main);
+    color: var(--secondary);
 
     justify-content: center;
     align-items: center;
@@ -48,6 +50,13 @@ body {
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.content .self .pdf:hover {
+    background-color: var(--secondary);
+    color: var(--main);
 }
 
 .self ul li,
@@ -102,12 +111,29 @@ h3 {
     font-size: 22px;
     line-height: 20px;
     color: var(--secondary);
+    transition: color 0.5s;
+
+}
+
+h4 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--secondary);
 }
 
 .projects h3 {
     padding-left: 1em;
-
 }
+
+.projects h4 {
+    margin-top: 20px;
+    padding-left: 3em;
+}
+
+
 
 .projects .project-list {
     padding-left: 2em;
@@ -131,4 +157,25 @@ h3 {
 
 .languages-list li span {
     margin-right: 20px;
+}
+
+.projects .individual-project {
+
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: transparent;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: border-color 0.5s;
+    opacity: 1;
+
+}
+
+.projects .individual-project:hover,
+.individual-project:hover h3 {
+    border-color: var(--secondary);
+    color: rgb(128, 225, 255);
+    
 }

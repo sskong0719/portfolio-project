@@ -7,8 +7,8 @@ const DarkLightMode = () => {
 
     useEffect(() => {
         const selectedTheme = localStorage.getItem('selectedTheme');
-
-        if (selectedTheme === 'dark') {
+            
+        if (selectedTheme === 'light') {
             setisLightMode(true);
             document.querySelector('body').setAttribute('data-theme', 'light');
         } else {
@@ -19,8 +19,7 @@ const DarkLightMode = () => {
 
     const handleToggle = () => {
         setisLightMode(!isLightMode);
-        console.log(isLightMode)
-        if (isLightMode) {
+        if (!isLightMode) {
             document.querySelector('body').setAttribute('data-theme', 'light');
             localStorage.setItem('selectedTheme', 'light');
         } else {
@@ -33,7 +32,7 @@ const DarkLightMode = () => {
         <div className={`dark-mode-switch ${isLightMode ? '' : 'dark'}`}>
             <div className="toggle" onClick={handleToggle}>
                 <div className={`slider ${isLightMode ? '' : 'dark'}`}></div>
-                {isLightMode ? <MdDarkMode /> : <MdLightMode />}
+                {!isLightMode ? <MdDarkMode /> : <MdLightMode />}
             </div>
         </div>
     );

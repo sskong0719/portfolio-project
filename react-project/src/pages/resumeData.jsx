@@ -32,25 +32,35 @@ let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
 export const resumeData = [
     {
         Skills: [python, php, css3, html5, reactjs, mysql, mongodb, flask, figma, github, docker],
-        Project: [{
-            "Campus Living Rating Web App": [
-                "Developed a fully functional web app using ReactJS, PHP, and MySQL.",
-                "Implemented a rating system that allows users to rate various aspects of on and off campus housing options.",
-                "Designed an intuitive and user-friendly interface that makes it easy for users to submit reviews and browse housing options."
-            ],
-            "Auction House Web App": [
-                "In progress for developing an eBay like auction web app using ReactJS, Flask, Python, and MongoDB.",
-                "Implemented an auction system that allows sellers to create listings for products they want to auction off, including photos, descriptions, starting bids, and auction end dates.",
-                "One of the challenges I faced during the development of this project was integrating different technologies such as ReactJS, Flask, Python, and MongoDB to create a seamless and user - friendly auction platform.Another challenge was designing the bidding process to ensure a fair and secure auction system that maintains the privacy of all users."
-            ],
-            "Brick Breaker Game Project": [
-                "Designed and developed a Brick Breaker game using ARM Assembly language and low-level hardware programming techniques such as GPIO, Timer, and UART.",
-                "Implemented GPIO to control input/output operations, Timer for game mechanics and frame rate control, and UART to display score and other game information on a serial terminal.",
-                "Challenges encountered during the development process were mostly optimizing performance and calculation challenges for the ball and paddle to move accurately and smoothly"
-            ]
-        }]
-        ,
-        Language: ["Chinese", "Cantonese", "English"],
-    },
-
+        Projects: [
+            {
+                title: "Campus Living Rating Web App",
+                date: "February 2023 – May 2023",
+                description: [
+                    "Developed a fully functional web app using ReactJS, PHP, and MySQL.",
+                    "Implemented a rating system that allows users to rate various aspects of on and off-campus housing options.",
+                    "Designed an intuitive and user-friendly interface that makes it easy for users to submit reviews and browse housing options."
+                ]
+            },
+            {
+                title: "Auction House Web App",
+                date: "March 2023 – May 2023",
+                description: [
+                    "In progress for developing an eBay-like auction web app using ReactJS, Flask, Python, and MongoDB.",
+                    "Implemented an auction system that allows sellers to create listings for products they want to auction off, including photos, descriptions, starting bids, and auction end dates.",
+                    "One of the challenges I faced during the development of this project was integrating different technologies such as ReactJS, Flask, Python, and MongoDB to create a seamless and user-friendly auction platform. Another challenge was designing the bidding process to ensure a fair and secure auction system that maintains the privacy of all users."
+                ]
+            },
+            {
+                title: "Brick Breaker Game Project",
+                date: "April 2023 – May 2023",
+                description: [
+                    "Designed and developed a Brick Breaker game using ARM Assembly language and low-level hardware programming techniques such as GPIO, Timer, and UART.",
+                    "Implemented GPIO to control input/output operations, Timer for game mechanics and frame rate control, and UART to display score and other game information on a serial terminal.",
+                    "Challenges encountered during the development process were mostly optimizing performance and calculation challenges for the ball and paddle to move accurately and smoothly."
+                ]
+            }
+        ],
+        Language: ["Chinese", "Cantonese", "English"]
+    }
 ];

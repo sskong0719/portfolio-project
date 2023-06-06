@@ -64,20 +64,22 @@ export default function Resume() {
             <div className="projects" key={index}>
               <div className="fake-anchor" id="Projects"></div>
               <h2>Projects</h2>
-              {Object.entries(item.Project[0]).map(([projectName, projectDescription], i) => (
-                <div key={i}>
+              {item.Projects.map((project, i) => (
+                <div className="individual-project" key={i}>
                   <br />
-                  <h3>{projectName}</h3><h4>Date</h4>
+                  <h3>{project.title}</h3>
+                  <h4>{project.date}</h4>
                   <br />
                   <ul className="project-list">
-                    {projectDescription.map((desc, j) => (
-                      <li className='description' key={j}>{desc}</li>
+                    {project.description.map((desc, j) => (
+                      <li className="description" key={j}>{desc}</li>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
           ))}
+
           <br />
           <div className="fake-anchor" id="Languages"></div>
           <h2>Languages</h2>
