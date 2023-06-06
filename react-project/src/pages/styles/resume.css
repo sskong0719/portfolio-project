@@ -168,7 +168,7 @@ h4 {
     padding: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
-    transition: border-color 0.5s;
+    transition: background-color 0.5s, border-color 0.5s;
     opacity: 1;
 
 }
@@ -176,6 +176,9 @@ h4 {
 .projects .individual-project:hover,
 .individual-project:hover h3 {
     border-color: var(--secondary);
-    color: rgb(128, 225, 255);
-    
+    color: var(--cursor);
+}
+
+.projects .individual-project:hover {
+    background-color: rgba(207, 207, 207, 0.2);
 }

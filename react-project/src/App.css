@@ -3,12 +3,14 @@
   --main: rgb(44, 44, 44);
   --secondary: white;
   --tertiary: rgb(85, 85, 85);
+  --cursor: rgb(128, 225, 255);
 }
 
 /* light mode*/
 [data-theme="light"] {
   --main: white;
   --secondary: rgb(44, 44, 44);
+  --cursor: rgb(52, 98, 248);
   /* Redundant */
   --tertiary: rgb(85, 85, 85);
 }

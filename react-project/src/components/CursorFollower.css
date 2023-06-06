@@ -2,7 +2,7 @@
     cursor: none;
     width: 50px;
     height: 50px;
-    border: 3px solid rgb(128, 225, 255);
+    border: 3px solid var(--cursor);
     border-radius: 50%;
     pointer-events: none;
     animation: movement1 .9s infinite alternate;
@@ -36,6 +36,6 @@
 }
 
 .clicked {
-    border: 2px solid rgb(79, 214, 255);
+    border: 2px solid var(--cursor);
     animation: movement2 .5s forwards;
 }
