@@ -3,7 +3,7 @@ import './styles/Homepage.css';
 
 const Homepage = () => {
     const divRef = useRef(null);
-    
+
     const handleScroll = (event) => {
         event.preventDefault();
         const target = document.querySelector('#About');
