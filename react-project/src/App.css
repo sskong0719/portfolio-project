@@ -10,7 +10,7 @@
 [data-theme="light"] {
   --main: white;
   --secondary: rgb(44, 44, 44);
-  --cursor: rgb(21, 205, 252);
+  --cursor: rgb(0, 204, 255);
   /* Redundant */
   --tertiary: rgb(85, 85, 85);
 }
@@ -18,6 +18,8 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
 }
 
 body {

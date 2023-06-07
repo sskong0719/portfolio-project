@@ -84,8 +84,8 @@
     font-weight: 400;
 }
 
-button {
-    width: 30%;
+.form button {
+    width: 150px;
     padding: 10px;
     border: solid;
     border-width: 1px;
@@ -97,7 +97,7 @@ button {
     transition: 0.3s ease;
 }
 
-button:hover {
+.form button:hover {
     background-color: var(--main);
     color: var(--secondary);
 }

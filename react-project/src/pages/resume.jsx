@@ -1,8 +1,14 @@
 import './styles/resume.css';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { resumeData } from './resumeData';
 
 export default function Resume() {
+  const [activeLink, setActiveLink] = useState('');
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
+
   useEffect(() => {
     document.body.classList.remove('popup-open');
     const smoothScroll = (target) => {
@@ -29,20 +35,23 @@ export default function Resume() {
         <div className="self">
           <h1>Samuel Kong</h1>
           <br />
-          <p>
+          <div className='heading'>
             Currently a Senior at University at Buffalo working towards B.S. in Computer Science. Seeking Hands-On Experience in any
             computer science related field. I am motivated and willing to learn from others and share innovative ideas. I hope to learn and
             grow with the company.
-          </p>
+          </div>
           <br />
-          <ul>
-            <li><a href="#Skills">Skills</a></li>
-            <li><a href="#Projects">Projects</a></li>
-            <li><a href="#Languages">Languages</a></li>
-          </ul>
-          <br />
-          <br />
-          <br />
+          {/* <ul>
+            <li>
+              <a href="#Skills" className={activeLink === 'Skills' ? 'active' : ''} onClick={() => handleLinkClick('Skills')}>Skills</a>
+            </li>
+            <li>
+              <a href="#Projects" className={activeLink === 'Projects' ? 'active' : ''} onClick={() => handleLinkClick('Projects')}>Projects</a>
+            </li>
+            <li>
+              <a href="#Languages" className={activeLink === 'Languages' ? 'active' : ''} onClick={() => handleLinkClick('Languages')}>Languages</a>
+            </li>
+          </ul> */}
           <h3> Feel free to get a copy of my resume</h3>
           <a className="pdf" href={process.env.PUBLIC_URL + '/SamuelSiuyinKong_Resume.pdf'} target="_blank" rel="noreferrer">View PDF</a>
         </div>
