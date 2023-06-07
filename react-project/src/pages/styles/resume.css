@@ -27,23 +27,67 @@ body {
     padding-right: 40px;
 }
 
+.skills-list li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.individual-skill {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: transparent;
+
+    opacity: 0.7;
+    background-color: var(--tertiary);
+    padding: 5px;
+    height: 80px;
+    width: 80px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    transition: 0.2s;
+}
+
+.individual-skill:hover {
+    border-color: var(--secondary);
+    opacity: 1;
+}
+
+.individual-skill span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--secondary);
+    display: flex;
+    justify-content: center;
+}
+
 .content .self .pdf {
     text-decoration: none;
     padding: 10px;
     border: solid;
     border-width: 1px;
     border-radius: 5px;
-    background-color: var(--secondary);
-    color: var(--main);
+    background-color: var(--main);
+    color: var(--secondary);
+
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s ease;
 }
 
 .content .self .pdf:hover {
-    background-color: var(--main);
-    color: var(--secondary);
-
+    background-color: var(--secondary);
+    color: var(--main);
 }
 
 .content .self ul {
@@ -130,8 +174,6 @@ h4 {
     padding-left: 3em;
 }
 
-
-
 .projects .project-list {
     padding-left: 2em;
 }
@@ -149,10 +191,6 @@ h4 {
     color: var(--secondary);
 
     transition: opacity 0.3s;
-}
-
-.skills-list li span {
-    margin-right: 10px;
 }
 
 .languages-list li span {

@@ -11,8 +11,7 @@
   --main: white;
   --secondary: rgb(44, 44, 44);
   --cursor: rgb(0, 204, 255);
-  /* Redundant */
-  --tertiary: rgb(85, 85, 85);
+  --tertiary: rgb(170, 170, 170);
 }
 
 * {

@@ -53,7 +53,7 @@ body.popup-open {
     color: var(--main);
     height: auto;
     font-size: 15px;
-    padding: 1rem;
+    padding: 10px;
     text-align: center;
 }
 
@@ -177,7 +177,7 @@ body.popup-open {
 }
 
 .link:hover {
-    color: var(--secondary);
+    color: white;
     --_p: 100%;
     transition: background-position .4s, background-size 0s;
 }

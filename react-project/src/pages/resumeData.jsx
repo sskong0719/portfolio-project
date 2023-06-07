@@ -7,6 +7,7 @@ import css3Logo from '../images/css3.svg'
 import figmaLogo from '../images/figma.svg'
 import mysqlLogo from '../images/mysql.svg'
 import html5Logo from '../images/html5.svg'
+import RESTLogo from '../images/rest-api-icon.svg'
 
 /* Programming Languages*/
 let python = <img src={pythonLogo} width="40" height="40" alt="Python Logo" />;
@@ -23,7 +24,7 @@ let reactjs = <GrIcons.GrReactjs size={40} color='#61dbfb' />;
 
 /* Framework / Libraries*/
 let flask = <SiIcons.SiFlask size={40} />;
-
+let REST = <img src={RESTLogo} width="40" height="40" alt="RESTAPI Logo" />;
 /* Tools*/
 let figma = <img src={figmaLogo} width="40" height="40" alt="Figma Logo" />;
 let github = <AiIcons.AiFillGithub size={40} />;
@@ -31,7 +32,20 @@ let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
 
 export const resumeData = [
     {
-        Skills: [python, php, css3, html5, reactjs, mysql, mongodb, flask, figma, github, docker],
+        Skills: [
+            { name: 'Python', logo: python },
+            { name: 'PHP', logo: php },
+            { name: 'CSS3', logo: css3 },
+            { name: 'HTML5', logo: html5 },
+            { name: 'ReactJS', logo: reactjs },
+            { name: 'MySQL', logo: mysql },
+            { name: 'MongoDB', logo: mongodb },
+            { name: 'Flask', logo: flask },
+            { name: 'Figma', logo: figma },
+            { name: 'GitHub', logo: github },
+            { name: 'Docker', logo: docker },
+            { name: 'RESTful API', logo: REST }
+        ],
         Projects: [
             {
                 title: "Campus Living Rating Web App",

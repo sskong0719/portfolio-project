@@ -63,11 +63,15 @@ export default function Resume() {
             {resumeData.map((item, index) => (
               <li key={index}>
                 {item.Skills.map((skill, skillIndex) => (
-                  <span key={skillIndex}>{skill}</span>
+                  <div className="individual-skill" key={skillIndex}>
+                    {skill.logo}
+                    <span>{skill.name}</span>
+                  </div>
                 ))}
               </li>
             ))}
           </ul>
+
           <br />
           {resumeData.map((item, index) => (
             <div className="projects" key={index}>
