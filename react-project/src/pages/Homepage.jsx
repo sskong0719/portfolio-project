@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import './styles/Homepage.css';
-
+import Timi from '../images/Timi.jpg';
 const Homepage = () => {
     const divRef = useRef(null);
 
@@ -51,13 +51,11 @@ const Homepage = () => {
             <div className="section1">
                 <div className="welcome" ref={divRef}>
                     <div className="welcome-title">
-                        Hi I'm Samuel Kong
+                        <span className='name'>Samuel Kong</span>
                         <br />
                         <span className="role">Fullstack & Software Developer</span>
                     </div>
                     <div className="welcome-body">
-                        A senior student studying <span className="major">Computer Science</span>
-                        <br />
                         Feel free to explore and don’t hesitate to get in touch if you have any questions or opportunities to collaborate
                     </div>
                 </div>
@@ -72,9 +70,18 @@ const Homepage = () => {
             </div>
             <div className="section2">
                 <div className="fake-anchor" id='About'></div>
-                <div className='header-about'>Hi, I'm Sam</div>
+
                 <div className='body'>
-                    a motivated and innovative senior at the University at Buffalo pursuing a B.S. in Computer Science. I have a strong passion for learning and exploring various computer science fields. With hands-on experience in web development using technologies such as ReactJS, PHP, and MySQL, I am eager to join a company where I can continue to learn and grow while contributing my knowledge and creativity to meaningful projects.
+                    <img src={Timi} alt='Timi' />
+
+                    <p>
+                        <div className='header-about'>Hi, I'm Sam</div>
+
+                        I am a senior student at the University at Buffalo pursuing a <span className="major">B.S. in Computer Science</span>. I have a strong passion for learning and exploring various computer science fields.
+                        <br /><br />
+                        With hands-on experience in web development using technologies such as ReactJS, PHP, and MySQL, I am eager to join a company where I can continue to learn and grow while contributing my knowledge and creativity to meaningful projects.
+                    </p>
+
                 </div>
             </div>
         </>

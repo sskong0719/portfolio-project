@@ -13,8 +13,6 @@
 .contact-box .header {
     text-align: center;
     padding-top: 40px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 60px;
     color: var(--main);
@@ -28,8 +26,6 @@
 
 .contact-box .description {
     flex: 0.5;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: 20px;
     color: var(--main);
@@ -38,8 +34,6 @@
 .form {
     flex: 1;
     text-align: center;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: 20px;
 }
@@ -48,8 +42,6 @@
 .message-title {
     padding-left: 50px;
     max-width: 700px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: 20px;
     line-height: 24px;
@@ -68,8 +60,6 @@
     height: 2rem;
     padding: 5px 10px;
     margin: 10px 0;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: 20px;
 }

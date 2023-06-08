@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     background-color: var(--main);
-    font-family: 'inter';
     font-weight: 200;
     height: 80px;
     z-index: 50;

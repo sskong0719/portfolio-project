@@ -13,27 +13,28 @@
 
 .welcome-title {
     max-width: 900px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
-    font-size: 60px;
     line-height: 75px;
     color: var(--secondary);
+}
+
+.welcome-title .name {
+    font-size: 60px;
 }
 
 .welcome-body {
     max-width: 700px;
     margin-top: 1rem;
-    font-family: 'Inter';
-    font-style: normal;
+
     font-weight: 200;
     font-size: 20px;
     line-height: 35px;
     color: var(--secondary);
 }
 
-.role {
+.welcome-title .role {
     font-style: italic;
+    font-size: 60px;
     font-weight: 400;
 }
 
@@ -44,7 +45,7 @@
 
 .section1 .scrollbox {
     position: absolute;
-    bottom: 30px;
+    bottom: 1vh;
     left: 50%;
     width: 150px;
     transform: translateX(-50%);
@@ -64,8 +65,6 @@
     z-index: 1;
     color: var(--secondary);
 
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: 20px;
 
@@ -111,8 +110,13 @@
     height: 100vh;
 }
 
+.section2 .fake-anchor {
+    padding-top: 200px;
+
+}
+
 .section2 .header-about {
-    padding-top: 100px;
+    padding-bottom: 100px;
     font-size: 100px;
     font-weight: 200;
     text-align: center;
@@ -121,11 +125,28 @@
 }
 
 .section2 .body {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     font-size: 30px;
     font-weight: 200;
     color: var(--secondary);
+    padding-bottom: 2vh;
 
 }
+
+.section2 img {
+    height: 600px;
+    width: 450;
+}
+
+.section2 p {
+    text-align: left;
+    padding-left: 100px;
+}
+
 
 @keyframes scroll-down {
     0% {
@@ -143,6 +164,20 @@
     100% {
         opacity: 0;
         top: 70%;
+    }
+}
+
+@media only screen and (max-width: 1380px) {
+    .section2 .body {
+        flex-direction: column;
+    }
+
+    .section2 img {
+        margin-bottom: 40px;
+    }
+
+    .section2 p {
+        padding-left: 0
     }
 }
 

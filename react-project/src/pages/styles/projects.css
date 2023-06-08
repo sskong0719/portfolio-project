@@ -47,8 +47,6 @@ body.popup-open {
 }
 
 .listing-card h2 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     color: var(--main);
     height: auto;
@@ -100,8 +98,6 @@ body.popup-open {
     opacity: 0.95;
     flex: 1;
     padding: 20px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: calc(15px + 0.3vw);
     color: var(--main);
@@ -109,8 +105,6 @@ body.popup-open {
 }
 
 .popup .right-content h1 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: calc(30px + 0.3vw);
     color: var(--main);
@@ -118,16 +112,12 @@ body.popup-open {
 }
 
 .popup .right-content h2 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: calc(15px + 0.3vw);
     color: var(--main);
 }
 
 .popup .right-content h3 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 200;
     font-size: calc(15px + 0.3vw);
     margin-bottom: 20px;
@@ -166,8 +156,7 @@ body.popup-open {
     outline-offset: .1em;
     transition: background-size .4s, background-position 0s .4s;
 
-    font-family: 'Inter';
-    font-style: normal;
+
     font-weight: 400;
     font-size: calc(15px + 0.3vw);
     cursor: pointer;

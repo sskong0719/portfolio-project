@@ -52,7 +52,7 @@ body {
     margin-right: 10px;
     margin-bottom: 10px;
 
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 .individual-skill:hover {
@@ -61,14 +61,18 @@ body {
 }
 
 .individual-skill span {
-    font-family: 'Inter';
-    font-style: normal;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
     color: var(--secondary);
     display: flex;
     justify-content: center;
+
+    transition: 0.5s;
+}
+
+.individual-skill:hover span {
+    color: var(--cursor);
 }
 
 .content .self .pdf {
@@ -82,7 +86,7 @@ body {
 
     font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: 0.5s;
 }
 
 .content .self .pdf:hover {
@@ -99,8 +103,6 @@ body {
 .skills-list li,
 .languages-list li {
     list-style: none;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 30px;
@@ -116,8 +118,6 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
     opacity: 0.9;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
@@ -125,8 +125,6 @@ body {
 }
 
 .content .self h1 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 60px;
     line-height: 75px;
@@ -134,8 +132,6 @@ body {
 }
 
 h2 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 30px;
     line-height: 40px;
@@ -143,8 +139,6 @@ h2 {
 }
 
 h3 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 22px;
     line-height: 20px;
@@ -153,8 +147,6 @@ h3 {
 }
 
 h4 {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
@@ -183,8 +175,6 @@ h4 {
     list-style-type: '- ';
     margin-bottom: 10px;
     padding-left: 1em;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
