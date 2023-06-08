@@ -27,12 +27,28 @@ body {
     padding-right: 40px;
 }
 
+.skills-list {
+    border: solid 1px transparent;
+    border-radius: 10px;
+    background-color: var(--main);
+    transition: 0.5s;
+}
+
+.skills-list:hover {
+    border-color: var(--secondary);
+    background-color: rgba(207, 207, 207, 0.07);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+}
+
 .skills-list li {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 0;
 }
 
 .individual-skill {
@@ -49,8 +65,8 @@ body {
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 
     transition: 0.5s;
 }
@@ -107,11 +123,6 @@ body {
     font-size: 15px;
     line-height: 30px;
     color: var(--secondary);
-}
-
-.skills-list li,
-.languages-list li {
-    padding-left: 2em;
 }
 
 .self .heading {
@@ -197,9 +208,13 @@ h4 {
     padding: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
-    transition: background-color 0.5s, border-color 0.5s;
+    transition: 0.5s;
     opacity: 1;
 
+}
+
+.projects .individual-project:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 
 .projects .individual-project:hover,
