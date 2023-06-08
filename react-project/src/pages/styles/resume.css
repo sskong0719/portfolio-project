@@ -27,21 +27,21 @@ body {
     padding-right: 40px;
 }
 
-.skills-list {
+.resume .skills-list {
     border: solid 1px transparent;
     border-radius: 10px;
     background-color: var(--main);
     transition: 0.5s;
 }
 
-.skills-list:hover {
+.resume .skills-list:hover {
     border-color: var(--secondary);
     background-color: rgba(207, 207, 207, 0.07);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
 }
 
-.skills-list li {
+.resume .skills-list li {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -116,7 +116,7 @@ body {
 
 .self ul li,
 .self ul li a,
-.skills-list li,
+.resume .skills-list li,
 .languages-list li {
     list-style: none;
     font-weight: 400;
