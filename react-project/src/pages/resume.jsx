@@ -1,13 +1,13 @@
 import './styles/resume.css';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { resumeData } from './resumeData';
 
 export default function Resume() {
-  const [activeLink, setActiveLink] = useState('');
+  // const [activeLink, setActiveLink] = useState('');
 
-  const handleLinkClick = (link) => {
-    setActiveLink(link);
-  };
+  // const handleLinkClick = (link) => {
+  //   setActiveLink(link);
+  // };
 
   useEffect(() => {
     document.body.classList.remove('popup-open');
