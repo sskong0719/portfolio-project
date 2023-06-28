@@ -7,8 +7,6 @@ services:
       - '443:443'
   mongo:
     image: mongo:6.0.4
-    ports: 
-     - '27017:27017'
   backend:
     build: ./backend
     environment:
