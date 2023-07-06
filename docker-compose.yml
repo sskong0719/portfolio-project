@@ -19,6 +19,8 @@ services:
       - ./certbot/www:/var/www/certbot
   mongo:
     image: mongo:6.0.4
+    ports:
+      - '27017:27017'
   backend:
     build: ./backend
     environment:
