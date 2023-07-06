@@ -17,7 +17,6 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email samuelkong990719@gmail.com -d www.samuelkong.dev --agree-tos
   mongo:
     image: mongo:6.0.4
   backend:
