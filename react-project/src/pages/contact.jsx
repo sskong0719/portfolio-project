@@ -5,6 +5,7 @@ export default function Contact() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [responseMessage, setResponseMessage] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,7 +22,8 @@ export default function Contact() {
             .then((response) => response.json())
             .then((data) => {
                 // Handle the response from the server if needed
-                console.log(data)
+                console.log(data);
+                setResponseMessage(data.message);
             })
             .catch((error) => console.error(error));
     };
@@ -78,6 +80,7 @@ export default function Contact() {
 
                             <button className="submit" type="submit">Submit</button>
                         </form>
+                        {responseMessage && <div className="response">{responseMessage}</div>}
                     </div>
                 </div>
             </div>
