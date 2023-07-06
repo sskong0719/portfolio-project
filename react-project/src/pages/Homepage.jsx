@@ -79,8 +79,7 @@ const Homepage = () => {
 
                         I am a senior student at the University at Buffalo pursuing a <span className="major">B.S. in Computer Science</span>. I have a strong passion for learning and exploring various computer science fields.
                         <br /><br />
-                        With hands-on experience in web development using technologies such as ReactJS, PHP, and MySQL, I am eager to join a company where I can continue to learn and grow while contributing my knowledge and creativity to meaningful projects.
-                    </p>
+                        I am actively engaged in pursuing side projects to enhance my skills. My enthusiasm lies in finding an organization that provides opportunities for continuous learning and personal growth, allowing me to apply my knowledge and creativity towards meaningful projects.                    </p>
 
                 </div>
             </div>
