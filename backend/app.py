@@ -2,7 +2,9 @@ from flask import Flask, jsonify, request, make_response, send_from_directory, r
 from database import Database
 import validate
 import smtp
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 
 db = Database()
