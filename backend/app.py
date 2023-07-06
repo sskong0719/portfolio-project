@@ -2,10 +2,6 @@ from flask import Flask, jsonify, request, make_response, send_from_directory, r
 from database import Database
 import validate
 import smtp
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
 
 app = Flask(__name__)
 
@@ -57,5 +53,3 @@ def contact():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False)
-
-print("FLASK_ENV:", os.environ.get('FLASK_ENV'))

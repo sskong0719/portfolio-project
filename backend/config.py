@@ -1,2 +1,1 @@
-import os
-SECRET_KEY = os.urandom(100)
+FLASK_ENV = 'production'
