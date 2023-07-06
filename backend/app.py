@@ -34,19 +34,18 @@ def contact():
             'message': errors
         }
     else:
-        success = db.add_contact(name, email, message)
-        smtp.send_email(name, email, message)
-        if success:
+        sucess = db.add_contact(name, email, message)
+        if sucess:
             response = {
                 'status': '1',
-                'message': 'Form submitted successfully'
+                'message': 'Form submitted successfully',
             }
         else:
             response = {
                 'status': '0',
-                'message': 'Failed to submit the form'
+                'message': 'Form submitted successfully',
             }
-
+        smtp.send_email(name, email, message)
     return jsonify(response)
 
 

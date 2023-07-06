@@ -1,5 +1,5 @@
 .contact-box {
-    height: 709.306px;
+    height: 725px;
     width: 960px;
     position: fixed;
     top: 52%;
@@ -12,7 +12,7 @@
 
 .contact-box .header {
     text-align: center;
-    padding-top: 40px;
+    padding-top: 30px;
     font-weight: 400;
     font-size: 60px;
     color: var(--main);
@@ -21,7 +21,7 @@
 .contact-box .not-header {
     display: flex;
     flex-direction: row;
-    padding: 40px;
+    padding: 30px 40px;
 }
 
 .contact-box .description {
@@ -90,4 +90,9 @@
 .form button:hover {
     background-color: var(--main);
     color: var(--secondary);
+}
+
+.form .response {
+    margin: 20px 0px;
+    color: var(--main);
 }
