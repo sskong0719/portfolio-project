@@ -7,7 +7,7 @@ import pytz
 
 class Database:
     def __init__(self):
-        mongo_client = MongoClient('localhost')
+        mongo_client = MongoClient('localhost', 27017)
         self.db = mongo_client["Portfolio-Website"]
         self.contact_collection = self.db["Contact"]
 
