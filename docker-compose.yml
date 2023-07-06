@@ -22,7 +22,7 @@ services:
   backend:
     build: ./backend
     environment:
-      WAIT_HOSTS: mongo:27017
+      WAIT_HOSTS: localhost:27017
   frontend:
     build: ./react-project
     environment:
