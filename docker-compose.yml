@@ -22,8 +22,8 @@ services:
   backend:
     build: ./backend
     environment:
-      WAIT_HOSTS: mongo:27017
-      FLASK_ENV: production
+      - MONGO_URL=mongodb://127.0.0.1:27017
+      - WAIT_HOSTS=mongo:27017
   frontend:
     build: ./react-project
     environment:
