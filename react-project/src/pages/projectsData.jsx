@@ -1,4 +1,5 @@
 import houseFinder from '../images/housefinder.png';
+import SKLogo from '%PUBLIC_URL%/favicon.svg';
 import jbay from '../images/jbay.png';
 import * as SiIcons from 'react-icons/si';
 import * as GrIcons from 'react-icons/gr';
@@ -22,7 +23,7 @@ let flask = <SiIcons.SiFlask size={40} />;
 let nginx = <SiIcons.SiNginx size={40} color='#009900' />;
 export const listings = [
   {
-    img: houseFinder,
+    img: SKLogo,
     name: "SK Portfolio Website",
     skills: [flask, python, reactjs, css3, github, docker, nginx, mongodb],
     description: "This portfolio website was created to showcase my skills. It is frontend heavy and only has one backend feature (\"SMTP\") for sending emails in the Contact page, I will be adding more project to demonstrate what I have learnt so far.",
