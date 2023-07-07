@@ -25,11 +25,12 @@ let reactjs = <GrIcons.GrReactjs size={40} color='#61dbfb' />;
 /* Framework / Libraries*/
 let flask = <SiIcons.SiFlask size={40} />;
 let REST = <img src={RESTLogo} width="40" height="40" alt="RESTAPI Logo" />;
+
 /* Tools*/
 let figma = <img src={figmaLogo} width="40" height="40" alt="Figma Logo" />;
 let github = <AiIcons.AiFillGithub size={40} />;
 let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
-
+let nginx = <SiIcons.SiNginx size={40} color='#009900'/>;
 export const resumeData = [
     {
         Skills: [
@@ -44,7 +45,8 @@ export const resumeData = [
             { name: 'Figma', logo: figma },
             { name: 'GitHub', logo: github },
             { name: 'Docker', logo: docker },
-            { name: 'RESTful API', logo: REST }
+            { name: 'RESTful API', logo: REST },
+            { name: 'NGINX', logo: nginx}
         ],
         Projects: [
             {
