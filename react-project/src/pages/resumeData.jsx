@@ -50,6 +50,16 @@ export const resumeData = [
         ],
         Projects: [
             {
+                title: "SK Portfolio Website",
+                date: "May 2023 - July 2023",
+                description: [
+                    "Developed a fully functional portfolio website using ReactJS, Python, and MongoDB",
+                    "Frontend heavy website, designed a clean and simple interface for users to learn more about me",
+                    "Only backend function is using SMTP to send email",
+                    "I will be adding more fun projects to showcase my skills!"
+                ]
+            },
+            {
                 title: "Campus Living Rating Web App",
                 date: "February 2023 – May 2023",
                 description: [
