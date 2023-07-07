@@ -25,20 +25,25 @@ let ubuntu = <FaIcons.FaUbuntu size={40} color='#E95420'/>
 
 export const listings = [
   {
+    id: 1,
     img: sklogo,
     name: "SK Portfolio Website",
     skills: [flask, python, reactjs, css3, github, docker, nginx, mongodb, ubuntu],
     description: "This portfolio website was created to showcase my skills. It is frontend heavy and only has one backend feature (\"SMTP\") for sending emails in the Contact page, I will be adding more project to demonstrate what I have learnt so far.",
     date: "May 2023 - July 2023",
     link: 'https://samuelkong.dev/',
-  }, {
+  },
+  {
+    id: 2,
     img: houseFinder,
     name: "House Finder",
     skills: [php, mysql, reactjs, css3, github, figma],
     description: "During my senior year at the University at Buffalo, I developed this project for my CSE 442 Software Engineering course. The primary objective of this project was to assess and compare all available on-campus housing choices, ultimately delivering the most suitable housing option for users.",
     date: "February 2023 – May 2023",
     link: 'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442h/',
-  }, {
+  },
+  {
+    id: 3,
     img: jbay,
     name: "Auction House",
     skills: [python, mongodb, reactjs, css3, github, figma, docker, flask],
@@ -47,3 +52,4 @@ export const listings = [
     link: 'https://jessebay.us/',
   }
 ];
+

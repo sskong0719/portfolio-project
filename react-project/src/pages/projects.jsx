@@ -68,7 +68,7 @@ export default function Contact() {
         <>
             <div className="listings">
                 {listings.map((link) => (
-                    <div key={link.name} className="listing-card" onClick={() => handleClick(link)}>
+                    <div key={link.id} className="listing-card" onClick={() => handleClick(link)}>
                         <img src={link.img} alt={link.name} />
                         <h2>{link.name}</h2>
                     </div>
