@@ -19,7 +19,6 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  console.log(location)
   const isPDFRoute = location.pathname === '/SamuelSiuyinKong_Resume.pdf';
 
   return (

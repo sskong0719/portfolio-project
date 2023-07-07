@@ -23,7 +23,6 @@ export default function Contact() {
             .then((response) => response.json())
             .then((data) => {
                 // Handle the response from the server if needed
-                console.log(data);
                 setResponseMessage(data.message);
             })
             .catch((error) => console.error(error));
