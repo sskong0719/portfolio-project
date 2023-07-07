@@ -70,7 +70,7 @@ body.popup-open {
 }
 
 .popup .left-content {
-    background-color: var(--main);
+    background-color: var(--secondary);
     width: 50%;
     /* Adjust the width as needed */
     display: flex;
