@@ -31,6 +31,7 @@ let figma = <img src={figmaLogo} width="40" height="40" alt="Figma Logo" />;
 let github = <AiIcons.AiFillGithub size={40} />;
 let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
 let nginx = <SiIcons.SiNginx size={40} color='#009900'/>;
+let ubuntu = <FaIcons.FaUbuntu size={40} color='#E95420'/>
 export const resumeData = [
     {
         Skills: [
@@ -46,7 +47,8 @@ export const resumeData = [
             { name: 'GitHub', logo: github },
             { name: 'Docker', logo: docker },
             { name: 'RESTful API', logo: REST },
-            { name: 'NGINX', logo: nginx}
+            { name: 'NGINX', logo: nginx},
+            { name: 'Ubuntu', logo: ubuntu}
         ],
         Projects: [
             {

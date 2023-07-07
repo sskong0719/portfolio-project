@@ -21,11 +21,13 @@ let mongodb = <SiIcons.SiMongodb size={40} color='#27C937' />;
 let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
 let flask = <SiIcons.SiFlask size={40} />;
 let nginx = <SiIcons.SiNginx size={40} color='#009900' />;
+let ubuntu = <FaIcons.FaUbuntu size={40} color='#E95420'/>
+
 export const listings = [
   {
     img: sklogo,
     name: "SK Portfolio Website",
-    skills: [flask, python, reactjs, css3, github, docker, nginx, mongodb],
+    skills: [flask, python, reactjs, css3, github, docker, nginx, mongodb, ubuntu],
     description: "This portfolio website was created to showcase my skills. It is frontend heavy and only has one backend feature (\"SMTP\") for sending emails in the Contact page, I will be adding more project to demonstrate what I have learnt so far.",
     date: "May 2023 - July 2023",
     link: 'https://samuelkong.dev/',
