@@ -6,7 +6,6 @@ export default function Contact() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
-    const [responseStatus, setResponseStatus] = useState('');
 
 
     const handleSubmit = (event) => {
@@ -26,7 +25,6 @@ export default function Contact() {
                 // Handle the response from the server if needed
                 console.log(data);
                 setResponseMessage(data.message);
-                setResponseStatus(data.status);
             })
             .catch((error) => console.error(error));
     };
