@@ -7,16 +7,28 @@ export default function Contact() {
     const [message, setMessage] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
 
+    let emailValidationError = 'Please enter a valid email';
     let emptyError = 'Please fill in all the required fields';
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        // Email validation regex pattern
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         if (!name || !email || !message) {
             // Check if any of the fields are empty
-
             console.log(emptyError);
             setResponseMessage(emptyError);
             return; // Stop the function execution if any field is empty
         }
+
+        if (!emailRegex.test(email)) {
+            // Check if the email is not valid
+            console.log(emailValidationError);
+            setResponseMessage(emailValidationError);
+            return; // Stop the function execution if email is not valid
+        }
+
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
@@ -33,6 +45,7 @@ export default function Contact() {
             })
             .catch((error) => console.error(error));
     };
+
 
     return (
         <div className="body">
@@ -88,7 +101,7 @@ export default function Contact() {
                         </form>
                         {
                             responseMessage && (
-                                <div className="response" style={{ color: responseMessage === emptyError ? 'red' : '' }}>
+                                <div className="response" style={{ color: responseMessage === emptyError || emailValidationError ? 'red' : '' }}>
                                     {responseMessage}
                                 </div>
                             )
