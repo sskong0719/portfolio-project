@@ -1,6 +1,6 @@
 .contact-box {
     overflow: auto;
-    height: 670px;
+    height: 700px;
     width: 960px;
     position: fixed;
     top: 52%;
@@ -23,7 +23,7 @@
 .contact-box .not-header {
     display: flex;
     flex-direction: row;
-    padding: 30px 40px;
+    padding: 0px 40px;
 }
 
 .contact-box .description {

@@ -10,7 +10,12 @@ export default function Contact() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        if (!name || !email || !message) {
+            // Check if any of the fields are empty
+            console.log('Please fill in all the required fields');
+            setResponseMessage('Please fill in all the required fields');
+            return; // Stop the function execution if any field is empty
+        }
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
@@ -77,10 +82,9 @@ export default function Contact() {
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                             ></textarea>
-                            <br/>
+                            <br />
                             <button className="submit" type="submit">Submit</button>
                         </form>
-
                         {responseMessage && <div className="response">{responseMessage}</div>}
                     </div>
                 </div>
