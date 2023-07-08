@@ -95,7 +95,7 @@
 
 .form .response {
     margin: 20px 0px;
-    color: var(--main);
+    color: red;
 }
 
 @media only screen and (max-width: 960px) {
@@ -153,9 +153,5 @@
 
     .social-container {
         display: none;
-    }
-
-    .form .response {
-        color: var(--secondary)
     }
 }

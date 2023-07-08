@@ -9,6 +9,7 @@ export default function Contact() {
 
     let emailValidationError = 'Please enter a valid email';
     let emptyError = 'Please fill in all the required fields';
+    
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -99,23 +100,7 @@ export default function Contact() {
                             <br />
                             <button className="submit" type="submit">Submit</button>
                         </form>
-                        {
-                            responseMessage && (
-                                <div
-                                    className="response"
-                                    style={{
-                                        color:
-                                            responseMessage === emptyError || emailValidationError
-                                                ? 'red'
-                                                : window.innerWidth <= 960
-                                                    ? 'var(--secondary)'
-                                                    : 'var(--main)',
-                                    }}
-                                >
-                                    {responseMessage}
-                                </div>
-                            )
-                        }
+                        {responseMessage && (<div className="response">{responseMessage} </div>)}
                     </div>
                 </div>
             </div>
