@@ -8,11 +8,10 @@
     position: relative;
     top: 30%;
     left: 12vw;
-    max-width: 1000px;
+    max-width: 800px;
 }
 
 .welcome-title {
-    max-width: 900px;
     font-weight: 200;
     line-height: 75px;
     color: var(--secondary);
@@ -133,12 +132,14 @@
     font-weight: 200;
     color: var(--secondary);
     padding-bottom: 15vh;
+}
 
+.section2 .about {
+    padding: 0 5%;
 }
 
 .section2 img {
-    height: 600px;
-    width: 450;
+    width: 450px;
 }
 
 .section2 p {
@@ -165,16 +166,19 @@
         top: 70%;
     }
 }
+
 @media only screen and (max-width: 1609px) {
     .section2 .header-about {
         font-size: 50px;
     }
+
     .section2 .body {
         font-size: 25px;
 
     }
 
 }
+
 @media only screen and (max-width: 1380px) {
     .section2 .body {
         flex-direction: column;
@@ -184,8 +188,8 @@
         margin-bottom: 40px;
     }
 
-    .section2 p {
-        padding-left: 0
+    .section2 .about {
+        padding: 0;
     }
 }
 
@@ -195,13 +199,22 @@
     }
 
     /* Styles for screens up to 768px wide (tablets and smaller) */
-    .welcome-title {
+    .welcome .name{
         font-size: 30px;
-        line-height: 40px;
+        line-height: 75px;
     }
-
+    .welcome-title{
+        line-height: 30px;
+    }
+    .welcome-title .role{
+        font-size: 30px;
+    }
     .welcome-body {
         font-size: 16px;
         line-height: 22px;
+    }
+
+    .section2 img{
+        width:100%;
     }
 }

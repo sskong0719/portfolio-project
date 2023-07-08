@@ -240,3 +240,17 @@ h4 {
 .content .self ul li a.active {
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 1485px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .content .self {
+        top:0px;
+        position: relative;
+    }
+    .content .resume {
+        margin-top: 50px;
+    }
+}

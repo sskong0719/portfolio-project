@@ -73,14 +73,12 @@ const Homepage = () => {
 
                 <div className='body'>
                     <img src={Timi} alt='Timi' />
-
-                    <p>
+                    <div className='about'>
                         <div className='header-about'>Hi, I'm Sam</div>
-
                         I am a senior student at the University at Buffalo pursuing a <span className="major">B.S. in Computer Science</span>. I have a strong passion for learning and exploring various computer science fields.
                         <br /><br />
-                        I am actively engaged in pursuing side projects to enhance my skills. My enthusiasm lies in finding an organization that provides opportunities for continuous learning and personal growth, allowing me to apply my knowledge and creativity towards meaningful projects.                    </p>
-
+                        I am actively engaged in pursuing side projects to enhance my skills. My enthusiasm lies in finding an organization that provides opportunities for continuous learning and personal growth, allowing me to apply my knowledge and creativity towards meaningful projects.
+                    </div>
                 </div>
             </div>
         </>
