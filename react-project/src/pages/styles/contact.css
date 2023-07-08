@@ -1,3 +1,5 @@
+.body {}
+
 .contact-box {
     overflow: auto;
     height: 700px;
@@ -98,13 +100,28 @@
     color: red;
 }
 
+@media only screen and (max-height: 900px) {
+    .body {
+        height: 900px;
+    }
+
+    .contact-box {
+        top: 0%;
+        margin-top: 460px;
+    }
+
+    .social-container {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 960px) {
     .form {
         flex: 0;
     }
 
     .contact-box {
-        
+        box-shadow: none;
         padding-bottom: 100px;
         width: 100vw;
         height: 100%;
@@ -113,7 +130,7 @@
     }
 
     .contact-box .header {
-        
+
         padding-top: 150px;
         color: var(--secondary);
 
