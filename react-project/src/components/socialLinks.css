@@ -4,7 +4,7 @@
   right: 330px;
   /* Adjust the right value according to your preference */
   transform: translateY(-30%);
-  z-index: 50;
+  z-index: 99;
   /* Set the border radius for the social bar */
   /* Add a box shadow for a subtle effect */
 }
@@ -14,12 +14,13 @@
   opacity: 0.4;
   display: inline-block;
   padding: 10px;
-  transition: opacity 0.3s ease-in;
+  transition: opacity 0.5s ease-in;
+
 }
 
 .social-container .in-between:hover {
   color: var(--secondary);
-  opacity: 0.8;
+  opacity: 1;
   cursor: pointer;
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.5s ease-out;
 }

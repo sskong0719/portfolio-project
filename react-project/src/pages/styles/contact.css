@@ -1,5 +1,6 @@
 .contact-box {
-    height: 725px;
+    overflow: auto;
+    height: 670px;
     width: 960px;
     position: fixed;
     top: 52%;
@@ -8,6 +9,7 @@
     background-color: var(--secondary);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    z-index: 0;
 }
 
 .contact-box .header {
@@ -40,8 +42,7 @@
 
 .info-title,
 .message-title {
-    padding-left: 50px;
-    max-width: 700px;
+    padding-left: 60px;
     font-weight: 200;
     font-size: 20px;
     line-height: 24px;
@@ -95,4 +96,62 @@
 .form .response {
     margin: 20px 0px;
     color: var(--main);
+}
+
+@media only screen and (max-width: 960px) {
+    .form {
+        flex: 0;
+    }
+
+    .contact-box {
+        
+        padding-bottom: 100px;
+        width: 100vw;
+        height: 100%;
+        background-color: var(--main);
+
+    }
+
+    .contact-box .header {
+        
+        padding-top: 150px;
+        color: var(--secondary);
+
+    }
+
+    .info-title,
+    .message-title {
+        padding: 0;
+        justify-content: center;
+        color: var(--secondary);
+    }
+
+    .contact-box .description {
+        text-align: center;
+        padding-bottom: 20px;
+        color: var(--secondary);
+    }
+
+    .info,
+    .message {
+        width: 60vw;
+    }
+
+    .form button {
+        background-color: var(--main);
+        color: var(--secondary);
+    }
+
+    .form button:hover {
+        background-color: var(--secondary);
+        color: var(--main);
+    }
+
+    .contact-box .not-header {
+        flex-direction: column;
+    }
+
+    .social-container {
+        display: none;
+    }
 }
