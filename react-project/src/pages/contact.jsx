@@ -7,14 +7,14 @@ export default function Contact() {
     const [message, setMessage] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
 
-    let empty = 'Please fill in all the required fields';
+    let emptyError = 'Please fill in all the required fields';
     const handleSubmit = (event) => {
         event.preventDefault();
         if (!name || !email || !message) {
             // Check if any of the fields are empty
 
-            console.log(empty);
-            setResponseMessage(empty);
+            console.log(emptyError);
+            setResponseMessage(emptyError);
             return; // Stop the function execution if any field is empty
         }
         const formData = new FormData();
@@ -88,7 +88,7 @@ export default function Contact() {
                         </form>
                         {
                             responseMessage && (
-                                <div className="response" style={{ color: responseMessage ? 'red' : '' }}>
+                                <div className="response" style={{ color: responseMessage === emptyError ? 'red' : '' }}>
                                     {responseMessage}
                                 </div>
                             )
