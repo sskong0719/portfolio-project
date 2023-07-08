@@ -101,7 +101,17 @@ export default function Contact() {
                         </form>
                         {
                             responseMessage && (
-                                <div className="response" style={{ color: responseMessage === emptyError || emailValidationError ? 'red' : '' }}>
+                                <div
+                                    className="response"
+                                    style={{
+                                        color:
+                                            responseMessage === emptyError || emailValidationError
+                                                ? 'red'
+                                                : window.innerWidth <= 960
+                                                    ? 'var(--secondary)'
+                                                    : 'var(--main)',
+                                    }}
+                                >
                                     {responseMessage}
                                 </div>
                             )
