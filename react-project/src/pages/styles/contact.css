@@ -154,4 +154,8 @@
     .social-container {
         display: none;
     }
+
+    .form .response {
+        color: var(--secondary)
+    }
 }
