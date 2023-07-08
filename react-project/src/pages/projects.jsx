@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './styles/projects.css';
-import { listings } from './projectsData';
+import { resumeData } from './resumeData';
 
 export default function Contact() {
     const [showPopup, setShowPopup] = useState(false);
@@ -42,10 +42,10 @@ export default function Contact() {
         return (
             <div ref={popupRef} className="popup">
                 <div className="left-content">
-                    <img src={listing.img} alt={listing.name} />
+                    <img src={listing.img} alt={listing.title} />
                 </div>
                 <div className="right-content">
-                    <h1>{listing.name}</h1>
+                    <h1>{listing.title}</h1>
                     <br />
                     <h2>{listing.date}</h2>
                     <a href={listing.link} className="link" target="_blank" rel="noopener noreferrer">
@@ -53,24 +53,25 @@ export default function Contact() {
                     </a>
                     <h3>Skills</h3>
                     <ul className="skills-list">
-                        {listing.skills.map((skill) => (
-                            <li key={skill}>{skill}</li>
+                        {listing.skills.map((skill, index) => (
+                            <li key={index}>{skill}</li>
                         ))}
                     </ul>
                     <br />
-                    {listing.description}
+                    <p>{listing.summary}</p>
                 </div>
             </div>
         );
     }
 
+
     return (
         <>
             <div className="listings">
-                {listings.map((link) => (
-                    <div key={link.id} className="listing-card" onClick={() => handleClick(link)}>
-                        <img src={link.img} alt={link.name} />
-                        <h2>{link.name}</h2>
+                {resumeData[0].Projects.map((project) => (
+                    <div key={project.id} className="listing-card" onClick={() => handleClick(project)}>
+                        <img src={project.img} alt={project.title} />
+                        <h2>{project.title}</h2>
                     </div>
                 ))}
             </div>

@@ -19,6 +19,7 @@ body.popup-open {
 
     gap: 5rem;
     padding: 0 5%;
+    padding-bottom: 15vh;
     width: 90%;
 }
 
