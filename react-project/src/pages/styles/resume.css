@@ -243,14 +243,29 @@ h4 {
 
 @media only screen and (max-width: 1485px) {
     .content {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         flex-direction: column;
     }
 
-    .content .self {
-        top:0px;
-        position: relative;
+    h3 {
+        line-height: 30px;
     }
+
+    .content .self {
+        top: 0px;
+        position: relative;
+        padding: 0;
+
+    }
+
     .content .resume {
         margin-top: 50px;
+        padding: 0;
+    }
+
+    .content .resume .languages-list li span {
+        margin: 10px;
     }
 }
