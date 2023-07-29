@@ -1,4 +1,5 @@
 .navbar {
+    overflow: hidden;
     display: flex;
     align-items: center;
     background-color: var(--main);
@@ -154,7 +155,9 @@
         display: none;
     }
 }
-
+@media only screen and (max-width: 960px) {
+    
+}
 @media only screen and (max-width: 600px) {
     .close-row {
         height: 80px;

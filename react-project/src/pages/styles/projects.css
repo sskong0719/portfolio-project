@@ -6,11 +6,11 @@ body {
 }
 
 body.popup-open {
-    overflow: hidden;
     backdrop-filter: blur(10px);
 }
 
 .listings {
+
     margin-top: 140px;
     position: absolute;
     display: flex;
