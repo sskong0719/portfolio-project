@@ -58,6 +58,29 @@ export const resumeData = [
             { name: 'Ubuntu', logo: ubuntu },
             { name: 'ARM Assembly', logo: arm }
         ],
+        Experience: [
+            {
+                id: 1,
+                company: "Tatum Games, LLC",
+                title: "Web Developer Intern",
+                skills: [php, html5, css3],
+                date: "August 2023 - Present",
+                description: [
+                    "Collaborated with a small team of software engineers and senior software engineer to enhance the user experience and page load times of the MIKROS mobile game analytics SaaS product.",
+                    "Assisted in addressing critical issues, stabilizing the product, and resolving bugs to ensure smooth functionality.",
+                    "Actively participated in two-week Sprints, providing daily updates in the company's Slack channel and adhering to best practices for efficient communication.",
+                    "Demonstrated flexibility by creating a self-defined work schedule while coordinating with team members for meetings and discussions. "
+                ]
+            }
+        ],
+        Education: [
+            {
+                id: 1,
+                school: "University at Buffalo, NY",
+                degree: "Computer Science Bachelor of Science",
+                date: "August 2021 - May 2024"
+            }
+        ],
         Projects: [
             {
                 id: 1,

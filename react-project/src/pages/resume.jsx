@@ -71,7 +71,41 @@ export default function Resume() {
               </li>
             ))}
           </ul>
-
+          <br />
+          {resumeData.map((item, index) => (
+            <div className="projects" key={index}>
+              <div className="fake-anchor" id="Projects"></div>
+              <h2>Professional Experience</h2>
+              {item.Experience.map((experience, i) => (
+                <div className="individual-project" key={i}>
+                  <br />
+                  <h3>{experience.company} - {experience.title}</h3>
+                  <h4>{experience.date}</h4>
+                  <br />
+                  <ul className="project-list">
+                    {experience.description.map((desc, j) => (
+                      <li className="description" key={j}>{desc}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ))}
+          <br />
+          {resumeData.map((item, index) => (
+            <div className="projects" key={index}>
+              <div className="fake-anchor" id="Projects"></div>
+              <h2>Education</h2>
+              {item.Education.map((education, i) => (
+                <div className="individual-project" key={i}>
+                  <br />
+                  <h3>{education.school} <br /><br />{education.degree}</h3>
+                  <h4>{education.date}</h4>
+                  <br />
+                </div>
+              ))}
+            </div>
+          ))}
           <br />
           {resumeData.map((item, index) => (
             <div className="projects" key={index}>
