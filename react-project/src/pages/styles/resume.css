@@ -110,21 +110,25 @@ body {
     color: var(--main);
 }
 
-.content .self ul {
-    margin-top: 30px;
-}
 
 .self ul li,
 .self ul li a,
 .resume .skills-list li,
-.languages-list li {
+.languages-list li{
     list-style: none;
     font-weight: 400;
     font-size: 15px;
     line-height: 30px;
     color: var(--secondary);
 }
+.self h5{
+    padding-top:15px;
+    padding-bottom: 30px;
 
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--secondary);}
 .self .heading {
     margin-top: 20px;
     margin-bottom: 20px;

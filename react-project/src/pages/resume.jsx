@@ -1,13 +1,13 @@
 import './styles/resume.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { resumeData } from './resumeData';
 
 export default function Resume() {
-  // const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState('');
 
-  // const handleLinkClick = (link) => {
-  //   setActiveLink(link);
-  // };
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
 
   useEffect(() => {
     document.body.classList.remove('popup-open');
@@ -18,7 +18,6 @@ export default function Resume() {
         behavior: 'smooth',
       });
     };
-
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
@@ -41,9 +40,15 @@ export default function Resume() {
             grow with the company.
           </div>
           <br />
-          {/* <ul>
+          {<ul>
             <li>
               <a href="#Skills" className={activeLink === 'Skills' ? 'active' : ''} onClick={() => handleLinkClick('Skills')}>Skills</a>
+            </li>
+            <li>
+              <a href="#Experience" className={activeLink === 'Experience' ? 'active' : ''} onClick={() => handleLinkClick('Experience')}>Experience</a>
+            </li>
+            <li>
+              <a href="#Education" className={activeLink === 'Education' ? 'active' : ''} onClick={() => handleLinkClick('Education')}>Education</a>
             </li>
             <li>
               <a href="#Projects" className={activeLink === 'Projects' ? 'active' : ''} onClick={() => handleLinkClick('Projects')}>Projects</a>
@@ -51,8 +56,8 @@ export default function Resume() {
             <li>
               <a href="#Languages" className={activeLink === 'Languages' ? 'active' : ''} onClick={() => handleLinkClick('Languages')}>Languages</a>
             </li>
-          </ul> */}
-          <h3> Feel free to get a copy of my resume</h3>
+          </ul>}
+          <h5> Feel free to get a copy of my resume</h5>
           <a className="pdf" href={process.env.PUBLIC_URL + '/SamuelSiuyinKong_Resume.pdf'} target="_blank" rel="noreferrer">View PDF</a>
         </div>
         <div className="resume">
@@ -74,7 +79,7 @@ export default function Resume() {
           <br />
           {resumeData.map((item, index) => (
             <div className="projects" key={index}>
-              <div className="fake-anchor" id="Projects"></div>
+              <div className="fake-anchor" id="Experience"></div>
               <h2>Professional Experience</h2>
               {item.Experience.map((experience, i) => (
                 <div className="individual-project" key={i}>
@@ -94,7 +99,7 @@ export default function Resume() {
           <br />
           {resumeData.map((item, index) => (
             <div className="projects" key={index}>
-              <div className="fake-anchor" id="Projects"></div>
+              <div className="fake-anchor" id="Education"></div>
               <h2>Education</h2>
               {item.Education.map((education, i) => (
                 <div className="individual-project" key={i}>
