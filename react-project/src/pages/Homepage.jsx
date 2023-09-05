@@ -1,10 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import './styles/Homepage.css';
 import Timi from '../images/Timi.jpg';
-const Homepage = () => {
+const Homepage = () =>
+{
     const divRef = useRef(null);
 
-    const handleScroll = (event) => {
+    const handleScroll = (event) =>
+    {
         event.preventDefault();
         const target = document.querySelector('#About');
         window.scrollTo({
@@ -13,11 +15,14 @@ const Homepage = () => {
         });
     };
 
-    useEffect(() => {
+    useEffect(() =>
+    {
 
-        const handleMouseMove = (event) => {
+        const handleMouseMove = (event) =>
+        {
             const div = divRef.current;
-            if (div) {
+            if (div)
+            {
                 const { clientX, clientY } = event;
                 const { left, top, width, height } = div.getBoundingClientRect();
                 const x = clientX - (left + width / 2);
@@ -31,18 +36,21 @@ const Homepage = () => {
                     clientY >= window.innerHeight
                 );
 
-                if (isCursorOutsidePage) {
+                if (isCursorOutsidePage)
+                {
                     div.style.transition = 'transform 0.5s ease'; // Apply transition
                     div.style.transform = 'translate(0, 0)';
-                } else {
+                } else
+                {
                     div.style.transition = 'transform 0.1s ease'; // Apply transition
                     div.style.transform = `translate(${x / 30}px, ${y / 30}px)`;
                 }
-            }
+            }ß
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        return () => {
+        return () =>
+        {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
