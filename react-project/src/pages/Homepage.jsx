@@ -45,7 +45,7 @@ const Homepage = () =>
                     div.style.transition = 'transform 0.1s ease'; // Apply transition
                     div.style.transform = `translate(${x / 30}px, ${y / 30}px)`;
                 }
-            }ß
+            }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
