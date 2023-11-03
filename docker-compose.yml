@@ -3,6 +3,7 @@ services:
   nginx:
     container_name: nginx
     restart: unless-stopped
+    image: nginx
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -30,6 +31,7 @@ services:
     depends_on:
       - mongo # Ensure backend starts after the mongo service is up
   frontend:
+    image: frontend
     build:
       context: ./react-project
       dockerfile: Dockerfile
