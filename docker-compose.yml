@@ -11,6 +11,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+    depends_on:
+      - frontend # Ensure nginx starts after the frontend service is up
   certbot:
     image: certbot/certbot
     container_name: certbot
@@ -24,6 +26,8 @@ services:
     build: ./backend
     environment:
       WAIT_HOSTS: mongo:27017
+    depends_on:
+      - mongo # Ensure backend starts after the mongo service is up
   frontend:
     build:
       context: ./react-project
