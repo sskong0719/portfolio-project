@@ -3,9 +3,7 @@ services:
   nginx:
     container_name: nginx
     restart: unless-stopped
-    build: 
-      context: ./nginx
-      dockerfile: Dockerfile
+    image: nginx
     ports:
       - '80:80'
       - '443:443'
