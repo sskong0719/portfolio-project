@@ -2,8 +2,7 @@
 FROM node:16-alpine as build-stage
 
 # Set the working directory
-ENV HOME /root
-WORKDIR /root
+WORKDIR /app
 
 # Copy the package.json and package-lock.json (or yarn.lock)
 COPY package*.json ./
@@ -21,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine as production-stage
 
 # Copy the built assets from the build-stage to the nginx serve directory
-COPY --from=build-stage /root/build /usr/share/nginx/html
+COPY --from=build-stage /app/build /usr/share/nginx/html
 
 # Expose port 80 for the service
 EXPOSE 80
