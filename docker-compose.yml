@@ -25,7 +25,8 @@ services:
     environment:
       WAIT_HOSTS: mongo:27017
   frontend:
-    build: ./react-project
+    build:
+      context: ./react-project
+      dockerfile: Dockerfile
     environment:
-      - DANGEROUSLY_DISABLE_HOST_CHECK=true
-      - WDS_SOCKET_PORT=0
+      - NODE_ENV=production
