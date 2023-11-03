@@ -2,6 +2,7 @@
 FROM node:16-alpine as build-stage
 
 # Set the working directory
+ENV HOME /root
 WORKDIR /root
 
 # Copy the package.json and package-lock.json (or yarn.lock)
