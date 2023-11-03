@@ -1,30 +1,29 @@
-# Use a specific version of node alpine for consistency
+# Stage 1: Building the React application
 FROM node:16-alpine as build-stage
 
-# Set the working directory in the Docker image
+# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available)
+# Copy the package.json and package-lock.json (or yarn.lock)
 COPY package*.json ./
 
-# Install project dependencies
-RUN npm install --production
+# Install all dependencies, including 'devDependencies' since they might be needed for the build
+RUN npm install
 
-# Copy the rest of your application's source code from your host to your image filesystem.
+# Copy the rest of your source code to the image
 COPY . .
 
 # Build the application for production
 RUN npm run build
 
-# Use the nginx alpine image for serving the content
+# Stage 2: Serve the app with Nginx
 FROM nginx:alpine as production-stage
 
-# Copy the built assets from the build-stage to the nginx default serve directory
+# Copy the built assets from the build-stage to the nginx serve directory
 COPY --from=build-stage /app/build /usr/share/nginx/html
 
-# Expose port 80 to the outside once the container has launched
+# Expose port 80 for the service
 EXPOSE 80
 
-# Define the command to run your app using CMD which defines your runtime
-# Here we use the "daemon off;" command to start nginx in the foreground
+# Start Nginx and keep the process running
 CMD ["nginx", "-g", "daemon off;"]
