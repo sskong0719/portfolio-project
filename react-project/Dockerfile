@@ -1,5 +1,5 @@
 # Stage 1: Building the React application
-FROM node:16-alpine as build-stage
+FROM node:16-alpine as build
 
 # Set the working directory
 WORKDIR /app
@@ -17,13 +17,13 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the app with Nginx
-FROM nginx:alpine as production-stage
+FROM nginx:alpine
 
 # Copy the built assets from the build-stage to the nginx serve directory
-COPY --from=build-stage /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 
 # Expose port 80 for the service
 EXPOSE 80
 
 # Start Nginx and keep the process running
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm","start"]
