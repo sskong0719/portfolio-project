@@ -2,27 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import './DarkLightMode.css';
 
-const DarkLightMode = () => {
+const DarkLightMode = () =>
+{
     const [isLightMode, setisLightMode] = useState(false);
 
-    useEffect(() => {
+    useEffect(() =>
+    {
         const selectedTheme = localStorage.getItem('selectedTheme');
-            
-        if (selectedTheme === 'light') {
+
+        if (selectedTheme === 'light')
+        {
             setisLightMode(true);
             document.querySelector('body').setAttribute('data-theme', 'light');
-        } else {
+        } else
+        {
             setisLightMode(false);
             document.querySelector('body').setAttribute('data-theme', 'dark');
         }
     }, []);
 
-    const handleToggle = () => {
+    const handleToggle = () =>
+    {
         setisLightMode(!isLightMode);
-        if (!isLightMode) {
+        if (!isLightMode)
+        {
             document.querySelector('body').setAttribute('data-theme', 'light');
             localStorage.setItem('selectedTheme', 'light');
-        } else {
+        } else
+        {
             document.querySelector('body').setAttribute('data-theme', 'dark');
             localStorage.setItem('selectedTheme', 'dark');
         }
