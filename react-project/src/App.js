@@ -8,6 +8,7 @@ import Projects from './pages/projects';
 import Resume from './pages/resume';
 import NotFound from './pages/NotFound';
 import CursorFollower from './components/CursorFollower';
+import { isBrowser, isMobile } from 'react-device-detect';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function AppContent() {
     <>
       {!isPDFRoute && (
         <>
-          <CursorFollower />
+          {isBrowser && <CursorFollower />}
           <Navbar />
           <Socialbar />
         </>
