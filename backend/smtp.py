@@ -8,7 +8,7 @@ def send_email(name, email, message):
     # SMTP configuration
     smtp_server = 'smtp.gmail.com'
     # SSL 465, TLS 587
-    smtp_port = 465
+    smtp_port = 587
     smtp_username = os.getenv('SMTP_USERNAME')
     smtp_password = os.getenv('SMTP_PASSWORD')
 
