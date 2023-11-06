@@ -107,6 +107,11 @@ export default function Resume() {
                   <h3>{education.school} <br /><br />{education.degree}</h3>
                   <h4>{education.date}</h4>
                   <br />
+                  {education.description.map((desc, i) => (
+                      <li style={{ listStyleType: 'none', paddingLeft: '3em' }} className="description" key={i}>{desc}</li>
+
+
+                    ))}
                 </div>
               ))}
             </div>

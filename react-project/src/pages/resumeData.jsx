@@ -64,7 +64,7 @@ export const resumeData = [
                 company: "Tatum Games, LLC",
                 title: "Web Developer Intern",
                 skills: [php, html5, css3],
-                date: "August 2023 - Present",
+                date: "July 2023 - October 2023",
                 description: [
                     "Collaborated with a small team of software engineers and senior software engineer to enhance the user experience and page load times of the MIKROS mobile game analytics SaaS product.",
                     "Assisted in addressing critical issues, stabilizing the product, and resolving bugs to ensure smooth functionality.",
@@ -78,7 +78,8 @@ export const resumeData = [
                 id: 1,
                 school: "University at Buffalo, NY",
                 degree: "Computer Science Bachelor of Science",
-                date: "August 2021 - May 2024"
+                date: "August 2021 - May 2024",
+                description: ["UB Hackathon Fall 2023","Played a role as team captain and fullstack dev. Completed the the project within 24 hours. Very fun experience."]
             }
         ],
         Projects: [
