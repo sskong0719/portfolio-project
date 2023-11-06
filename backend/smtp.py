@@ -5,13 +5,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def send_email(name, email, message):
+    # SMTP configuration
+    smtp_server = 'smtp.gmail.com'
+    # SSL 465, TLS 587
+    smtp_port = 587
     smtp_username = os.getenv('SMTP_USERNAME')
     smtp_password = os.getenv('SMTP_PASSWORD')
     print(smtp_username)
     print(smtp_password)
-    print(name)
-    print(email)
-    print(message)
     sender = 'skportfolioproject@gmail.com'
     recipient = 'samuelkong990719@gmail.com'
 
@@ -19,9 +20,7 @@ def send_email(name, email, message):
     body = f"Name: {name}\nEmail: {email}\nMessage: {message}"
 
     # Connect to the SMTP server
-    # SMTP configuration
-    # SSL 465, TLS 587
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP(smtp_server, smtp_port)
     server.starttls()
     server.login(smtp_username, smtp_password)
 
