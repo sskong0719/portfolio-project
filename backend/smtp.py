@@ -11,8 +11,6 @@ def send_email(name, email, message):
     smtp_port = 465
     smtp_username = os.getenv('SMTP_USERNAME')
     smtp_password = os.getenv('SMTP_PASSWORD')
-    print(smtp_username)
-    print(smtp_password)
     sender = 'skportfolioproject@gmail.com'
     recipient = 'samuelkong990719@gmail.com'
 
