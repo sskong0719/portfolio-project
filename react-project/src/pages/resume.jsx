@@ -35,9 +35,7 @@ export default function Resume() {
           <h1>Samuel Kong</h1>
           <br />
           <div className='heading'>
-            Currently a Senior at University at Buffalo working towards B.S. in Computer Science. Seeking Hands-On Experience in any
-            computer science related field. I am motivated and willing to learn from others and share innovative ideas. I hope to learn and
-            grow with the company.
+          Computer Science senior at the University of Buffalo with a strong foundation in web development and UI design. Eager to apply my technical skills and collaborative approach in a dynamic software engineering role.
           </div>
           <br />
           {<ul>
@@ -107,11 +105,11 @@ export default function Resume() {
                   <h3>{education.school} <br /><br />{education.degree}</h3>
                   <h4>{education.date}</h4>
                   <br />
-                  {education.description.map((desc, i) => (
-                      <li style={{ listStyleType: 'none', paddingLeft: '3em' }} className="description" key={i}>{desc}</li>
-
-
+                  <ul className="project-list">
+                    {education.description.map((desc, i) => (
+                      <li className="description" key={i}>{desc}</li>
                     ))}
+                  </ul>
                 </div>
               ))}
             </div>

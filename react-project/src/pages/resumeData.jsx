@@ -79,7 +79,7 @@ export const resumeData = [
                 school: "University at Buffalo, NY",
                 degree: "Computer Science Bachelor of Science",
                 date: "August 2021 - May 2024",
-                description: ["UB Hackathon Fall 2023","Played a role as team captain and fullstack dev. Completed the the project within 24 hours. Very fun experience."]
+                description: ["UB Hackathon Fall 2023","Played a role as team captain and fullstack dev. Completed the the project within 24 hours. Very fun experience.","Key Coursework: Machine Learning, Data Structures, Web Development, Algorithms, AI Fundamentals"]
             }
         ],
         Projects: [
