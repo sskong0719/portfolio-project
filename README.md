@@ -1,4 +1,4 @@
-# [Samuel Kong Portfolio Website]
+# Samuel Kong Portfolio Website
 
 ## Description
 
