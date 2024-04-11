@@ -22,9 +22,18 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    # command: certonly --webroot -w /var/www/certbot --force-renewal --email samuelkong990719@gmail.com -d samuelkong.dev -d www.samuelkong.dev --agree-tos
+#    command: certonly --webroot -w /var/www/certbot --force-renewal --email samuelkong990719@gmail.com -d samuelkong.dev -d www.samuelkong.dev --agree-tos
   mongo:
     image: mongo:6.0.4
+    command: --auth --bind_ip_all
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
   backend:
     build: ./backend
     environment:
@@ -38,3 +47,6 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
+volumes:
+  mongo-data:
+    driver: local

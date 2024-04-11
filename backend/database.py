@@ -1,13 +1,19 @@
 from pymongo import MongoClient
+import os
 import enum
 import hashlib
 import datetime
 import pytz
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class Database:
     def __init__(self):
-        mongo_client = MongoClient("mongo")
+        MONGO_INITDB_ROOT_USERNAME = os.getenv('MONGO_INITDB_ROOT_USERNAME')
+        MONGO_INITDB_ROOT_PASSWORD = os.getenv('MONGO_INITDB_ROOT_PASSWORD')
+        connection_string = f"mongodb://{MONGO_INITDB_ROOT_USERNAME}:{MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/?authSource=admin"
+        mongo_client = MongoClient(connection_string)
         self.db = mongo_client["Portfolio-Website"]
         self.contact_collection = self.db["Contact"]
 
