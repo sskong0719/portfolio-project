@@ -35,7 +35,7 @@ export default function Resume() {
           <h1>Samuel Kong</h1>
           <br />
           <div className='heading'>
-          Computer Science senior at the University of Buffalo with a strong foundation in web development and UI design. Eager to apply my technical skills and collaborative approach in a dynamic software engineering role.
+            Computer Science senior at the University of Buffalo with a strong foundation in web development and UI design. Eager to apply my technical skills and collaborative approach in a dynamic software engineering role.
           </div>
           <br />
           {<ul>

@@ -9,7 +9,7 @@ export default function Contact() {
 
     let emailValidationError = 'Please enter a valid email';
     let emptyError = 'Please fill in all the required fields';
-    
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
