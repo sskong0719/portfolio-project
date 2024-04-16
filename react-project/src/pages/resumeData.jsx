@@ -18,6 +18,7 @@ import armLogo from '../images/ArmLogo.svg';
 let python = <img src={pythonLogo} width="40" height="40" alt="Python Logo" />;
 let php = <SiIcons.SiPhp size={40} color='#787CB5' />;
 let arm = <img src={armLogo} width="40" height="40" alt="ARM Assembly Logo" />;
+let c = <SiIcons.SiC size={40}/>;
 
 /* Databases */
 let mysql = <img src={mysqlLogo} width="40" height="40" alt="MySQL Logo" />;
@@ -43,6 +44,7 @@ export const resumeData = [
     {
         Skills: [
             { name: 'Python', logo: python },
+            { name: 'C', logo: c},
             { name: 'PHP', logo: php },
             { name: 'CSS3', logo: css3 },
             { name: 'HTML5', logo: html5 },
