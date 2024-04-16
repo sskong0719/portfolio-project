@@ -8,9 +8,9 @@ import figmaLogo from '../images/figma.svg'
 import mysqlLogo from '../images/mysql.svg'
 import html5Logo from '../images/html5.svg'
 import RESTLogo from '../images/rest-api-icon.svg'
-import houseFinder from '../images/housefinder.png';
+import houseFinder from '../images/housefinder.jpg';
 import sklogo from '../images/logo.svg';
-import jbay from '../images/jbay.png';
+import jbay from '../images/jbay.jpg';
 import noImage from '../images/no-image.png';
 import armLogo from '../images/ArmLogo.svg';
 
