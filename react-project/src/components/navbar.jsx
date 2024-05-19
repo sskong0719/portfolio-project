@@ -45,7 +45,7 @@ const Navbar = () => {
           <Link to="/" className="logo-link">
             <img src={logo} alt="logo" className="logo-img" />
             <div className="logo-text">
-              <p>Samuel Kong | Fullstack and Software Developer</p>
+              <p>Samuel Kong | Fullstack Developer</p>
             </div>
           </Link>
         </div>

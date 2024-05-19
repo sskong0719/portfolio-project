@@ -54,7 +54,7 @@ export default function Homepage() {
                     <div className="welcome-title">
                         <span className='name'>Samuel Kong</span>
                         <br />
-                        <span className="role">Fullstack & Software Developer</span>
+                        <span className="role">Fullstack Developer</span>
                     </div>
                     <div className="welcome-body">
                         Feel free to explore and don’t hesitate to get in touch if you have any questions or opportunities to collaborate
