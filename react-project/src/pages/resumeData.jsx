@@ -119,7 +119,7 @@ export const resumeData = [
                 skills: [python, mongodb, reactjs, css3, github, figma, docker, flask],
                 summary: "This project was created during my senior year at University at Buffalo for CSE 312 Introduction to Web Applications. The primary objective of this project was to demonstrate my understanding and application of various concepts covered in the course. These concepts included websockets, security measures, cookie handling, data management, parsing HTTP headers, and establishing TCP connections.",
                 date: "March 2023 – May 2023",
-                link: 'https://jessebay.us/',
+                link: 'https://www.youtube.com/watch?v=3B_hgpQ0coE&ab_channel=JourneySpratt/',
                 description: [
                     "In progress for developing an eBay-like auction web app using ReactJS, Flask, Python, and MongoDB.",
                     "Implemented an auction system that allows sellers to create listings for products they want to auction off, including photos, descriptions, starting bids, and auction end dates.",
