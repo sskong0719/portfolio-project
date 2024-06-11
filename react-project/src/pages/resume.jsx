@@ -56,7 +56,7 @@ export default function Resume() {
             </li>
           </ul>}
           <h5> Feel free to get a copy of my resume</h5>
-          <a className="pdf" href={process.env.PUBLIC_URL + '/SamuelSiuyinKong_Resume.pdf'} target="_blank" rel="noreferrer">View PDF</a>
+          <a className="pdf" href={process.env.PUBLIC_URL + '/SamuelKong_Resume.pdf'} target="_blank" rel="noreferrer">View PDF</a>
         </div>
         <div className="resume">
           <div className="fake-anchor" id="Skills"></div>

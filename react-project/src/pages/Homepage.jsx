@@ -76,9 +76,7 @@ export default function Homepage() {
                     <img src={Timi} alt='Timi' />
                     <div className='about'>
                         <div className='header-about'>Hi, I'm Sam</div>
-                        I am a senior student at the University at Buffalo pursuing a <span className="major">B.S. in Computer Science</span>. I have a strong passion for learning and exploring various computer science fields.
-                        <br /><br />
-                        I am actively engaged in pursuing side projects to enhance my skills. My enthusiasm lies in finding an organization that provides opportunities for continuous learning and personal growth, allowing me to apply my knowledge and creativity towards meaningful projects.
+                        Recent graduate from the University at Buffalo with a <span className="major">B.S. in Computer Science</span>. Passionate Fullstack Developer . Dedicated to building innovative solutions and eager to contribute to dynamic teams. Explore my portfolio to see my projects and experiences. Let's connect and discuss how I can bring value to your organization.
                     </div>
                 </div>
             </div>

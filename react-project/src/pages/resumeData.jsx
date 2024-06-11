@@ -68,10 +68,9 @@ export const resumeData = [
                 skills: [php, html5, css3],
                 date: "July 2023 - October 2023",
                 description: [
-                    "Collaborated with a small team of software engineers and senior software engineer to enhance the user experience and page load times of the MIKROS mobile game analytics SaaS product.",
-                    "Assisted in addressing critical issues, stabilizing the product, and resolving bugs to ensure smooth functionality.",
-                    "Actively participated in two-week Sprints, providing daily updates in the company's Slack channel and adhering to best practices for efficient communication.",
-                    "Demonstrated flexibility by creating a self-defined work schedule while coordinating with team members for meetings and discussions. "
+                    "Developed and maintained the frontend of the MIKROS SaaS platform using HTML, CSS, and PHP, contributing to improving user experience and page load times.",
+                    "Collaborated with a remote team using Slack and GitHub for daily updates and project management.",
+                    "Ensured the stability of the existing codebase by resolving bugs and implementing best coding practices"
                 ]
             }
         ],
@@ -94,9 +93,9 @@ export const resumeData = [
                 date: "May 2023 - July 2023",
                 link: 'https://samuelkong.dev/',
                 description: [
-                    "Developed a fully functional portfolio website using ReactJS, Python, and MongoDB",
-                    "Frontend heavy website, designed a clean and simple interface for users to learn more about me",
-                    "Only backend function is using SMTP to send email",
+                    "Developed a personal portfolio site using ReactJS and Python, showcasing full-stack projects with a dynamic and responsive UI. ",
+                    "Focused on intuitive navigation and a modern aesthetic to highlight frontend and backend development skills.",
+                    "Utilizing Docker, Nginx, and Certbot for containerization, web server management, and SSL certification.",
                     "I will be adding more fun projects to showcase my skills!"
                 ]
             }, {
@@ -108,9 +107,9 @@ export const resumeData = [
                 date: "February 2023 – May 2023",
                 link: 'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442h/',
                 description: [
-                    "Developed a fully functional web app using ReactJS, PHP, and MySQL.",
-                    "Implemented a rating system that allows users to rate various aspects of on and off-campus housing options.",
-                    "Designed an intuitive and user-friendly interface that makes it easy for users to submit reviews and browse housing options."
+                    "Built a housing interactive web app using ReactJS and PHP, allowing user interactions like account creation and ratings. ",
+                    "Used MySQL for data storage, with features for favorites and profile picture uploads to enhance user engagement.",
+                    "Collaborated with teammates using Zenhub for project management and GitHub for version control, ensuring efficient workflow and communication."
                 ]
             }, {
                 id: 3,
@@ -121,9 +120,9 @@ export const resumeData = [
                 date: "March 2023 – May 2023",
                 link: 'https://www.youtube.com/watch?v=3B_hgpQ0coE&ab_channel=JourneySpratt/',
                 description: [
-                    "In progress for developing an eBay-like auction web app using ReactJS, Flask, Python, and MongoDB.",
-                    "Implemented an auction system that allows sellers to create listings for products they want to auction off, including photos, descriptions, starting bids, and auction end dates.",
-                    "One of the challenges I faced during the development of this project was integrating different technologies such as ReactJS, Flask, Python, and MongoDB to create a seamless and user-friendly auction platform. Another challenge was designing the bidding process to ensure a fair and secure auction system that maintains the privacy of all users."
+                    "Developed an eBay-style app with ReactJS and Python/Flask, featuring real-time auction capabilities and detailed product listings.",
+                    "Created dynamic profiles with MongoDB, and integrated WebSockets for live updates to boost user interaction.",
+                    "Implemented password hashing and HTML injection prevention for robust data protection"
                 ]
             }, {
                 id: 4,
