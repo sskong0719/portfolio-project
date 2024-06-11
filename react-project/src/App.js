@@ -28,7 +28,7 @@ function AppContent() {
         <>
           {isBrowser && <CursorFollower />}
           <Navbar />
-          <Socialbar />
+          {isBrowser && <Socialbar />}
         </>
       )}
       <Routes>
