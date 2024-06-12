@@ -1,4 +1,5 @@
 import './App.css';
+import {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/navbar';
 import Socialbar from './components/socialLinks';
@@ -10,6 +11,17 @@ import NotFound from './pages/NotFound';
 import CursorFollower from './components/CursorFollower';
 import { isBrowser, isMobile } from 'react-device-detect';
 
+function ScrollReset() {
+    // extract pathname property from location object
+    const { pathname } = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  }
+  
 function App() {
   return (
     <Router>
@@ -24,6 +36,7 @@ function AppContent() {
 
   return (
     <>
+      <ScrollReset />
       {!isPDFRoute && (
         <>
           {isBrowser && <CursorFollower />}
