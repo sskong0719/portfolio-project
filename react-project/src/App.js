@@ -6,6 +6,7 @@ import Socialbar from './components/socialLinks';
 import Homepage from './pages/Homepage';
 import Contact from './pages/contact';
 import Projects from './pages/projects';
+import Admin from './pages/admin';
 import Resume from './pages/resume';
 import NotFound from './pages/NotFound';
 import CursorFollower from './components/CursorFollower';
@@ -53,6 +54,7 @@ function AppContent()
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/projects' element={<Projects />} />
                 <Route path='/resume' element={<Resume />} />
+                <Route path='/admin' element={<Admin />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </>
