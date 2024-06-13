@@ -114,21 +114,24 @@ body {
 .self ul li,
 .self ul li a,
 .resume .skills-list li,
-.languages-list li{
+.languages-list li {
     list-style: none;
     font-weight: 400;
     font-size: 15px;
     line-height: 30px;
     color: var(--secondary);
 }
-.self h5{
-    padding-top:15px;
+
+.self h5 {
+    padding-top: 15px;
     padding-bottom: 30px;
 
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
-    color: var(--secondary);}
+    color: var(--secondary);
+}
+
 .self .heading {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -245,7 +248,12 @@ h4 {
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 1300px) {
+.tech-icon {
+    width: 40px;
+    height: 40px;
+}
+
+@media only screen and (max-width: 1380px) {
     .content {
         justify-content: center;
         align-items: center;
@@ -272,4 +280,33 @@ h4 {
     .content .resume .languages-list li span {
         margin: 10px;
     }
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .content{
+        padding: 0 10%;
+        width: 80%;
+    }
+    .resume .skills-list li {
+        padding: 0;
+    }
+    .individual-skill {
+        height: 50px;
+        width: 50px;
+        margin: 5px;
+    }
+
+    .tech-icon {
+        width: 40px;
+        height: 20px;
+    }
+
+    .individual-skill span {
+        font-size: 10px;
+        line-height: 10px;
+    }
+
 }

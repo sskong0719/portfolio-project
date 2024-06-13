@@ -76,7 +76,7 @@ export default function Homepage() {
                     <img src={Timi} alt='Timi' />
                     <div className='about'>
                         <div className='header-about'>Hi, I'm Sam</div>
-                        Recent graduate from the University at Buffalo with a <span className="major">B.S. in Computer Science</span>. Passionate Fullstack Developer . Dedicated to building innovative solutions and eager to contribute to dynamic teams. Explore my portfolio to see my projects and experiences. Let's connect and discuss how I can bring value to your organization.
+                        I recently graduated from the University at Buffalo with a <span className="major">B.S. in Computer Science</span>. As a passionate Fullstack Developer, I am dedicated to building innovative solutions and eager to contribute to dynamic teams. Explore my portfolio to see my projects and experiences. Let's connect and discuss how I can bring value to your organization.
                     </div>
                 </div>
             </div>

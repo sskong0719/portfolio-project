@@ -115,7 +115,7 @@
 
 .section2 .header-about {
     padding-bottom: 30px;
-    font-size: 100px;
+    font-size: 80px;
     font-weight: 200;
     text-align: center;
     height: auto;
@@ -213,8 +213,14 @@
         font-size: 16px;
         line-height: 22px;
     }
-
     .section2 img{
         width:100%;
+    }
+
+    .section2 .header-about{
+        font-size: 35px;
+    }
+    .section2 .about{
+        font-size: 16px;
     }
 }

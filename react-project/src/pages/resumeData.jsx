@@ -15,30 +15,31 @@ import noImage from '../images/no-image.png';
 import armLogo from '../images/ArmLogo.svg';
 
 /* Programming Languages*/
-let python = <img src={pythonLogo} width="40" height="40" alt="Python Logo" />;
-let php = <SiIcons.SiPhp size={40} color='#787CB5' />;
-let arm = <img src={armLogo} width="40" height="40" alt="ARM Assembly Logo" />;
-let c = <SiIcons.SiC size={40}/>;
+let python = <img src={pythonLogo} className="tech-icon" width="40" height="40" alt="Python Logo" />;
+let php = <SiIcons.SiPhp className="tech-icon" size={40} color='#787CB5' />;
+let arm = <img src={armLogo} className="tech-icon" width="40" height="40" alt="ARM Assembly Logo" />;
+let c = <SiIcons.SiC className="tech-icon" size={40} />;
 
 /* Databases */
-let mysql = <img src={mysqlLogo} width="40" height="40" alt="MySQL Logo" />;
-let mongodb = <SiIcons.SiMongodb size={40} color='#27C937' />;
+let mysql = <img src={mysqlLogo} className="tech-icon" width="40" height="40" alt="MySQL Logo" />;
+let mongodb = <SiIcons.SiMongodb className="tech-icon" size={40} color='#27C937' />;
 
-/* Front-End Technologies*/
-let html5 = <img src={html5Logo} width="40" height="40" alt="HTML5 Logo" />;
-let css3 = <img src={css3Logo} width="40" height="40" alt="CSS3 Logo" />;
-let reactjs = <GrIcons.GrReactjs size={40} color='#61dbfb' />;
+/* Front-End Technologies */
+let html5 = <img src={html5Logo} className="tech-icon" width="40" height="40" alt="HTML5 Logo" />;
+let css3 = <img src={css3Logo} className="tech-icon" width="40" height="40" alt="CSS3 Logo" />;
+let reactjs = <GrIcons.GrReactjs className="tech-icon" size={40} color='#61dbfb' />;
 
-/* Framework / Libraries*/
-let flask = <SiIcons.SiFlask size={40} />;
-let REST = <img src={RESTLogo} width="40" height="40" alt="RESTAPI Logo" />;
+/* Framework / Libraries */
+let flask = <SiIcons.SiFlask className="tech-icon" size={40} />;
+let REST = <img src={RESTLogo} className="tech-icon" width="40" height="40" alt="RESTAPI Logo" />;
 
-/* Tools*/
-let figma = <img src={figmaLogo} width="40" height="40" alt="Figma Logo" />;
-let github = <AiIcons.AiFillGithub size={40} />;
-let docker = <FaIcons.FaDocker size={40} color='#2FAFF4' />;
-let nginx = <SiIcons.SiNginx size={40} color='#009900' />;
-let ubuntu = <FaIcons.FaUbuntu size={40} color='#E95420' />
+/* Tools */
+let figma = <img src={figmaLogo} className="tech-icon" width="40" height="40" alt="Figma Logo" />;
+let github = <AiIcons.AiFillGithub className="tech-icon" size={40} />;
+let docker = <FaIcons.FaDocker className="tech-icon" size={40} color='#2FAFF4' />;
+let nginx = <SiIcons.SiNginx className="tech-icon" size={40} color='#009900' />;
+let ubuntu = <FaIcons.FaUbuntu className="tech-icon" size={40} color='#E95420' />;
+
 
 export const resumeData = [
     {
