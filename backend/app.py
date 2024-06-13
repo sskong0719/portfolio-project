@@ -16,8 +16,6 @@ def catch_all(path):
 
 
 # Submit Contact form to database and send to my email
-
-
 @app.route("/submit-contact-form", methods=["POST"])
 def contact():
     errors = []

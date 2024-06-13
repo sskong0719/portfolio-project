@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
-from collections.contact_collection import ContactCollection
-from collections.project_collection import ProjectCollection
+from my_collections.contact_collection import ContactCollection
+from my_collections.project_collection import ProjectCollection
 
 load_dotenv()
 
