@@ -8,12 +8,12 @@ function LoginModal({ onLoginSuccess }) {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('username', username);
-        formData.append('password', password);
         fetch('/login', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
         })
         .then(response => response.json())
         .then(data => {
