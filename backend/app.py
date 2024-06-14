@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='/usr/share/nginx/html')
 
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
@@ -31,12 +31,12 @@ db = Database()
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def index(path=""):
+def serve(path):
     user_id = request.cookies.get("user_id")
 
     if not user_id:
         user_id = str(uuid.uuid4())
-        response = make_response(render_template("index.html"))
+        response = make_response(send_from_directory(app.static_folder, 'index.html'))
         response.set_cookie(
             "user_id",
             user_id,
@@ -47,11 +47,9 @@ def index(path=""):
         )
 
         db.visits_collection.increment_unique_visit_count()
-
-        return response
-
-    return render_template("index.html")
-
+    else:
+        response = make_response(send_from_directory(app.static_folder, 'index.html'))
+    return response
 
 @app.route("/api/visit-count", methods=["GET"])
 def visit_count():
