@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__, static_folder='../react-project/build', static_url_path='')
+app = Flask(__name__)
 
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
@@ -28,8 +28,8 @@ def index():
 
     if not user_id:
         user_id = str(uuid.uuid4())
-        response = make_response(send_from_directory(app.static_folder, 'index.html'))
-        response.set_cookie('user_id', user_id, max_age=31536000) 
+        response = make_response(send_from_directory('/usr/share/nginx/html', 'index.html'))
+        response.set_cookie('user_id', user_id, max_age=31536000, httponly=True, secure=True) 
 
         db.visits_collection.increment_unique_visit_count()
 
