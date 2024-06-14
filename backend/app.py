@@ -35,7 +35,7 @@ def index():
 
         return response
 
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory('/usr/share/nginx/html', 'index.html')
 
 @app.route('/api/visit-count', methods=['GET'])
 def visit_count():
