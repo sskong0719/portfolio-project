@@ -1,5 +1,10 @@
 from flask import Flask, jsonify, request, render_template
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    jwt_required,
+    get_jwt_identity,
+)
 
 from database import Database
 import validate
@@ -10,7 +15,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
 db = Database()
 
@@ -21,22 +26,26 @@ def catch_all(path):
     # Render the main React application with the path
     return render_template("index.html", path=path)
 
-@app.route('/login', methods=['POST'])
+
+@app.route("/login", methods=["POST"])
 def login():
-    username = request.json.get('username', None)
-    password = request.json.get('password', None)
-    
+    print("\nInside Login\n")
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+
     if not db.admin_collection.check_credentials(username, password):
         return jsonify({"msg": "Bad username or password"}), 401
-    
+
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token)
 
-@app.route('/verify-token', methods=['POST'])
+
+@app.route("/verify-token", methods=["POST"])
 @jwt_required()
 def verify_token():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
+
 
 # Submit Contact form to database and send to my email
 @app.route("/submit-contact-form", methods=["POST"])
@@ -85,7 +94,7 @@ def dataHandle():
         "degree": request.form.get("degree", "").strip(),
     }
 
-    if not any(value for value in data.values() if value or value == ['']):
+    if not any(value for value in data.values() if value or value == [""]):
         errors.append({"status": "0", "message": "All fields are empty"})
 
     if errors:
@@ -93,16 +102,10 @@ def dataHandle():
     else:
         success = db.data_collection.add_data(**data)
         if success:
-            response = {
-                "status": "1",
-                "message": "Data handled successfully"
-            }
-        
+            response = {"status": "1", "message": "Data handled successfully"}
+
         else:
-            response = {
-                "status": "0",
-                "message": "Failed to add data to the database"
-            }
+            response = {"status": "0", "message": "Failed to add data to the database"}
     return jsonify(response)
 
 
