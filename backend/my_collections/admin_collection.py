@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class AdminCollection:
+    
     def __init__(self, db):
         self.admin_collection: Collection = db["Admin"]
         # Insert admin user if collection is empty

@@ -1,13 +1,17 @@
 from flask import Flask, jsonify, request, render_template
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from werkzeug.security import check_password_hash
 
 from database import Database
 import validate
 import smtp
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+jwt = JWTManager(app)
 db = Database()
 
 
@@ -36,7 +40,6 @@ def verify_token():
 
 # Submit Contact form to database and send to my email
 @app.route("/submit-contact-form", methods=["POST"])
-@jwt_required()
 def contact():
     errors = []
 
@@ -65,7 +68,6 @@ def contact():
 
 @app.route("/submit-data", methods=["POST"])
 @jwt_required()
-
 def dataHandle():
     errors = []
 
@@ -89,7 +91,7 @@ def dataHandle():
     if errors:
         return jsonify(errors)
     else:
-        success = db.project_collection.add_data(**data)
+        success = db.data_collection.add_data(**data)
         if success:
             response = {
                 "status": "1",
