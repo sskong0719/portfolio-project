@@ -3,6 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
 class AdminCollection:
     def __init__(self, db):
         self.admin_collection: Collection = db["Admin"]
