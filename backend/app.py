@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, request, render_template
+import uuid
+
+from flask import Flask, jsonify, request, render_template, make_response
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
@@ -21,6 +23,29 @@ db = Database()
 
 
 @app.route("/", defaults={"path": ""})
+def index():
+    # Check if user_id cookie is present
+    user_id = request.cookies.get('user_id')
+
+    # If not present, generate a new one and increment visit count
+    if not user_id:
+        user_id = str(uuid.uuid4())
+        response = make_response(render_template('index.html'))
+        response.set_cookie('user_id', user_id, max_age=31536000)  # Cookie expires in 1 year
+
+        # Increment unique visit count
+        db.visits_collection.increment_unique_visit_count()
+
+        return response
+
+    # If user_id cookie is present, render the page without incrementing the visit count
+    return render_template('index.html')
+
+@app.route('/visit-count')
+def visit_count():
+    count = db.visits_collection.get_visit_count()
+    return jsonify({'visit_count': count})
+
 @app.route("/<path:path>")
 def catch_all(path):
     # Render the main React application with the path

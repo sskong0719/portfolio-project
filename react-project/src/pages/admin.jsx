@@ -5,6 +5,7 @@ import LoginModal from '../components/LoginModal';
 
 export default function Admin() {
     const [selectedForm, setSelectedForm] = useState('');
+    const [visitCount, setVisitCount] = useState(0);
     const [formData, setFormData] = useState({
         company: '',
         title: '',
@@ -35,6 +36,7 @@ export default function Admin() {
             .then(response => {
                 if (response.ok) {
                     setIsAuthenticated(true);
+                    fetchVisitCount();
                 } else {
                     setIsAuthenticated(false);
                 }
@@ -117,6 +119,13 @@ export default function Admin() {
         .catch(error => {
             console.error('Error:', error);
         });
+    };
+
+    const fetchVisitCount = () => {
+        fetch('/api/visit-count')
+            .then(response => response.json())
+            .then(data => setVisitCount(data.visit_count))
+            .catch(error => console.error('Error fetching visit count:', error));
     };
 
     const renderForm = () => {
@@ -265,13 +274,16 @@ export default function Admin() {
 
     const handleLoginSuccess = () => {
         setIsAuthenticated(true);
+        fetchVisitCount();
     };
 
     return (
         <div className="admin-content">
+            
             {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
             {isAuthenticated && (
                 <>
+                    <p>Total Visit Count: {visitCount}</p> {/* Display the visit count */}
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Project')}>Add Project</button>
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Language')}>Add Language</button>

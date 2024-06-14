@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from my_collections.contact_collection import ContactCollection
 from my_collections.data_collection import DataCollection
 from my_collections.admin_collection import AdminCollection
+from my_collections.visits_collection import VisitsCollection
 
 load_dotenv()
 
@@ -19,3 +20,4 @@ class Database:
         self.contact_collection = ContactCollection(self.db)
         self.data_collection = DataCollection(self.db)
         self.admin_collection = AdminCollection(self.db)
+        self.visits_collection = VisitsCollection(self.db)
