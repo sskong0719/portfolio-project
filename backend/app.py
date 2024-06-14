@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__, static_folder='react-project/build', static_url_path='')
+app = Flask(__name__, static_folder='../react-project/build', static_url_path='')
 
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
@@ -23,23 +23,18 @@ db = Database()
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def index(path):
-    db.visits_collection.increment_unique_visit_count()
-    # Check if user_id cookie is present
+def index():
     user_id = request.cookies.get('user_id')
 
-    # If not present, generate a new one and increment visit count
     if not user_id:
         user_id = str(uuid.uuid4())
         response = make_response(send_from_directory(app.static_folder, 'index.html'))
-        response.set_cookie('user_id', user_id, max_age=31536000, httponly=True)  # Cookie expires in 1 year
+        response.set_cookie('user_id', user_id, max_age=31536000) 
 
-        # Increment unique visit count
         db.visits_collection.increment_unique_visit_count()
 
         return response
 
-    # If user_id cookie is present, render the page without incrementing the visit count
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/api/visit-count', methods=['GET'])
