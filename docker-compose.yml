@@ -40,20 +40,13 @@ services:
       WAIT_HOSTS: mongo:27017
     depends_on:
       - mongo # Ensure backend starts after the mongo service is up
-      - frontend
-    volumes:
-      - react-build:/root/react-build
-    ports:
-      - "5000:5000"
   frontend:
+    image: frontend
     build:
       context: ./react-project
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
-    volumes:
-      - react-build:/usr/share/nginx/html
 volumes:
   mongo-data:
     driver: local
-  react-build:
