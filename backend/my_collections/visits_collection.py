@@ -5,10 +5,12 @@ class VisitsCollection:
         self.visits_collection: Collection = db["Visits"]
 
     def increment_unique_visit_count(self):
-        if "visit_count" not in self.visits_collection:
-            self.visits_collection["visit_count"] = 1
+        visits = self.visits_collection.find_one({'_id': 'visit_count'})
+        if not visits:
+            self.visits_collection.insert_one({'_id': 'visit_count', 'count': 1})
         else:
-            self.visits_collection["visit_count"] += 1
+            self.visits_collection.update_one({'_id': 'visit_count'}, {'$inc': {'count': 1}})
 
     def get_visit_count(self):
-        return self.visits_collection.get("visit_count", 0)
+        visits = self.visits_collection.find_one({'_id': 'visit_count'})
+        return visits['count'] if visits else 0

@@ -1,5 +1,4 @@
 import uuid
-import logging
 from flask import Flask, jsonify, request, render_template, make_response, send_from_directory
 from flask_jwt_extended import (
     JWTManager,
@@ -22,27 +21,26 @@ app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
 db = Database()
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def index(path):
-    visit_count = request.cookies.get('visit_count')
+    db.visits_collection.increment_unique_visit_count()
+    # Check if user_id cookie is present
+    user_id = request.cookies.get('user_id')
 
-    if not visit_count:
-        visit_count = 1
+    # If not present, generate a new one and increment visit count
+    if not user_id:
+        user_id = str(uuid.uuid4())
         response = make_response(send_from_directory(app.static_folder, 'index.html'))
-        response.set_cookie('visit_count', str(visit_count), max_age=31536000, httponly=True)  # Cookie expires in 1 year
+        response.set_cookie('user_id', user_id, max_age=31536000, httponly=True)  # Cookie expires in 1 year
 
+        # Increment unique visit count
         db.visits_collection.increment_unique_visit_count()
-    else:
-        # If visit_count cookie is present, increment its value
-        visit_count = int(visit_count) + 1
-        response = make_response(send_from_directory(app.static_folder, 'index.html'))
-        response.set_cookie('visit_count', str(visit_count), max_age=31536000, httponly=True)  # Cookie expires in 1 year
 
-    return response
+        return response
+
+    # If user_id cookie is present, render the page without incrementing the visit count
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/api/visit-count', methods=['GET'])
 def visit_count():
