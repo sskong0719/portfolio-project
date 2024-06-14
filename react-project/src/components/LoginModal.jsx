@@ -11,7 +11,7 @@ function LoginModal({ onLoginSuccess }) {
         const formData = new FormData();
         formData.append('username', username);
         formData.append('password', password);
-        fetch('/login-user', {
+        fetch('/login', {
             method: 'POST',
             body: formData
         })
