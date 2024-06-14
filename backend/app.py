@@ -29,10 +29,8 @@ def catch_all(path):
 
 @app.route("/api/login", methods=["POST"])
 def login():
-    username = request.form.get('username').strip()
-    password = request.form.get('password').strip()
-    print(username+"\n")
-    print(password+"\n")
+    username = request.json.get('username')
+    password = request.json.get('password')
     if not db.admin_collection.check_credentials(username, password):
         return jsonify({"msg": "Bad username or password"}), 401
 

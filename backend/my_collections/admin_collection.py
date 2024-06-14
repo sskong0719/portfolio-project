@@ -20,10 +20,6 @@ class AdminCollection:
 
     def check_credentials(self, username, password):
         user = self.admin_collection.find_one({"username": username})
-        print("Inside Check Credentials\n")
-        print(user+"\n")
-        print(user["password"]+"\n")
-        print(password+"\n")
         if user and check_password_hash(user["password"], password):
             return True
-        return True
+        return False
