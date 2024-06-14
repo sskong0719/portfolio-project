@@ -10,6 +10,8 @@
     /* Added property */
     width: 100%;
     /* Added property */
+
+    border-bottom: 1px solid var(--tertiary); /* Add bottom border only */
 }
 
 .logo-container {

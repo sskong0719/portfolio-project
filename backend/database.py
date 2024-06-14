@@ -2,7 +2,8 @@ from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 from my_collections.contact_collection import ContactCollection
-from my_collections.project_collection import ProjectCollection
+from my_collections.data_collection import DataCollection
+from my_collections.admin_collection import AdminCollection
 
 load_dotenv()
 
@@ -16,4 +17,5 @@ class Database:
 
         # Initialize collections
         self.contact_collection = ContactCollection(self.db)
-        self.project_collection = ProjectCollection(self.db)
+        self.data_collection = DataCollection(self.db)
+        self.admin_collection = AdminCollection(self.db)

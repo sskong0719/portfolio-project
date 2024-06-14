@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import './styles/admin.css';
+import LoginModal from '../components/LoginModal';
+
 
 export default function Admin() {
     const [selectedForm, setSelectedForm] = useState('');
@@ -15,6 +18,41 @@ export default function Admin() {
         school: '',
         degree: ''
     });
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        // Check for token on page load
+        const token = localStorage.getItem('token');
+        if (!token) {
+            setIsAuthenticated(false);
+        } else {
+            fetch('/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    setIsAuthenticated(true);
+                } else {
+                    setIsAuthenticated(false);
+                }
+            })
+            .catch(() => setIsAuthenticated(false));
+        }
+    }, []);
+
+    useEffect(() => {
+        // Reset descriptions when selectedForm changes
+        if (selectedForm === 'Experience' || selectedForm === 'Project' || selectedForm === 'Education') {
+            setFormData((prevState) => ({
+                ...prevState,
+                descriptions: ['']
+            }));
+        }
+    }, [selectedForm]);
 
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
@@ -59,12 +97,27 @@ export default function Admin() {
 
         const data = {
             ...formData,
-            descriptions: filteredDescriptions
+            descriptions: filteredDescriptions,
+            formType: selectedForm // Add the form type to the data object
         };
 
-        console.log(data);
+        const token = localStorage.getItem('token');
 
-        // Here you can handle the form submission, e.g., send data to the server
+        fetch('/submit-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('Success:', result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
 
     const renderForm = () => {
@@ -72,24 +125,29 @@ export default function Admin() {
             case 'Experience':
                 return (
                     <form className="add-data-form" onSubmit={handleSubmit}>
-                        <div>
+                        <div className="line-div">
                             <label>Company:</label>
                             <input type="text" name="company" value={formData.company} onChange={handleInputChange} />
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Job Title:</label>
                             <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Skills:</label>
                             <input type="text" name="skills" value={formData.skills} onChange={handleInputChange} />
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Date:</label>
                             <input type="text" name="date" value={formData.date} onChange={handleInputChange} />
                         </div>
-                        <div>
-                            <label>Description:</label>
+                        <div className="line-div">
+                        <div className="description-container">
+                                <label>Description:</label>
+                                {formData.descriptions.length < 5 && (
+                                    <button type="button" className="add-description-button" onClick={addDescriptionField}>+</button>
+                                )}
+                            </div>
                             {formData.descriptions.map((desc, index) => (
                                 <div key={index} className="description-field">
                                     <input
@@ -103,30 +161,33 @@ export default function Admin() {
                                     )}
                                 </div>
                             ))}
-                            {formData.descriptions.length < 5 && (
-                                <button type="button" className="add-description-button" onClick={addDescriptionField}>Add Description +</button>
-                            )}
                         </div>
-                        <button type="submit">Submit</button>
+                        <button className="submit-button" type="submit">Submit</button>
                     </form>
                 );
             case 'Project':
                 return (
                     <form className="add-data-form" onSubmit={handleSubmit}>
-                        <div>
+                        <div className="line-div">
                             <label>Project Title:</label>
                             <input type="text" name="projectTitle" value={formData.projectTitle} onChange={handleInputChange} />
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Skills:</label>
                             <input type="text" name="skills" value={formData.skills} onChange={handleInputChange} />
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Date:</label>
                             <input type="text" name="date" value={formData.date} onChange={handleInputChange} />
                         </div>
-                        <div>
-                            <label>Description:</label>
+                        <div className="line-div">
+                            <div className="description-container">
+                                <label>Description:</label>
+                                {formData.descriptions.length < 5 && (
+                                    <button type="button" className="add-description-button" onClick={addDescriptionField}>+</button>
+                                )}
+                            </div>
+
                             {formData.descriptions.map((desc, index) => (
                                 <div key={index} className="description-field">
                                     <input
@@ -140,44 +201,47 @@ export default function Admin() {
                                     )}
                                 </div>
                             ))}
-                            {formData.descriptions.length < 5 && (
-                                <button type="button" className="add-description-button" onClick={addDescriptionField}>Add Description +</button>
-                            )}
+
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Link:</label>
                             <input type="text" name="link" value={formData.link} onChange={handleInputChange} />
                         </div>
-                        <button type="submit">Submit</button>
+                        <button className="submit-button" type="submit">Submit</button>
                     </form>
                 );
             case 'Language':
                 return (
                     <form className="add-data-form" onSubmit={handleSubmit}>
-                        <div>
+                        <div className="line-div">
                             <label>Language:</label>
                             <input type="text" name="language" value={formData.language} onChange={handleInputChange} />
                         </div>
-                        <button type="submit">Submit</button>
+                        <button className="submit-button" type="submit">Submit</button>
                     </form>
                 );
             case 'Education':
                 return (
                     <form className="add-data-form" onSubmit={handleSubmit}>
-                        <div>
+                        <div className="line-div">
                             <label>School Name:</label>
                             <input type="text" name="school" value={formData.school} onChange={handleInputChange} />
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Degree:</label>
                             <input type="text" name="degree" value={formData.degree} onChange={handleInputChange} />
                         </div>
-                        <div>
+                        <div className="line-div">
                             <label>Date:</label>
                             <input type="text" name="date" value={formData.date} onChange={handleInputChange} />
                         </div>
-                        <div>
-                            <label>Description:</label>
+                        <div className="line-div">
+                        <div className="description-container">
+                                <label>Description:</label>
+                                {formData.descriptions.length < 5 && (
+                                    <button type="button" className="add-description-button" onClick={addDescriptionField}>+</button>
+                                )}
+                            </div>
                             {formData.descriptions.map((desc, index) => (
                                 <div key={index} className="description-field">
                                     <input
@@ -191,11 +255,8 @@ export default function Admin() {
                                     )}
                                 </div>
                             ))}
-                            {formData.descriptions.length < 5 && (
-                                <button type="button" className="add-description-button" onClick={addDescriptionField}>Add Description +</button>
-                            )}
                         </div>
-                        <button type="submit">Submit</button>
+                        <button className="submit-button" type="submit">Submit</button>
                     </form>
                 );
             default:
@@ -203,13 +264,22 @@ export default function Admin() {
         }
     };
 
+    const handleLoginSuccess = () => {
+        setIsAuthenticated(true);
+    };
+
     return (
         <div className="admin-content">
-                <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
-                <button className="add-data" type="button" onClick={() => setSelectedForm('Project')}>Add Project</button>
-                <button className="add-data" type="button" onClick={() => setSelectedForm('Language')}>Add Language</button>
-                <button className="add-data" type="button" onClick={() => setSelectedForm('Education')}>Add Education</button>
-            {renderForm()}
+            {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
+            {isAuthenticated && (
+                <>
+                    <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
+                    <button className="add-data" type="button" onClick={() => setSelectedForm('Project')}>Add Project</button>
+                    <button className="add-data" type="button" onClick={() => setSelectedForm('Language')}>Add Language</button>
+                    <button className="add-data" type="button" onClick={() => setSelectedForm('Education')}>Add Education</button>
+                    {renderForm()}
+                </>
+            )}
         </div>
     );
 }

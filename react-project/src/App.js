@@ -44,7 +44,6 @@ function AppContent()
             <ScrollReset />
             {!isPDFRoute && (
                 <>
-                    {isBrowser && <CursorFollower />}
                     <Navbar />
                     {isBrowser && <Socialbar />}
                 </>

@@ -5,3 +5,4 @@ flask_socketio==5.3.4
 simple_websocket
 python-dotenv
 pytz
+flask_jwt_extended

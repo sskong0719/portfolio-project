@@ -7,19 +7,22 @@
     justify-content: center;
     padding-bottom: 15vh;
 }
+
 .remove-button {
     padding: 5px 10px;
-    background-color: red;
-    color: white;
+    color: var(--secondary);
     border: none;
     border-radius: 3px;
     cursor: pointer;
     font-size: 14px;
+    background-color: transparent;
+    transition: color 0.3s ease;
 }
 
 .remove-button:hover {
-    background-color: darkred;
+    color: var(--tertiary);
 }
+
 .add-data {
     margin: 5px;
     padding: 10px;
@@ -29,7 +32,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .add-data:hover {
@@ -43,42 +46,80 @@
     padding: 20px;
     width: 100%;
     max-width: 500px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Align text to the left */
+    color: var(--secondary);
+    text-align: left;
+    /* Align text to the left */
 }
 
-.add-data-form div {
+.add-data-form .line-div {
     margin-bottom: 15px;
 }
 
 .add-data-form label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 200;
 }
 
-.add-data-form input, .add-data-form textarea, .add-data-form select {
+.add-data-form input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    border: none;
+    /* Remove all borders */
+    border-bottom: 1px solid var(--tertiary);
+    /* Add bottom border only */
     font-size: 14px;
+    background-color: transparent;
+    color: var(--secondary);
+
+    font-weight: 100;
 }
 
+.add-data-form input:focus {
+    outline: none;
+    /* Remove the default outline */
+    border-bottom: 1px solid var(--secondary);
+    /* Change the bottom border color when focused */
+}
+
+
+
 .add-data-form .add-description-button {
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 0px 20px;
+    color: var(--tertiary);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    background-color: transparent;
+    transition: color 0.3s ease;
+    padding-bottom: 5px;
 }
 
-.add-data-form button:hover {
-    background-color: #45a049;
+.add-data-form .add-description-button:hover {
+    color: var(--secondary);
+}
+
+.description-container {
+    display: flex;
+}
+
+.description-container .add-description-button {
+    margin-right: 10px;
+}
+
+.submit-button {
+    width: 100px;
+    padding: 10px;
+    border: solid;
+    border-width: 1px;
+    background-color: var(--main);
+    color: var(--tertiary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submit-button:hover {
+    color: var(--secondary); /* Ensure text color changes on hover */
 }
