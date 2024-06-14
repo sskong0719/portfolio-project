@@ -26,7 +26,7 @@ export default function Admin() {
         if (!token) {
             setIsAuthenticated(false);
         } else {
-            fetch('/verify-token', {
+            fetch('/api/verify-token', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -102,7 +102,7 @@ export default function Admin() {
 
         const token = localStorage.getItem('token');
 
-        fetch('/submit-data', {
+        fetch('/api/submit-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

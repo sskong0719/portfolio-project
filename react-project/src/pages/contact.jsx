@@ -35,7 +35,7 @@ export default function Contact() {
         formData.append('email', email);
         formData.append('message', message);
 
-        fetch('/submit-contact-form', {
+        fetch('/api/submit-contact-form', {
             method: 'POST',
             body: formData
         })

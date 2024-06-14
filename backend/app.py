@@ -27,7 +27,7 @@ def catch_all(path):
     return render_template("index.html", path=path)
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/api/login", methods=["POST"])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
@@ -39,7 +39,7 @@ def login():
     return jsonify(access_token=access_token)
 
 
-@app.route("/verify-token", methods=["POST"])
+@app.route("/api/verify-token", methods=["POST"])
 @jwt_required()
 def verify_token():
     current_user = get_jwt_identity()
@@ -47,7 +47,7 @@ def verify_token():
 
 
 # Submit Contact form to database and send to my email
-@app.route("/submit-contact-form", methods=["POST"])
+@app.route("/api/submit-contact-form", methods=["POST"])
 def contact():
     errors = []
 
@@ -74,7 +74,7 @@ def contact():
     return jsonify(response)
 
 
-@app.route("/submit-data", methods=["POST"])
+@app.route("/api/submit-data", methods=["POST"])
 @jwt_required()
 def dataHandle():
     errors = []
