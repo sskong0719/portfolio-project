@@ -29,13 +29,15 @@ logger = logging.getLogger(__name__)
 def index(path):
     # Check if user_id cookie is present
     user_id = request.cookies.get('user_id')
+    logger.info(f"Cookie 'user_id' found: {user_id}")
 
     # If not present, generate a new one and increment visit count
     if not user_id:
         user_id = str(uuid.uuid4())
         logger.info(f"Generated new user_id: {user_id}")
         response = make_response(send_from_directory(app.static_folder, 'index.html'))
-        response.set_cookie('user_id', user_id, max_age=31536000)  # Cookie expires in 1 year
+        response.set_cookie('user_id', user_id, max_age=31536000, httponly=True)  # Cookie expires in 1 year
+        logger.info(f"Set cookie 'user_id': {user_id}")
 
         # Increment unique visit count
         db.visits_collection.increment_unique_visit_count()
@@ -44,6 +46,7 @@ def index(path):
         return response
 
     # If user_id cookie is present, render the page without incrementing the visit count
+    logger.info(f"User ID cookie already present: {user_id}")
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/api/visit-count', methods=['GET'])
