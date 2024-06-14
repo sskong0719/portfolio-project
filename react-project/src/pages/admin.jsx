@@ -283,7 +283,7 @@ export default function Admin() {
             {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
             {isAuthenticated && (
                 <>
-                    <p>Total Visit Count: {visitCount}</p> {/* Display the visit count */}
+                    <div className="visit-count">Total Visit Count: {visitCount}</div>
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Project')}>Add Project</button>
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Language')}>Add Language</button>

@@ -1,6 +1,6 @@
 import uuid
 
-from flask import Flask, jsonify, request, render_template, make_response
+from flask import Flask, jsonify, request, render_template, make_response, send_from_directory
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
@@ -30,7 +30,7 @@ def index():
     # If not present, generate a new one and increment visit count
     if not user_id:
         user_id = str(uuid.uuid4())
-        response = make_response(render_template('index.html'))
+        response = make_response(send_from_directory(app.static_folder, 'index.html'))
         response.set_cookie('user_id', user_id, max_age=31536000)  # Cookie expires in 1 year
 
         # Increment unique visit count

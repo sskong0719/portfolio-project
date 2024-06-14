@@ -2,7 +2,7 @@ from pymongo.collection import Collection
 
 class VisitsCollection:
     def __init__(self, db):
-        self.visits_collection: Collection = db["visits"]
+        self.visits_collection: Collection = db["Visits"]
 
     def increment_unique_visit_count(self):
         visits = self.visits_collection.find_one({'_id': 'visit_count'})

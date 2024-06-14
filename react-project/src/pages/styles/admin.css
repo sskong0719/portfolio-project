@@ -123,3 +123,7 @@
 .submit-button:hover {
     color: var(--secondary); /* Ensure text color changes on hover */
 }
+
+.admin-content .visit-count{
+    color: var(--secondary)
+}
