@@ -9,6 +9,7 @@ COPY . .
 
 RUN pip3 install -r requirements.txt
 
+# The React build files will be available at /root/react-build due to the shared volume
 ENV FLASK_ENV production
 EXPOSE 5000
 

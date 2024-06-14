@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__, static_folder='../react-project/build', static_url_path='')
+app = Flask(__name__, static_folder='react-build', static_url_path='')
 
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
