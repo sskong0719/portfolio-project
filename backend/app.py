@@ -28,27 +28,21 @@ logger = logging.getLogger(__name__)
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def index(path):
-    # Check if user_id cookie is present
-    user_id = request.cookies.get('user_id')
-    logger.info(f"Cookie 'user_id' found: {user_id}")
+    visit_count = request.cookies.get('visit_count')
 
-    # If not present, generate a new one and increment visit count
-    if not user_id:
-        user_id = str(uuid.uuid4())
-        logger.info(f"Generated new user_id: {user_id}")
+    if not visit_count:
+        visit_count = 1
         response = make_response(send_from_directory(app.static_folder, 'index.html'))
-        response.set_cookie('user_id', user_id, max_age=31536000, httponly=True)  # Cookie expires in 1 year
-        logger.info(f"Set cookie 'user_id': {user_id}")
+        response.set_cookie('visit_count', str(visit_count), max_age=31536000, httponly=True)  # Cookie expires in 1 year
 
-        # Increment unique visit count
         db.visits_collection.increment_unique_visit_count()
-        logger.info("Incremented visit count")
+    else:
+        # If visit_count cookie is present, increment its value
+        visit_count = int(visit_count) + 1
+        response = make_response(send_from_directory(app.static_folder, 'index.html'))
+        response.set_cookie('visit_count', str(visit_count), max_age=31536000, httponly=True)  # Cookie expires in 1 year
 
-        return response
-
-    # If user_id cookie is present, render the page without incrementing the visit count
-    logger.info(f"User ID cookie already present: {user_id}")
-    return send_from_directory(app.static_folder, 'index.html')
+    return response
 
 @app.route('/api/visit-count', methods=['GET'])
 def visit_count():
