@@ -43,7 +43,24 @@ let ubuntu = <FaIcons.FaUbuntu className="tech-icon" size={40} color='#E95420' /
 
 export const resumeData = [
     {
-        
+        Skills: [
+            { name: 'Python', logo: python },
+            { name: 'C', logo: c},
+            { name: 'PHP', logo: php },
+            { name: 'CSS3', logo: css3 },
+            { name: 'HTML5', logo: html5 },
+            { name: 'ReactJS', logo: reactjs },
+            { name: 'MySQL', logo: mysql },
+            { name: 'MongoDB', logo: mongodb },
+            { name: 'Flask', logo: flask },
+            { name: 'Figma', logo: figma },
+            { name: 'GitHub', logo: github },
+            { name: 'Docker', logo: docker },
+            { name: 'RESTful API', logo: REST },
+            { name: 'NGINX', logo: nginx },
+            { name: 'Ubuntu', logo: ubuntu },
+            { name: 'ARM Assembly', logo: arm }
+        ],
         Experience: [
             {
                 id: 1,
