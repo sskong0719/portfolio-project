@@ -79,35 +79,37 @@ def contact():
 def dataHandle():
     errors = []
 
+    # Parse JSON data
     data = request.get_json()
 
-    data = {
+    # Extract and clean data fields
+    parsed_data = {
         "type": data.get("formType", "").strip(),
         "company": data.get("company", "").strip(),
         "title": data.get("title", "").strip(),
         "skills": data.get("skills", "").strip(),
         "date": data.get("date", "").strip(),
-        "descriptions": data.get("descriptions", []),
+        "descriptions": data.get("descriptions", []),  # Ensure descriptions is a list
         "projectTitle": data.get("projectTitle", "").strip(),
         "link": data.get("link", "").strip(),
         "language": data.get("language", "").strip(),
         "school": data.get("school", "").strip(),
-        "degree": data.get("degree", "").strip(),
+        "degree": data.get("degree", "").strip()
     }
 
-    if not any(value for value in data.values() if value or value == [""]):
+    # Check if all fields are empty
+    if not any(value for value in parsed_data.values() if value or value == [""]):
         errors.append({"status": "0", "message": "All fields are empty"})
 
     if errors:
         return jsonify(errors)
     else:
-        success = db.data_collection.add_data(**data)
+        success = db.data_collection.add_data(**parsed_data)
         if success:
             response = {"status": "1", "message": "Data handled successfully"}
-
         else:
             response = {"status": "0", "message": "Failed to add data to the database"}
-    return jsonify(response)
+        return jsonify(response)
 
 
 if __name__ == "__main__":
