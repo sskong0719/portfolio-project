@@ -31,14 +31,12 @@ db = Database()
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def index():
+def index(path=""):
     user_id = request.cookies.get("user_id")
 
     if not user_id:
         user_id = str(uuid.uuid4())
-        response = make_response(
-            send_from_directory("/usr/share/nginx/html", "index.html")
-        )
+        response = make_response(render_template("index.html"))
         response.set_cookie(
             "user_id",
             user_id,
@@ -52,7 +50,7 @@ def index():
 
         return response
 
-    return send_from_directory("/usr/share/nginx/html", "index.html")
+    return render_template("index.html")
 
 
 @app.route("/api/visit-count", methods=["GET"])
