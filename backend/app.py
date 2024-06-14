@@ -29,8 +29,9 @@ def catch_all(path):
 
 @app.route("/api/login", methods=["POST"])
 def login():
-    username = request.json.get('username')
-    password = request.json.get('password')
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
     if not db.admin_collection.check_credentials(username, password):
         return jsonify({"msg": "Bad username or password"}), 401
 
@@ -78,18 +79,20 @@ def contact():
 def dataHandle():
     errors = []
 
+    data = request.get_json()
+
     data = {
-        "type": request.json.get("formType", "").strip(),
-        "company": request.json.get("company", "").strip(),
-        "title": request.json.get("title", "").strip(),
-        "skills": request.json.get("skills", "").strip(),
-        "date": request.json.get("date", "").strip(),
-        "descriptions": request.json.getlist("descriptions"),
-        "projectTitle": request.json.get("projectTitle", "").strip(),
-        "link": request.json.get("link", "").strip(),
-        "language": request.json.get("language", "").strip(),
-        "school": request.json.get("school", "").strip(),
-        "degree": request.json.get("degree", "").strip(),
+        "type": data.get("formType", "").strip(),
+        "company": data.get("company", "").strip(),
+        "title": data.get("title", "").strip(),
+        "skills": data.get("skills", "").strip(),
+        "date": data.get("date", "").strip(),
+        "descriptions": data.get("descriptions", []),
+        "projectTitle": data.get("projectTitle", "").strip(),
+        "link": data.get("link", "").strip(),
+        "language": data.get("language", "").strip(),
+        "school": data.get("school", "").strip(),
+        "degree": data.get("degree", "").strip(),
     }
 
     if not any(value for value in data.values() if value or value == [""]):
