@@ -1,5 +1,12 @@
 import uuid
-from flask import Flask, jsonify, request, render_template, make_response, send_from_directory
+from flask import (
+    Flask,
+    jsonify,
+    request,
+    render_template,
+    make_response,
+    send_from_directory,
+)
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
@@ -17,36 +24,48 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
 db = Database()
+
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def index():
-    user_id = request.cookies.get('user_id')
+    user_id = request.cookies.get("user_id")
 
     if not user_id:
         user_id = str(uuid.uuid4())
-        response = make_response(send_from_directory('/usr/share/nginx/html', 'index.html'))
-        response.set_cookie('user_id', user_id, max_age=31536000, httponly=True, secure=True) 
+        response = make_response(
+            send_from_directory("/usr/share/nginx/html", "index.html")
+        )
+        response.set_cookie(
+            "user_id",
+            user_id,
+            max_age=31536000,
+            httponly=True,
+            secure=True,
+            samesite="Lax",
+        )
 
         db.visits_collection.increment_unique_visit_count()
 
         return response
 
-    return send_from_directory('/usr/share/nginx/html', 'index.html')
+    return send_from_directory("/usr/share/nginx/html", "index.html")
 
-@app.route('/api/visit-count', methods=['GET'])
+
+@app.route("/api/visit-count", methods=["GET"])
 def visit_count():
     count = db.visits_collection.get_visit_count()
-    return jsonify({'visit_count': count})
+    return jsonify({"visit_count": count})
+
 
 @app.route("/api/login", methods=["POST"])
 def login():
     data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
+    username = data.get("username")
+    password = data.get("password")
     if not db.admin_collection.check_credentials(username, password):
         return jsonify({"msg": "Bad username or password"}), 401
 
@@ -109,7 +128,7 @@ def dataHandle():
         "link": data.get("link", "").strip(),
         "language": data.get("language", "").strip(),
         "school": data.get("school", "").strip(),
-        "degree": data.get("degree", "").strip()
+        "degree": data.get("degree", "").strip(),
     }
 
     # Check if all fields are empty
