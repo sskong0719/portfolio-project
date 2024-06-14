@@ -79,17 +79,17 @@ def dataHandle():
     errors = []
 
     data = {
-        "type": request.form.get("formType", "").strip(),
-        "company": request.form.get("company", "").strip(),
-        "title": request.form.get("title", "").strip(),
-        "skills": request.form.get("skills", "").strip(),
-        "date": request.form.get("date", "").strip(),
-        "descriptions": request.form.getlist("descriptions"),
-        "projectTitle": request.form.get("projectTitle", "").strip(),
-        "link": request.form.get("link", "").strip(),
-        "language": request.form.get("language", "").strip(),
-        "school": request.form.get("school", "").strip(),
-        "degree": request.form.get("degree", "").strip(),
+        "type": request.json.get("formType", "").strip(),
+        "company": request.json.get("company", "").strip(),
+        "title": request.json.get("title", "").strip(),
+        "skills": request.json.get("skills", "").strip(),
+        "date": request.json.get("date", "").strip(),
+        "descriptions": request.json.getlist("descriptions"),
+        "projectTitle": request.json.get("projectTitle", "").strip(),
+        "link": request.json.get("link", "").strip(),
+        "language": request.json.get("language", "").strip(),
+        "school": request.json.get("school", "").strip(),
+        "degree": request.json.get("degree", "").strip(),
     }
 
     if not any(value for value in data.values() if value or value == [""]):

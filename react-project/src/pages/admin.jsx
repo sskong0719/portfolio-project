@@ -95,9 +95,17 @@ export default function Admin() {
         const filteredDescriptions = formData.descriptions.filter(desc => desc.trim() !== '');
 
         const data = {
-            ...formData,
+            company: formData.company,
+            title: formData.title,
+            skills: formData.skills,
+            date: formData.date,
             descriptions: filteredDescriptions,
-            formType: selectedForm // Add the form type to the data object
+            projectTitle: formData.projectTitle,
+            link: formData.link,
+            language: formData.language,
+            school: formData.school,
+            degree: formData.degree,
+            formType: selectedForm
         };
 
         const token = localStorage.getItem('token');
