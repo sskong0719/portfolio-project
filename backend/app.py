@@ -41,7 +41,7 @@ def index():
     # If user_id cookie is present, render the page without incrementing the visit count
     return render_template('index.html')
 
-@app.route('/visit-count')
+@app.route('/api/visit-count', methods=['GET'])
 def visit_count():
     count = db.visits_collection.get_visit_count()
     return jsonify({'visit_count': count})
