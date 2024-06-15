@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 def catch_all(path):
     return send_from_directory(app.static_folder, "index.html")
 
-@app.route("/api/visitor_cookie", methods=["GET"])
+@app.route("/api/visitor-cookie", methods=["GET"])
 def set_visitor_cookie():
     logger.debug("set_visitor_cookie function called")
     user_id = request.cookies.get("user_id")

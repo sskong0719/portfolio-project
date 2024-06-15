@@ -40,7 +40,7 @@ function AppContent()
     const isPDFRoute = location.pathname === '/SamuelSiuyinKong_Resume.pdf';
 
     useEffect(() => {
-        fetch('/api/visitor_cookie')
+        fetch('/api/visitor-cookie')
             .then(response => {
                 if(response.ok){
                     // Backend response received
