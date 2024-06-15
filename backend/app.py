@@ -3,7 +3,6 @@ from flask import (
     Flask,
     jsonify,
     request,
-    render_template,
     make_response,
     send_from_directory,
 )
@@ -14,6 +13,8 @@ from flask_jwt_extended import (
     get_jwt_identity,
 )
 
+from flask_cors import CORS
+
 from database import Database
 import validate
 import smtp
@@ -23,6 +24,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__, static_folder="/usr/share/nginx/html")
+CORS(app, supports_credentials=True)
 
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
@@ -144,4 +146,4 @@ def dataHandle():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)
