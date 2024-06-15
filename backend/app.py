@@ -33,17 +33,12 @@ db = Database()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve(path):
-    logger.debug("Serve function called")
+@app.route("/", methods=["GET"])
+def root():
     user_id = request.cookies.get("user_id")
-    logger.debug(f"Current user_id cookie: {user_id}")
-
     if not user_id:
         user_id = str(uuid.uuid4())
-        logger.debug(f"Generated new user_id: {user_id}")
-        response = make_response(send_from_directory(app.static_folder, "index.html"))
+        response = make_response("User ID set", 200)
         response.set_cookie(
             "user_id",
             user_id,
@@ -52,13 +47,10 @@ def serve(path):
             secure=True,
             samesite="Lax",
         )
-        logger.info("Set-Cookie header: %s", response.headers.get('Set-Cookie'))
         db.visits_collection.increment_unique_visit_count()
+        return response
     else:
-        logger.debug("User already has a user_id cookie")
-        response = make_response(send_from_directory(app.static_folder, "index.html"))
-
-    return response
+        return "User ID exists", 200
 
 
 @app.route("/api/visit-count", methods=["GET"])

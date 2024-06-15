@@ -41,15 +41,17 @@ function AppContent()
 
     useEffect(() => {
         fetch('/')
-            .then(response => response.json())
-            .then(data => {
-                console.log("Backend response:", data);
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log("Backend response received");
             })
             .catch(error => {
                 console.error("Error fetching from backend:", error);
             });
     }, []);
-    
+
     return (
         <>
             <ScrollReset />
