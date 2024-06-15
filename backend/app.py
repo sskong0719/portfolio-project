@@ -1,4 +1,3 @@
-import uuid
 from flask import (
     Flask,
     jsonify,
@@ -12,11 +11,12 @@ from flask_jwt_extended import (
     jwt_required,
     get_jwt_identity,
 )
-
 from flask_cors import CORS
 
 from database import Database
+import uuid
 import validate
+import logging
 import smtp
 import os
 from dotenv import load_dotenv
@@ -30,6 +30,9 @@ app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
 db = Database()
 
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
@@ -44,13 +47,14 @@ def serve(path):
             user_id,
             max_age=60 * 60 * 24 * 365 * 2,
             httponly=True,
-            secure=True,
+            secure=False,  # Temporarily set to False for testing purposes
             samesite="Lax",
         )
-
+        logger.info("Set-Cookie header: %s", response.headers.get('Set-Cookie'))
         db.visits_collection.increment_unique_visit_count()
     else:
         response = make_response(send_from_directory(app.static_folder, "index.html"))
+
     return response
 
 
