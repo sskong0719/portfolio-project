@@ -34,32 +34,22 @@ db = Database()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+@app.before_request
+def ensure_uuid_cookie():
+    if 'user_id' not in request.cookies:
+        user_id = str(uuid.uuid4())
+        response = make_response()
+        response.set_cookie('user_id', user_id, max_age=60*60*24*365*2, httponly=True, secure=True, samesite='Lax')
+        return response
+
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path):
-    logger.debug("Serve function called")
-    user_id = request.cookies.get("user_id")
-    logger.debug(f"Current user_id cookie: {user_id}")
-
-    if not user_id:
-        user_id = str(uuid.uuid4())
-        logger.debug(f"Generated new user_id: {user_id}")
-        response = make_response(send_from_directory(app.static_folder, "index.html"))
-        response.set_cookie(
-            "user_id",
-            user_id,
-            max_age=60 * 60 * 24 * 365 * 2,
-            httponly=True,
-            secure=False,  # Temporarily set to False for testing purposes
-            samesite="Lax",
-        )
-        logger.info("Set-Cookie header: %s", response.headers.get('Set-Cookie'))
-        db.visits_collection.increment_unique_visit_count()
-    else:
-        logger.debug("User already has a user_id cookie")
-        response = make_response(send_from_directory(app.static_folder, "index.html"))
-
-    return response
+    if request.path.startswith("/api/"):
+        return "Not Found", 404  # Simple error message for testing
+    if os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route("/api/visit-count", methods=["GET"])
