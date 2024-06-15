@@ -35,9 +35,11 @@ logger = logging.getLogger(__name__)
 
 @app.route("/", methods=["GET"])
 def root():
+    logger.debug(f"Root reached")
     user_id = request.cookies.get("user_id")
     if not user_id:
         user_id = str(uuid.uuid4())
+        logger.debug(f"Generated new user_id: {user_id}")
         response = make_response("User ID set", 200)
         response.set_cookie(
             "user_id",
@@ -47,9 +49,11 @@ def root():
             secure=True,
             samesite="Lax",
         )
+        logger.info(f"Set-Cookie header: {response.headers.get('Set-Cookie')}")
         db.visits_collection.increment_unique_visit_count()
         return response
     else:
+        logger.debug("User already has a user_id cookie")
         return "User ID exists", 200
 
 
