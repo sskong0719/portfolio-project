@@ -44,11 +44,7 @@ def ensure_uuid_cookie():
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def serve(path):
-    if request.path.startswith("/api/"):
-        return "Not Found", 404  # Simple error message for testing
-    if os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
+def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
 
