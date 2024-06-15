@@ -42,13 +42,12 @@ function AppContent()
     useEffect(() => {
         fetch('/api/visitor_cookie')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                if(response.ok){
+                    // Backend response received
                 }
-                console.log("Backend response received");
             })
             .catch(error => {
-                console.error("Error fetching from backend:", error);
+                // Error fetching from backend
             });
     }, []);
 

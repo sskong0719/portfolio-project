@@ -43,24 +43,25 @@ def set_visitor_cookie():
     logger.debug("set_visitor_cookie function called")
     user_id = request.cookies.get("user_id")
     logger.debug(f"Current user_id cookie: {user_id}")
+    response = make_response(jsonify(message="User ID set or updated", user_id=user_id))
+    
     if not user_id:
         user_id = str(uuid.uuid4())
         logger.debug(f"Generated new user_id: {user_id}")
-        response = make_response(jsonify(message="User ID set", user_id=user_id))
-        response.set_cookie(
-            "user_id",
-            user_id,
-            max_age=60 * 60 * 24 * 365 * 2,
-            httponly=True,
-            secure=True,
-            samesite="Lax",
-        )
-        logger.info(f"Set-Cookie header: {response.headers.get('Set-Cookie')}")
         db.visits_collection.increment_unique_visit_count()
-        return response
-    else:
-        logger.debug("User already has a user_id cookie")
-        return jsonify(message="User ID exists", user_id=user_id)
+    
+    # Set or update the cookie
+    response.set_cookie(
+        "user_id",
+        user_id,
+        max_age=60 * 60 * 24 * 365 * 2,
+        httponly=True,
+        secure=True,
+        samesite="Lax",
+    )
+    logger.info(f"Set-Cookie header: {response.headers.get('Set-Cookie')}")
+    
+    return response
 
 @app.route("/api/visit-count", methods=["GET"])
 def visit_count():
