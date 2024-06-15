@@ -39,9 +39,11 @@ logger = logging.getLogger(__name__)
 def serve(path):
     logger.debug("Serve function called")
     user_id = request.cookies.get("user_id")
+    logger.debug(f"Current user_id cookie: {user_id}")
 
     if not user_id:
         user_id = str(uuid.uuid4())
+        logger.debug(f"Generated new user_id: {user_id}")
         response = make_response(send_from_directory(app.static_folder, "index.html"))
         response.set_cookie(
             "user_id",
@@ -54,6 +56,7 @@ def serve(path):
         logger.info("Set-Cookie header: %s", response.headers.get('Set-Cookie'))
         db.visits_collection.increment_unique_visit_count()
     else:
+        logger.debug("User already has a user_id cookie")
         response = make_response(send_from_directory(app.static_folder, "index.html"))
 
     return response
