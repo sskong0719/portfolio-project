@@ -36,13 +36,17 @@ logger = logging.getLogger(__name__)
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
-    logger.debug("catch_all function called")
+    return send_from_directory(app.static_folder, "index.html")
+
+@app.route("/api/visitor_cookie", methods=["GET"])
+def set_visitor_cookie():
+    logger.debug("set_visitor_cookie function called")
     user_id = request.cookies.get("user_id")
     logger.debug(f"Current user_id cookie: {user_id}")
     if not user_id:
         user_id = str(uuid.uuid4())
         logger.debug(f"Generated new user_id: {user_id}")
-        response = make_response(send_from_directory(app.static_folder, "index.html"))
+        response = make_response(jsonify(message="User ID set", user_id=user_id))
         response.set_cookie(
             "user_id",
             user_id,
@@ -53,12 +57,10 @@ def catch_all(path):
         )
         logger.info(f"Set-Cookie header: {response.headers.get('Set-Cookie')}")
         db.visits_collection.increment_unique_visit_count()
+        return response
     else:
         logger.debug("User already has a user_id cookie")
-        response = make_response(send_from_directory(app.static_folder, "index.html"))
-
-    return response
-
+        return jsonify(message="User ID exists", user_id=user_id)
 
 @app.route("/api/visit-count", methods=["GET"])
 def visit_count():

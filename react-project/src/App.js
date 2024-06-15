@@ -39,6 +39,19 @@ function AppContent()
     const location = useLocation();
     const isPDFRoute = location.pathname === '/SamuelSiuyinKong_Resume.pdf';
 
+    useEffect(() => {
+        fetch('/api/visitor_cookie')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log("Backend response received");
+            })
+            .catch(error => {
+                console.error("Error fetching from backend:", error);
+            });
+    }, []);
+
     return (
         <>
             <ScrollReset />
