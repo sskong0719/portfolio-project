@@ -37,6 +37,7 @@ logger = logging.getLogger(__name__)
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path):
+    logger.debug("Serve function called")
     user_id = request.cookies.get("user_id")
 
     if not user_id:
@@ -86,6 +87,7 @@ def verify_token():
 # Submit Contact form to database and send to my email
 @app.route("/api/submit-contact-form", methods=["POST"])
 def contact():
+    logger.debug("Contact Reached Testing")
     errors = []
 
     name = request.form["name"]
