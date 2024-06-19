@@ -84,8 +84,13 @@ def login():
 @app.route("/api/verify-token", methods=["POST"])
 @jwt_required()
 def verify_token():
-    current_user = get_jwt_identity()
-    return jsonify(logged_in_as=current_user), 200
+    try:
+        current_user = get_jwt_identity()
+        logger.debug(f"Token successfully verified for user: {current_user}")
+        return jsonify(logged_in_as=current_user), 200
+    except Exception as e:
+        logger.error(f"Error verifying token: {e}")
+        return jsonify({"msg": "Token verification failed"}), 401
 
 
 # Submit Contact form to database and send to my email
