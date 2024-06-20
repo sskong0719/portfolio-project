@@ -1,1 +1,5 @@
 /.env
+backend/my_collections/.env
+certbot/conf/accounts/acme-v02.api.letsencrypt.org/directory/52a66e1f528a5ada383d1c6eb642200c/meta.json
+certbot/conf/accounts/acme-v02.api.letsencrypt.org/directory/52a66e1f528a5ada383d1c6eb642200c/private_key.json
+certbot/conf/accounts/acme-v02.api.letsencrypt.org/directory/52a66e1f528a5ada383d1c6eb642200c/regr.json
