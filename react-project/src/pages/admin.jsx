@@ -36,6 +36,7 @@ export default function Admin() {
             .then(response => {
                 if (response.ok) {
                     setIsAuthenticated(true);
+                    fetchVisitCount();
                     const interval = setInterval(fetchVisitCount, 30000);
                     return () => clearInterval(interval);
                 } else {
