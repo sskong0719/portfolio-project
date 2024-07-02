@@ -135,7 +135,7 @@ def dataHandle():
         "type": data.get("formType", "").strip(),
         "company": data.get("company", "").strip(),
         "title": data.get("title", "").strip(),
-        "skills": data.get("skills", "").strip(),
+        "skills": data.get("skills", []),
         "date": data.get("date", "").strip(),
         "descriptions": data.get("descriptions", []),  # Ensure descriptions is a list
         "projectTitle": data.get("projectTitle", "").strip(),
