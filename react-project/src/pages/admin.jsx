@@ -151,6 +151,7 @@ export default function Admin()
 
         const data = {
             ...formData,
+            skills: formData.skills.map(skill => skill.value),
             descriptions: filteredDescriptions,
             formType: selectedForm // Add the form type to the data object
         };
