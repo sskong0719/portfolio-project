@@ -2,43 +2,51 @@ import React, { useState, useRef, useEffect } from 'react';
 import './styles/projects.css';
 import { resumeData } from './resumeData';
 
-export default function Contact() {
+export default function Contact()
+{
     const [showPopup, setShowPopup] = useState(false);
     const [selectedListing, setSelectedListing] = useState(null);
     const popupRef = useRef();
 
-    useEffect(() => {
+    useEffect(() =>
+    {
         document.body.classList.remove('popup-open');
 
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event) =>
+        {
             const navbarElement = document.getElementById('navbar'); // Replace 'navbar' with the actual ID or class of your navbar element
             const clickedOnNavbar = navbarElement && navbarElement.contains(event.target);
 
-            if (popupRef.current && !popupRef.current.contains(event.target) && !clickedOnNavbar) {
+            if (popupRef.current && !popupRef.current.contains(event.target) && !clickedOnNavbar)
+            {
                 setShowPopup(false);
                 document.body.classList.remove('popup-open');
             }
         };
 
-        const handleBeforeUnload = () => {
+        const handleBeforeUnload = () =>
+        {
             document.body.classList.remove('popup-open');
         };
 
         document.addEventListener('mousedown', handleClickOutside);
         window.addEventListener('beforeunload', handleBeforeUnload); // Add beforeunload event listener
-        return () => {
+        return () =>
+        {
             document.removeEventListener('mousedown', handleClickOutside);
             window.removeEventListener('beforeunload', handleBeforeUnload); // Remove beforeunload event listener
         };
     }, []);
 
-    const handleClick = (listing) => {
+    const handleClick = (listing) =>
+    {
         setSelectedListing(listing);
         setShowPopup(true);
         document.body.classList.add('popup-open');
     };
 
-    function Popup({ listing, onClose }) {
+    function Popup({ listing, onClose })
+    {
         return (
             <div ref={popupRef} className="popup">
                 <div className="left-content">
@@ -48,9 +56,11 @@ export default function Contact() {
                     <h1>{listing.title}</h1>
                     <br />
                     <h2>{listing.date}</h2>
-                    <a href={listing.link} className="link" target="_blank" rel="noopener noreferrer">
-                        View Project
-                    </a>
+                    {listing.link && (
+                        <a href={listing.link} className="link" target="_blank" rel="noopener noreferrer">
+                            View Project
+                        </a>
+                    )}
                     <h3>Skills</h3>
                     <ul className="skills-list">
                         {listing.skills.map((skill, index) => (
