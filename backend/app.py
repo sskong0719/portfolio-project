@@ -6,7 +6,7 @@ from flask import (
     send_from_directory,
 )
 from flask_uploads import UploadSet, configure_uploads, IMAGES
-from werkzeug.utils import secure_filename  # Updated import
+from werkzeug import secure_filename, FileStorage
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
