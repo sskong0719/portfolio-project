@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import Select from "react-select"
 import './styles/admin.css';
+import './styles/react-select.css';
+
 import LoginModal from '../components/LoginModal';
 
-
-export default function Admin() {
+export default function Admin()
+{
     const [selectedForm, setSelectedForm] = useState('');
     const [visitCount, setVisitCount] = useState(0);
     const [formData, setFormData] = useState({
         company: '',
         title: '',
-        skills: '',
+        skills: [],
         date: '',
         descriptions: [''],
         projectTitle: '',
@@ -19,37 +22,68 @@ export default function Admin() {
         degree: ''
     });
 
+    const options = useMemo(() => [
+        { value: 'python', label: 'Python' },
+        { value: 'c', label: 'C' },
+        { value: 'php', label: 'PHP' },
+        { value: 'css3', label: 'CSS' },
+        { value: 'html5', label: 'HTML' },
+        { value: 'reactjs', label: 'ReactJS' },
+        { value: 'mysql', label: 'MySQL' },
+        { value: 'mongodb', label: 'MongoDB' },
+        { value: 'flask', label: 'Flask' },
+        { value: 'figma', label: 'Figma' },
+        { value: 'github', label: 'GitHub' },
+        { value: 'docker', label: 'Docker' },
+        { value: 'restful_api', label: 'RESTful API' },
+        { value: 'nginx', label: 'NGINX' },
+        { value: 'ubuntu', label: 'Ubuntu' },
+        { value: 'arm_assembly', label: 'ARM Assembly' },
+        { value: 'node_js', label: 'Node.js' },
+    ], []);
+
+    // Sorting the options list by label in alphabetical order for accessibility
+    const sortedOptions = useMemo(() => options.sort(({ label: labelA = "" }, { label: labelB = "" }) => labelA.localeCompare(labelB)), [options]);
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
+    useEffect(() =>
+    {
         // Check for token on page load
         const token = localStorage.getItem('token');
-        if (!token) {
+        if (!token)
+        {
             setIsAuthenticated(false);
-        } else {
+        } else
+        {
             fetch('/api/verify-token', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             })
-            .then(response => {
-                if (response.ok) {
-                    setIsAuthenticated(true);
-                    fetchVisitCount();
-                    const interval = setInterval(fetchVisitCount, 30000);
-                    return () => clearInterval(interval);
-                } else {
-                    setIsAuthenticated(false);
-                }
-            })
-            .catch(() => setIsAuthenticated(false));
+                .then(response =>
+                {
+                    if (response.ok)
+                    {
+                        setIsAuthenticated(true);
+                        fetchVisitCount();
+                        const interval = setInterval(fetchVisitCount, 30000);
+                        return () => clearInterval(interval);
+                    } else
+                    {
+                        setIsAuthenticated(false);
+                    }
+                })
+                .catch(() => setIsAuthenticated(false));
         }
     }, []);
 
-    useEffect(() => {
+    useEffect(() =>
+    {
         // Reset descriptions when selectedForm changes
-        if (selectedForm === 'Experience' || selectedForm === 'Project' || selectedForm === 'Education') {
+        if (selectedForm === 'Experience' || selectedForm === 'Project' || selectedForm === 'Education')
+        {
             setFormData((prevState) => ({
                 ...prevState,
                 descriptions: ['']
@@ -57,17 +91,29 @@ export default function Admin() {
         }
     }, [selectedForm]);
 
-    const handleInputChange = (e, index) => {
+    const handleSkillsChange = (selectedOptions) =>
+    {
+        console.log(selectedOptions);
+        setFormData({
+            ...formData,
+            skills: selectedOptions || [],
+        });
+    };
+
+    const handleInputChange = (e, index) =>
+    {
         const { name, value } = e.target;
 
-        if (name === 'descriptions') {
+        if (name === 'descriptions')
+        {
             const newDescriptions = [...formData.descriptions];
             newDescriptions[index] = value;
             setFormData({
                 ...formData,
                 descriptions: newDescriptions
             });
-        } else {
+        } else
+        {
             setFormData({
                 ...formData,
                 [name]: value
@@ -75,8 +121,10 @@ export default function Admin() {
         }
     };
 
-    const addDescriptionField = () => {
-        if (formData.descriptions.length < 5) {
+    const addDescriptionField = () =>
+    {
+        if (formData.descriptions.length < 5)
+        {
             setFormData({
                 ...formData,
                 descriptions: [...formData.descriptions, '']
@@ -84,8 +132,10 @@ export default function Admin() {
         }
     };
 
-    const removeDescriptionField = (index) => {
-        if (formData.descriptions.length > 1) {
+    const removeDescriptionField = (index) =>
+    {
+        if (formData.descriptions.length > 1)
+        {
             const newDescriptions = formData.descriptions.filter((desc, i) => i !== index);
             setFormData({
                 ...formData,
@@ -94,7 +144,8 @@ export default function Admin() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e) =>
+    {
         e.preventDefault();
         const filteredDescriptions = formData.descriptions.filter(desc => desc.trim() !== '');
 
@@ -114,24 +165,29 @@ export default function Admin() {
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(result => {
-            console.log('Success:', result);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(result =>
+            {
+                console.log('Success:', result);
+            })
+            .catch(error =>
+            {
+                console.error('Error:', error);
+            });
     };
 
-    const fetchVisitCount = () => {
+    const fetchVisitCount = () =>
+    {
         fetch('/api/visit-count')
             .then(response => response.json())
             .then(data => setVisitCount(data.visit_count))
             .catch(error => console.error('Error fetching visit count:', error));
     };
 
-    const renderForm = () => {
-        switch (selectedForm) {
+    const renderForm = () =>
+    {
+        switch (selectedForm)
+        {
             case 'Experience':
                 return (
                     <form className="add-data-form" onSubmit={handleSubmit}>
@@ -145,14 +201,20 @@ export default function Admin() {
                         </div>
                         <div className="line-div">
                             <label>Skills:</label>
-                            <input type="text" name="skills" value={formData.skills} onChange={handleInputChange} />
+                            <Select
+                                defaultValue={[]}
+                                isMulti
+                                name="skills"
+                                options={sortedOptions}
+                                classNamePrefix="react-select" onChange={handleSkillsChange}
+                            />
                         </div>
                         <div className="line-div">
                             <label>Date:</label>
                             <input type="text" name="date" value={formData.date} onChange={handleInputChange} />
                         </div>
                         <div className="line-div">
-                        <div className="description-container">
+                            <div className="description-container">
                                 <label>Description:</label>
                                 {formData.descriptions.length < 5 && (
                                     <button type="button" className="add-description-button" onClick={addDescriptionField}>+</button>
@@ -184,7 +246,13 @@ export default function Admin() {
                         </div>
                         <div className="line-div">
                             <label>Skills:</label>
-                            <input type="text" name="skills" value={formData.skills} onChange={handleInputChange} />
+                            <Select
+                                defaultValue={[]}
+                                isMulti
+                                name="skills"
+                                options={sortedOptions}
+                                classNamePrefix="react-select" onChange={handleSkillsChange}
+                            />
                         </div>
                         <div className="line-div">
                             <label>Date:</label>
@@ -246,7 +314,7 @@ export default function Admin() {
                             <input type="text" name="date" value={formData.date} onChange={handleInputChange} />
                         </div>
                         <div className="line-div">
-                        <div className="description-container">
+                            <div className="description-container">
                                 <label>Description:</label>
                                 {formData.descriptions.length < 5 && (
                                     <button type="button" className="add-description-button" onClick={addDescriptionField}>+</button>
@@ -274,14 +342,15 @@ export default function Admin() {
         }
     };
 
-    const handleLoginSuccess = () => {
+    const handleLoginSuccess = () =>
+    {
         setIsAuthenticated(true);
         fetchVisitCount();
     };
 
     return (
         <div className="admin-content">
-            
+
             {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
             {isAuthenticated && (
                 <>
