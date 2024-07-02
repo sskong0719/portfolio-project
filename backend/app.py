@@ -7,7 +7,8 @@ from flask import (
 )
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from werkzeug.utils import secure_filename
-from werkzeug.datastructures import FileStoragefrom flask_jwt_extended import (
+from werkzeug.datastructures import FileStoragefrom
+from flask_jwt_extended import (
     JWTManager,
     create_access_token,
     jwt_required,
