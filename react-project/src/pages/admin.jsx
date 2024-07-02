@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select"
 import './styles/admin.css';
 import './styles/react-select.css';
+import { skillsOptions } from './skillsOptions'; // Import the sorted skills options
+
 
 import LoginModal from '../components/LoginModal';
 
@@ -21,29 +23,6 @@ export default function Admin()
         school: '',
         degree: ''
     });
-
-    const options = useMemo(() => [
-        { value: 'python', label: 'Python' },
-        { value: 'c', label: 'C' },
-        { value: 'php', label: 'PHP' },
-        { value: 'css3', label: 'CSS' },
-        { value: 'html5', label: 'HTML' },
-        { value: 'reactjs', label: 'ReactJS' },
-        { value: 'mysql', label: 'MySQL' },
-        { value: 'mongodb', label: 'MongoDB' },
-        { value: 'flask', label: 'Flask' },
-        { value: 'figma', label: 'Figma' },
-        { value: 'github', label: 'GitHub' },
-        { value: 'docker', label: 'Docker' },
-        { value: 'restful_api', label: 'RESTful API' },
-        { value: 'nginx', label: 'NGINX' },
-        { value: 'ubuntu', label: 'Ubuntu' },
-        { value: 'arm_assembly', label: 'ARM Assembly' },
-        { value: 'node_js', label: 'Node.js' },
-    ], []);
-
-    // Sorting the options list by label in alphabetical order for accessibility
-    const sortedOptions = useMemo(() => options.sort(({ label: labelA = "" }, { label: labelB = "" }) => labelA.localeCompare(labelB)), [options]);
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -206,7 +185,7 @@ export default function Admin()
                                 defaultValue={[]}
                                 isMulti
                                 name="skills"
-                                options={sortedOptions}
+                                options={skillsOptions}
                                 classNamePrefix="react-select" onChange={handleSkillsChange}
                             />
                         </div>
@@ -251,7 +230,7 @@ export default function Admin()
                                 defaultValue={[]}
                                 isMulti
                                 name="skills"
-                                options={sortedOptions}
+                                options={skillsOptions}
                                 classNamePrefix="react-select" onChange={handleSkillsChange}
                             />
                         </div>
