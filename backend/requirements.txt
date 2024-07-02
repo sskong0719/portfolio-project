@@ -8,3 +8,4 @@ pytz
 flask_jwt_extended
 flask_cors
 flask_uploads
+werkzeug.utils
