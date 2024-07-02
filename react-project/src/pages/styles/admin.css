@@ -9,7 +9,7 @@
 }
 
 .remove-button {
-    padding: 5px 10px;
+    padding: 0;
     color: var(--secondary);
     border: none;
     border-radius: 3px;
@@ -65,8 +65,6 @@
     width: 100%;
     padding: 10px;
     border: none;
-    /* Remove all borders */
-    border-bottom: 1px solid var(--tertiary);
     /* Add bottom border only */
     font-size: 14px;
     background-color: transparent;
@@ -75,7 +73,11 @@
     font-weight: 100;
 }
 
-.add-data-form input:focus {
+.add-data-form input[type="text"] {
+    border-bottom: 1px solid var(--tertiary);
+
+}
+.add-data-form input[type="text"]:focus {
     outline: none;
     /* Remove the default outline */
     border-bottom: 1px solid var(--secondary);
@@ -127,4 +129,41 @@
 
 .admin-content .visit-count {
     color: var(--secondary)
+}
+
+.image-list {
+    margin-top: 10px;
+}
+
+.image-list span {
+    font-size: small;
+}
+
+.image-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.image-item img {
+    margin-right: 10px;
+    max-height: 30px;
+    /* Set the maximum height */
+    width: auto;
+    /* Allow width to adjust according to the aspect ratio */
+}
+
+.image-item span {
+    margin-right: 10px;
+}
+
+.description-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.description-field input {
+    flex-grow: 1;
+    margin-right: 10px;
 }

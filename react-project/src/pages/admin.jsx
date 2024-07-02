@@ -3,12 +3,14 @@ import Select from "react-select"
 import './styles/admin.css';
 import './styles/react-select.css';
 import { skillsOptions } from './skillsOptions'; // Import the sorted skills options
+import { MdClose } from 'react-icons/md';
 
 
 import LoginModal from '../components/LoginModal';
 
 export default function Admin()
 {
+    const [files, setFiles] = useState();
     const [selectedForm, setSelectedForm] = useState('');
     const [visitCount, setVisitCount] = useState(0);
     const [formData, setFormData] = useState({
@@ -21,7 +23,8 @@ export default function Admin()
         link: '',
         language: '',
         school: '',
-        degree: ''
+        degree: '',
+        images: []
     });
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -91,7 +94,14 @@ export default function Admin()
                 ...formData,
                 descriptions: newDescriptions
             });
-        } else
+        } else if (name === 'images')
+        {
+            setFormData({
+                ...formData,
+                images: Array.from(files)
+            });
+        }
+        else
         {
             setFormData({
                 ...formData,
@@ -123,37 +133,65 @@ export default function Admin()
         }
     };
 
-    const handleSubmit = (e) =>
+    const handleFileChange = (e) =>
     {
+        const files = Array.from(e.target.files);
+        const previews = files.map(file => ({
+            file,
+            preview: URL.createObjectURL(file)
+        }));
+
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            images: [...prevFormData.images, ...previews]
+        }));
+    };
+
+    const removeImage = (index) =>
+    {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            images: prevFormData.images.filter((_, i) => i !== index)
+        }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const filteredDescriptions = formData.descriptions.filter(desc => desc.trim() !== '');
-
-        const data = {
-            ...formData,
-            skills: formData.skills.map(skill => skill.value),
-            descriptions: filteredDescriptions,
-            formType: selectedForm // Add the form type to the data object
-        };
-
+    
+        const data = new FormData();
+        data.append('formType', selectedForm);
+        data.append('company', formData.company);
+        data.append('title', formData.title);
+        data.append('skills', JSON.stringify(formData.skills.map(skill => skill.value)));
+        data.append('date', formData.date);
+        data.append('descriptions', JSON.stringify(filteredDescriptions));
+        data.append('projectTitle', formData.projectTitle);
+        data.append('link', formData.link);
+        data.append('language', formData.language);
+        data.append('school', formData.school);
+        data.append('degree', formData.degree);
+    
+        formData.images.forEach((image, index) => {
+            data.append('images', image.file);
+        });
+    
         const token = localStorage.getItem('token');
-
-        fetch('/api/submit-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(result =>
-            {
-                console.log('Success:', result);
-            })
-            .catch(error =>
-            {
-                console.error('Error:', error);
+    
+        try {
+            const response = await fetch('/api/submit-data', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: data
             });
+    
+            const result = await response.json();
+            console.log('Success:', result);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     const fetchVisitCount = () =>
@@ -209,7 +247,7 @@ export default function Admin()
                                         onChange={(e) => handleInputChange(e, index)}
                                     />
                                     {formData.descriptions.length > 1 && (
-                                        <button type="button" className="remove-button" onClick={() => removeDescriptionField(index)}>-</button>
+                                        <button type="button" className="remove-button" onClick={() => removeDescriptionField(index)}><MdClose /></button>
                                     )}
                                 </div>
                             ))}
@@ -231,7 +269,8 @@ export default function Admin()
                                 isMulti
                                 name="skills"
                                 options={skillsOptions}
-                                classNamePrefix="react-select" onChange={handleSkillsChange}
+                                classNamePrefix="react-select"
+                                onChange={handleSkillsChange}
                             />
                         </div>
                         <div className="line-div">
@@ -255,15 +294,27 @@ export default function Admin()
                                         onChange={(e) => handleInputChange(e, index)}
                                     />
                                     {formData.descriptions.length > 1 && (
-                                        <button type="button" className="remove-button" onClick={() => removeDescriptionField(index)}>-</button>
+                                        <button type="button" className="remove-button" onClick={() => removeDescriptionField(index)}><MdClose /></button>
                                     )}
                                 </div>
                             ))}
-
                         </div>
                         <div className="line-div">
                             <label>Link:</label>
                             <input type="text" name="link" value={formData.link} onChange={handleInputChange} />
+                        </div>
+                        <div className="line-div">
+                            <label>Images:</label>
+                            <input type="file" name="images" multiple onChange={handleFileChange} />
+                            <div className="image-list">
+                                {formData.images.map((image, index) => (
+                                    <div key={index} className="image-item">
+                                        <span>{image.file.name}</span>
+                                        <img src={image.preview} alt={`Preview ${index}`} />
+                                        <button type="button" className="remove-button" onClick={() => removeImage(index)}><MdClose /></button>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <button className="submit-button" type="submit">Submit</button>
                     </form>
@@ -309,7 +360,7 @@ export default function Admin()
                                         onChange={(e) => handleInputChange(e, index)}
                                     />
                                     {formData.descriptions.length > 1 && (
-                                        <button type="button" className="remove-button" onClick={() => removeDescriptionField(index)}>-</button>
+                                        <button type="button" className="remove-button" onClick={() => removeDescriptionField(index)}><MdClose /></button>
                                     )}
                                 </div>
                             ))}
@@ -332,7 +383,7 @@ export default function Admin()
         <div className="admin-content">
 
             {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
-            {isAuthenticated && (
+            {!isAuthenticated && (
                 <>
                     <div className="visit-count">Total Visit Count: {visitCount}</div>
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
