@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './styles/contact.css';
 
-export default function Contact() {
+export default function Contact()
+{
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -11,20 +12,23 @@ export default function Contact() {
     let emailValidationError = 'Please enter a valid email';
     let emptyError = 'Please fill in all the required fields';
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event) =>
+    {
         event.preventDefault();
 
         // Email validation regex pattern
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (!name || !email || !message) {
+        if (!name || !email || !message)
+        {
             // Check if any of the fields are empty
             console.log(emptyError);
             setResponseMessage(emptyError);
             return; // Stop the function execution if any field is empty
         }
 
-        if (!emailRegex.test(email)) {
+        if (!emailRegex.test(email))
+        {
             // Check if the email is not valid
             console.log(emailValidationError);
             setResponseMessage(emailValidationError);
@@ -37,10 +41,11 @@ export default function Contact() {
         formData.append('message', message);
 
         axios.post('/api/submit-contact-form', formData)
-        .then((response) => {
-            setResponseMessage(response.data.message);
-        })
-        .catch((error) => console.error(error));
+            .then((response) =>
+            {
+                setResponseMessage(response.data.message);
+            })
+            .catch((error) => console.error(error));
     };
 
 

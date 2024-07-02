@@ -2,10 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import './styles/Homepage.css';
 import Timi from '../images/Timi.jpg';
 
-export default function Homepage() {
+export default function Homepage()
+{
     const divRef = useRef(null);
 
-    const handleScroll = (event) => {
+    const handleScroll = (event) =>
+    {
         event.preventDefault();
         const target = document.querySelector('#About');
         window.scrollTo({
@@ -14,11 +16,14 @@ export default function Homepage() {
         });
     };
 
-    useEffect(() => {
+    useEffect(() =>
+    {
 
-        const handleMouseMove = (event) => {
+        const handleMouseMove = (event) =>
+        {
             const div = divRef.current;
-            if (div) {
+            if (div)
+            {
                 const { clientX, clientY } = event;
                 const { left, top, width, height } = div.getBoundingClientRect();
                 const x = clientX - (left + width / 2);
@@ -32,10 +37,12 @@ export default function Homepage() {
                     clientY >= window.innerHeight
                 );
 
-                if (isCursorOutsidePage) {
+                if (isCursorOutsidePage)
+                {
                     div.style.transition = 'transform 0.5s ease'; // Apply transition
                     div.style.transform = 'translate(0, 0)';
-                } else {
+                } else
+                {
                     div.style.transition = 'transform 0.1s ease'; // Apply transition
                     div.style.transform = `translate(${x / 30}px, ${y / 30}px)`;
                 }
@@ -43,7 +50,8 @@ export default function Homepage() {
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        return () => {
+        return () =>
+        {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);

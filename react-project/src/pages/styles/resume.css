@@ -286,13 +286,15 @@ h4 {
 
 
 @media only screen and (max-width: 600px) {
-    .content{
+    .content {
         padding: 0 10%;
         width: 80%;
     }
+
     .resume .skills-list li {
         padding: 0;
     }
+
     .individual-skill {
         height: 50px;
         width: 50px;

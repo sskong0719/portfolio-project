@@ -199,28 +199,33 @@
     }
 
     /* Styles for screens up to 768px wide (tablets and smaller) */
-    .welcome .name{
+    .welcome .name {
         font-size: 30px;
         line-height: 75px;
     }
-    .welcome-title{
+
+    .welcome-title {
         line-height: 30px;
     }
-    .welcome-title .role{
+
+    .welcome-title .role {
         font-size: 30px;
     }
+
     .welcome-body {
         font-size: 16px;
         line-height: 22px;
     }
-    .section2 img{
-        width:100%;
+
+    .section2 img {
+        width: 100%;
     }
 
-    .section2 .header-about{
+    .section2 .header-about {
         font-size: 35px;
     }
-    .section2 .about{
+
+    .section2 .about {
         font-size: 16px;
     }
 }

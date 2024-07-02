@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './styles/projects.css';
 import { resumeData } from './resumeData';
 
+
 export default function Contact()
 {
     const [showPopup, setShowPopup] = useState(false);

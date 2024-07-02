@@ -16,4 +16,4 @@ export const skillsOptions = [
     { value: 'ubuntu', label: 'Ubuntu' },
     { value: 'arm_assembly', label: 'ARM Assembly' },
     { value: 'node_js', label: 'Node.js' }
-  ].sort((a, b) => a.label.localeCompare(b.label)); // Sort options by label in alphabetical order
+].sort((a, b) => a.label.localeCompare(b.label)); // Sort options by label in alphabetical order
