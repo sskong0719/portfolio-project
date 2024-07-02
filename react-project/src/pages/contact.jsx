@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './styles/contact.css';
 
 export default function Contact() {
@@ -35,16 +36,11 @@ export default function Contact() {
         formData.append('email', email);
         formData.append('message', message);
 
-        fetch('/api/submit-contact-form', {
-            method: 'POST',
-            body: formData
+        axios.post('/api/submit-contact-form', formData)
+        .then((response) => {
+            setResponseMessage(response.data.message);
         })
-            .then((response) => response.json())
-            .then((data) => {
-                // Handle the response from the server if needed
-                setResponseMessage(data.message);
-            })
-            .catch((error) => console.error(error));
+        .catch((error) => console.error(error));
     };
 
 
