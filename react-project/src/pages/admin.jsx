@@ -383,7 +383,7 @@ export default function Admin()
         <div className="admin-content">
 
             {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
-            {!isAuthenticated && (
+            {isAuthenticated && (
                 <>
                     <div className="visit-count">Total Visit Count: {visitCount}</div>
                     <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
