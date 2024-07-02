@@ -6,7 +6,7 @@ class DataCollection:
     def __init__(self, db):
         self.data_collection: Collection = db["Data"]
 
-    def add_data(self, type, company, title, skills, date, descriptions, projectTitle, link, language, school, degree):
+    def add_data(self, type, company, title, skills, date, descriptions, projectTitle, link, language, school, degree, images):
         try:
             data = {
                 "type": type,
@@ -19,7 +19,8 @@ class DataCollection:
                 "link": link,
                 "language": language,
                 "school": school,
-                "degree": degree
+                "degree": degree,
+                "images": images
             }
             result = self.data_collection.insert_one(data)
             return result.acknowledged

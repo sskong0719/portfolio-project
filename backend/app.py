@@ -5,6 +5,7 @@ from flask import (
     make_response,
     send_from_directory,
 )
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
@@ -22,9 +23,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 app = Flask(__name__, static_folder="/usr/share/nginx/html")
 CORS(app, supports_credentials=True)
 
+
+# Configure Flask-Uploads
+photos = UploadSet("photos", IMAGES)
+app.config["UPLOADED_PHOTOS_DEST"] = "uploads"
+configure_uploads(app, photos)
+
+# Configure Flask-JWT-Extended
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
 db = Database()
@@ -33,10 +42,12 @@ db = Database()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
     return send_from_directory(app.static_folder, "index.html")
+
 
 @app.route("/api/visitor-cookie", methods=["GET"])
 def set_visitor_cookie():
@@ -44,12 +55,12 @@ def set_visitor_cookie():
     user_id = request.cookies.get("user_id")
     logger.debug(f"Current user_id cookie: {user_id}")
     response = make_response(jsonify(message="User ID set or updated", user_id=user_id))
-    
+
     if not user_id:
         user_id = str(uuid.uuid4())
         logger.debug(f"Generated new user_id: {user_id}")
         db.visits_collection.increment_unique_visit_count()
-    
+
     # Set or update the cookie
     response.set_cookie(
         "user_id",
@@ -60,8 +71,9 @@ def set_visitor_cookie():
         samesite="Lax",
     )
     logger.info(f"Set-Cookie header: {response.headers.get('Set-Cookie')}")
-    
+
     return response
+
 
 @app.route("/api/visit-count", methods=["GET"])
 def visit_count():
@@ -137,13 +149,19 @@ def dataHandle():
         "title": data.get("title", "").strip(),
         "skills": data.get("skills", []),
         "date": data.get("date", "").strip(),
-        "descriptions": data.get("descriptions", []),  # Ensure descriptions is a list
+        "descriptions": data.get("descriptions", []),
         "projectTitle": data.get("projectTitle", "").strip(),
         "link": data.get("link", "").strip(),
         "language": data.get("language", "").strip(),
         "school": data.get("school", "").strip(),
         "degree": data.get("degree", "").strip(),
+        "images": [],
     }
+
+    if "images" in request.files:
+        for image in request.files.getlist("images"):
+            filename = photos.save(image)
+            parsed_data["images"].append(filename)
 
     # Check if all fields are empty
     if not any(value for value in parsed_data.values() if value or value == [""]):
@@ -160,5 +178,10 @@ def dataHandle():
         return jsonify(response)
 
 
+@app.route("/uploads/<filename>")
+def get_image(filename):
+    return send_from_directory(app.config["UPLOADED_PHOTOS_DEST"], filename)
+
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000)
