@@ -74,12 +74,14 @@ def set_visitor_cookie():
 
 
 @app.route("/api/visit-count", methods=["GET"])
+@jwt_required()
 def visit_count():
     count = db.visits_collection.get_visit_count()
     return jsonify({"visit_count": count})
 
 
 @app.route("/api/visitor-count", methods=["GET"])
+@jwt_required()
 def visitor_count():
     time_frame = request.args.get("timeFrame", "1Day")
     now = datetime.now()
