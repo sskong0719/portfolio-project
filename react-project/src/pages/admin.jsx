@@ -5,6 +5,8 @@ import ExperienceForm from '../components/forms/ExperienceForm';
 import ProjectForm from '../components/forms/ProjectForm';
 import LanguageForm from '../components/forms/LanguageForm';
 import EducationForm from '../components/forms/EducationForm';
+import Grid from '@mui/material/Unstable_Grid2';
+import VisitorChart from '../components/VisitorChart';
 import './styles/admin.css';
 
 export default function Admin()
@@ -97,12 +99,22 @@ export default function Admin()
             {!isAuthenticated && !<LoginModal onLoginSuccess={handleLoginSuccess} />}
             {!isAuthenticated && (
                 <>
-                    <div className="visit-count">Total Visit Count: {visitCount}</div>
-                    <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
-                    <button className="add-data" type="button" onClick={() => setSelectedForm('Project')}>Add Project</button>
-                    <button className="add-data" type="button" onClick={() => setSelectedForm('Language')}>Add Language</button>
-                    <button className="add-data" type="button" onClick={() => setSelectedForm('Education')}>Add Education</button>
-                    {renderForm()}
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <button className="add-data" type="button" onClick={() => setSelectedForm('Experience')}>Add Experience</button>
+                            <button className="add-data" type="button" onClick={() => setSelectedForm('Project')}>Add Project</button>
+                            <button className="add-data" type="button" onClick={() => setSelectedForm('Language')}>Add Language</button>
+                            <button className="add-data" type="button" onClick={() => setSelectedForm('Education')}>Add Education</button>
+                            {renderForm()}
+                        </Grid>
+                        <Grid item xs={6}>
+                            <div className="visit-count">
+                                Total Visit Count: {visitCount}
+                            </div>
+                            <VisitorChart />
+                        </Grid>
+                    </Grid>
+
                 </>
             )}
         </div>

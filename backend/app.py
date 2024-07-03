@@ -11,6 +11,7 @@ from flask_jwt_extended import (
     jwt_required,
     get_jwt_identity,
 )
+from datetime import datetime, timedelta
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from database import Database
@@ -59,7 +60,6 @@ def set_visitor_cookie():
         logger.debug(f"Generated new user_id: {user_id}")
         db.visits_collection.increment_unique_visit_count()
 
-    # Set or update the cookie
     response.set_cookie(
         "user_id",
         user_id,
@@ -77,6 +77,43 @@ def set_visitor_cookie():
 def visit_count():
     count = db.visits_collection.get_visit_count()
     return jsonify({"visit_count": count})
+
+
+@app.route("/api/visitor-count", methods=["GET"])
+def visitor_count():
+    time_frame = request.args.get("timeFrame", "1Day")
+    now = datetime.now()
+    if time_frame == "1Day":
+        start_date = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+    elif time_frame == "1Week":
+        start_date = (now - timedelta(weeks=1)).strftime("%Y-%m-%d")
+    elif time_frame == "1Month":
+        start_date = (now - timedelta(days=30)).strftime("%Y-%m-%d")
+    elif time_frame == "3Month":
+        start_date = (now - timedelta(days=90)).strftime("%Y-%m-%d")
+    elif time_frame == "1Y":
+        start_date = (now - timedelta(days=365)).strftime("%Y-%m-%d")
+    elif time_frame == "Max":
+        start_date = "1970-01-01"
+    else:
+        return jsonify({"error": "Invalid time frame"}), 400
+
+    visits = db.visits_collection.get_visits_by_time_frame(start_date)
+
+    # Fill missing dates with zero counts
+    date_counts = {visit["date"]: visit["count"] for visit in visits}
+    dates = []
+    counts = []
+    current_date = datetime.strptime(start_date, "%Y-%m-%d")
+    end_date = now
+
+    while current_date <= end_date:
+        date_str = current_date.strftime("%Y-%m-%d")
+        dates.append(date_str)
+        counts.append(date_counts.get(date_str, 0))
+        current_date += timedelta(days=1)
+
+    return jsonify({"dates": dates, "counts": counts})
 
 
 @app.route("/api/login", methods=["POST"])
