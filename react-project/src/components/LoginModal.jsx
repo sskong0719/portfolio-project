@@ -28,7 +28,7 @@ function LoginModal({ onLoginSuccess })
                     onLoginSuccess();
                 } else
                 {
-                    setError('Invalid username or password');
+                    setError('Invalid username or password.');
                 }
             })
             .catch(() => setError('An error occurred. Please try again.'));
@@ -52,8 +52,6 @@ function LoginModal({ onLoginSuccess })
                             <button type="submit">Login</button>
                         </div>
                     </form>
-
-                    {error && <p className="error">{error}</p>}
                 </div>
             </div>
             <div>
