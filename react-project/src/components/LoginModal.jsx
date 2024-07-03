@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import Alert from '@mui/material/Alert';
 import "./LoginModal.css"
+
 function LoginModal({ onLoginSuccess })
 {
     const [username, setUsername] = useState('');
@@ -33,25 +35,33 @@ function LoginModal({ onLoginSuccess })
     };
 
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <h2>Sign in</h2>
-                {error && <p className="error">{error}</p>}
-                <form onSubmit={handleLogin}>
-                    <div className="input-group">
-                        <label>Username:</label>
-                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </div>
-                    <div className="input-group">
-                        <label>Password:</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </div>
-                    <div className="button-container">
-                        <button type="submit">Login</button>
-                    </div>
-                </form>
+        <>
+            <div className="modal">
+                <div className="modal-content">
+                    <h2>Sign in</h2>
+                    <form onSubmit={handleLogin}>
+                        <div className="input-group">
+                            <label>Username:</label>
+                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        </div>
+                        <div className="input-group">
+                            <label>Password:</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <div className="button-container">
+                            <button type="submit">Login</button>
+                        </div>
+                    </form>
+
+                    {error && <p className="error">{error}</p>}
+                </div>
             </div>
-        </div>
+            <div>
+                {error && (<Alert severity="error" className="custom-alert" onClose={() => { }}>
+                    {error}
+                </Alert>)}
+            </div>
+        </>
     );
 }
 
