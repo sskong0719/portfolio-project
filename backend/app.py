@@ -32,9 +32,9 @@ jwt = JWTManager(app)
 db = Database()
 
 # Configure upload folder
-UPLOAD_FOLDER = 'uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+UPLOAD_FOLDER = "uploads"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -160,11 +160,14 @@ def dataHandle():
         "images": [],
     }
 
+    # Save uploaded images and store unique filenames in parsed_data
     if "images" in request.files:
         for image in request.files.getlist("images"):
             filename = secure_filename(image.filename)
-            image.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-            parsed_data["images"].append(filename)
+            unique_filename = f"{uuid.uuid4()}_{filename}"
+            # Store actual image locally
+            image.save(os.path.join(app.config["UPLOAD_FOLDER"], unique_filename))
+            parsed_data["images"].append(unique_filename)
 
     # Check if all fields are empty
     if not any(value for value in parsed_data.values() if value or value == [""]):
