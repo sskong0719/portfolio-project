@@ -1,0 +1,70 @@
+.modal {
+    margin: 20px auto 0;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    color: var(--secondary);
+    text-align: left;
+    position: relative;
+}
+
+.modal h2 {
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.modal-content form label {
+    color: var(--secondary);
+    display: inline-block;
+    width: 100px;
+    /* Adjust this width as needed */
+    text-align: left;
+    font-weight: 200;
+}
+
+.modal-content .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    flex-grow: 1;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid var(--tertiary);
+    font-size: 14px;
+    background-color: transparent;
+    color: var(--secondary);
+    font-weight: 100;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="password"]:focus {
+    outline: none;
+    border-bottom: 1px solid var(--secondary);
+}
+
+.modal-content .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.modal-content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    width: 200px;
+    background-color: var(--primary);
+    color: #fff;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: var(--tertiary);
+}
