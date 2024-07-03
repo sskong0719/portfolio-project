@@ -132,8 +132,12 @@ def contact():
 def dataHandle():
     errors = []
 
-    # Parse JSON data
-    data = request.get_json()
+    # Check if form-data was received
+    if not request.form:
+        return jsonify({"status": "0", "message": "No form data received"}), 400
+
+    # Extract form data
+    data = request.form
 
     # Extract and clean data fields
     parsed_data = {
