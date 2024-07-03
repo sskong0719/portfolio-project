@@ -11,6 +11,7 @@ from flask_jwt_extended import (
     jwt_required,
     get_jwt_identity,
 )
+from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from database import Database
 import uuid
@@ -150,6 +151,12 @@ def dataHandle():
         "images": [],
     }
 
+    if "images" in request.files:
+        for image in request.files.getlist("images"):
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            parsed_data["images"].append(filename)
+
     # Check if all fields are empty
     if not any(value for value in parsed_data.values() if value or value == [""]):
         errors.append({"status": "0", "message": "All fields are empty"})
@@ -163,6 +170,22 @@ def dataHandle():
         else:
             response = {"status": "0", "message": "Failed to add data to the database"}
         return jsonify(response)
+
+
+@app.route("/uploads/<filename>")
+def get_image(filename):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
+
+
+@app.route("/api/get-data", methods=["GET"])
+def getData():
+    try:
+        data = list(db.data_collection.find({}, {"_id": 0}))
+        return jsonify({"status": "1", "data": data})
+    except Exception as e:
+        print(f"An error occurred while fetching the data: {str(e)}")
+        return jsonify({"status": "0", "message": "Failed to fetch data"})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

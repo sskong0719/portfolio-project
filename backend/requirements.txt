@@ -7,3 +7,4 @@ python-dotenv
 pytz
 flask_jwt_extended
 flask_cors
+werkzeug
