@@ -86,7 +86,7 @@ def visitor_count():
     if time_frame == "1Day":
         start_date = (now - timedelta(days=1)).strftime("%Y-%m-%d")
     elif time_frame == "1Week":
-        start_date = (now - timedelta(weeks=1)).strftime("%Y-%m-%d")
+        start_date = (now - timedelta(days=7)).strftime("%Y-%m-%d")
     elif time_frame == "1Month":
         start_date = (now - timedelta(days=30)).strftime("%Y-%m-%d")
     elif time_frame == "3Month":
@@ -104,16 +104,33 @@ def visitor_count():
     date_counts = {visit["date"]: visit["count"] for visit in visits}
     dates = []
     counts = []
+    total_visits = 0
     current_date = datetime.strptime(start_date, "%Y-%m-%d")
     end_date = now
 
     while current_date <= end_date:
         date_str = current_date.strftime("%Y-%m-%d")
+        count = date_counts.get(date_str, 0)
         dates.append(date_str)
-        counts.append(date_counts.get(date_str, 0))
+        counts.append(count)
+        total_visits += count
         current_date += timedelta(days=1)
 
-    return jsonify({"dates": dates, "counts": counts})
+    total_visits_all_time = sum(
+        [
+            visit["count"]
+            for visit in db.visits_collection.get_visits_by_time_frame("1970-01-01")
+        ]
+    )
+
+    return jsonify(
+        {
+            "dates": dates,
+            "counts": counts,
+            "total_visits": total_visits,
+            "total_visits_all_time": total_visits_all_time,
+        }
+    )
 
 
 @app.route("/api/login", methods=["POST"])

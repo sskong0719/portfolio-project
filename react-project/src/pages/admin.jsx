@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { fetchVisitCount } from '../utils/formHandler';
 import LoginModal from '../components/LoginModal';
 import ExperienceForm from '../components/forms/ExperienceForm';
 import ProjectForm from '../components/forms/ProjectForm';
@@ -13,7 +12,6 @@ export default function Admin()
 {
     const [files, setFiles] = useState([]);
     const [selectedForm, setSelectedForm] = useState('');
-    const [visitCount, setVisitCount] = useState(0);
     const [formData, setFormData] = useState({
         company: '',
         title: '',
@@ -48,9 +46,6 @@ export default function Admin()
                     if (response.ok)
                     {
                         setIsAuthenticated(true);
-                        fetchVisitCount(setVisitCount);
-                        const interval = setInterval(() => fetchVisitCount(setVisitCount), 30000);
-                        return () => clearInterval(interval);
                     } else
                     {
                         setIsAuthenticated(false);
@@ -91,13 +86,12 @@ export default function Admin()
     const handleLoginSuccess = () =>
     {
         setIsAuthenticated(true);
-        fetchVisitCount(setVisitCount);
     };
 
     return (
         <div className="admin-content">
-            {!isAuthenticated && !<LoginModal onLoginSuccess={handleLoginSuccess} />}
-            {!isAuthenticated && (
+            {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
+            {isAuthenticated && (
                 <>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
@@ -108,13 +102,9 @@ export default function Admin()
                             {renderForm()}
                         </Grid>
                         <Grid item xs={6}>
-                            <div className="visit-count">
-                                Total Visit Count: {visitCount}
-                            </div>
                             <VisitorChart />
                         </Grid>
                     </Grid>
-
                 </>
             )}
         </div>
