@@ -5,9 +5,6 @@ from flask import (
     make_response,
     send_from_directory,
 )
-from flask_uploads import UploadSet, configure_uploads, IMAGES
-from werkzeug.utils import secure_filename
-from werkzeug.datastructures import FileStoragefrom
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
@@ -27,11 +24,6 @@ load_dotenv()
 
 app = Flask(__name__, static_folder="/usr/share/nginx/html")
 CORS(app, supports_credentials=True)
-
-# Configure Flask-Uploads
-photos = UploadSet("photos", IMAGES)
-app.config["UPLOADED_PHOTOS_DEST"] = "uploads"
-configure_uploads(app, photos)
 
 # Configure Flask-JWT-Extended
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
@@ -158,11 +150,6 @@ def dataHandle():
         "images": [],
     }
 
-    # Save uploaded images and store filenames in parsed_data
-    if "images" in request.files:
-        for image in request.files.getlist("images"):
-            filename = photos.save(image)
-            parsed_data["images"].append(filename)
     # Check if all fields are empty
     if not any(value for value in parsed_data.values() if value or value == [""]):
         errors.append({"status": "0", "message": "All fields are empty"})
@@ -176,12 +163,6 @@ def dataHandle():
         else:
             response = {"status": "0", "message": "Failed to add data to the database"}
         return jsonify(response)
-
-
-@app.route("/uploads/<filename>")
-def get_image(filename):
-    return send_from_directory(app.config["UPLOADED_PHOTOS_DEST"], filename)
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
