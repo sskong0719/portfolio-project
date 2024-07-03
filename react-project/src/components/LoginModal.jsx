@@ -55,7 +55,7 @@ function LoginModal({ onLoginSuccess })
                 </div>
             </div>
             <div>
-                {error && (<Alert severity="error" className="custom-alert" onClose={() => { }}>
+                {error && (<Alert severity="error" className="custom-alert" onClose={() => setError('')}>
                     {error}
                 </Alert>)}
             </div>
