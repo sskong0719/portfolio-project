@@ -39,9 +39,30 @@ const VisitorChart = () =>
         return () => clearInterval(interval);
     }, [timeFrame]);
 
+    const getPeriodLabel = (frame) =>
+    {
+        switch (frame)
+        {
+            case '1Day':
+                return 'Today';
+            case '1Week':
+                return 'Past week';
+            case '1Month':
+                return 'Past month';
+            case '3Month':
+                return 'Past 3 months';
+            case '1Y':
+                return 'Past year';
+            case 'Max':
+                return 'All time';
+            default:
+                return '------';
+        }
+    };
+
     return (
         <Grid>
-            <Typography variant="h6">Total visits for the selected period: {totalVisits}</Typography>
+            <Typography variant="h6">{getPeriodLabel(timeFrame)}: {totalVisits}</Typography>
             <Typography variant="h6">Total visits: {totalVisitsAllTime}</Typography>
             <SparkLineChart data={chartData} width={400} height={100} />
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
