@@ -118,21 +118,7 @@ def visitor_count():
         total_visits += count
         current_date += timedelta(days=1)
 
-    total_visits_all_time = sum(
-        [
-            visit["count"]
-            for visit in db.visits_collection.get_visits_by_time_frame("1970-01-01")
-        ]
-    )
-
-    return jsonify(
-        {
-            "dates": dates,
-            "counts": counts,
-            "total_visits": total_visits,
-            "total_visits_all_time": total_visits_all_time,
-        }
-    )
+    return jsonify({"dates": dates, "counts": counts, "total_visits": total_visits})
 
 
 @app.route("/api/login", methods=["POST"])

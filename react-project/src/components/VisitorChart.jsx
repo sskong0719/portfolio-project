@@ -9,7 +9,6 @@ const VisitorChart = () =>
     const [timeFrame, setTimeFrame] = useState('1Day');
     const [chartData, setChartData] = useState([]);
     const [totalVisits, setTotalVisits] = useState(0);
-    const [totalVisitsAllTime, setTotalVisitsAllTime] = useState(0);
 
     const fetchData = async (frame) =>
     {
@@ -19,7 +18,6 @@ const VisitorChart = () =>
             const data = response.data.counts;
             setChartData(data);
             setTotalVisits(response.data.total_visits);
-            setTotalVisitsAllTime(response.data.total_visits_all_time);
         } catch (error)
         {
             console.error('Error fetching data:', error);
@@ -63,7 +61,6 @@ const VisitorChart = () =>
     return (
         <Grid>
             <Typography variant="h6">{getPeriodLabel(timeFrame)}: {totalVisits}</Typography>
-            <Typography variant="h6">Total visits: {totalVisitsAllTime}</Typography>
             <SparkLineChart data={chartData} width={400} height={100} />
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                 <Button onClick={() => handleTimeFrameChange('1Day')}>1D</Button>
