@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './CursorFollower.css';
-import './navbar.css';
+import '../layout/navbar.css';
 
 const CursorFollower = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });

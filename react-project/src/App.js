@@ -1,15 +1,14 @@
 import './App.css';
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Navbar from './components/navbar';
-import Socialbar from './components/socialLinks';
+import Navbar from './components/layout/navbar';
+import Socialbar from './components/layout/socialLinks';
 import Homepage from './pages/Homepage';
 import Contact from './pages/contact';
 import Projects from './pages/projects';
 import Admin from './pages/admin';
 import Resume from './pages/resume';
 import NotFound from './pages/NotFound';
-import CursorFollower from './components/CursorFollower';
 import { isBrowser, isMobile } from 'react-device-detect';
 
 function ScrollReset()

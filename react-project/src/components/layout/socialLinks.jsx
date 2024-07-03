@@ -1,6 +1,6 @@
 import './socialLinks.css'
 import React from 'react';
-import { socialLinks } from './socialLinksData';
+import { socialLinks } from '../socialLinksData';
 
 export default function Contact() {
   const handleLinkClick = (link) => {
