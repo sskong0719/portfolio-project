@@ -131,13 +131,15 @@ def visitor_count():
     dates = []
     counts = []
     total_visits = 0
+    cumulative_count = 0
     current_date = start_date
 
     while current_date <= now:
         date_str = current_date.strftime(date_format)
         count = date_counts.get(date_str, 0)
+        cumulative_count += count
         dates.append(date_str)
-        counts.append(count)
+        counts.append(cumulative_count)
         total_visits += count
         current_date += increment
 

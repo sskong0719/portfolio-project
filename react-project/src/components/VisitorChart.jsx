@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { SparkLineChart } from '@mui/x-charts';
-import { ButtonGroup, Button } from '@mui/material';
+import { ButtonGroup, Button, Typography } from '@mui/material';
 import axios from 'axios';
-import './VisitorChart.css';
 
 const VisitorChart = () =>
 {
@@ -21,9 +20,9 @@ const VisitorChart = () =>
                     'Authorization': `Bearer ${token}`
                 }
             });
-            const data = response.data.counts;
-            setChartData(data);
-            setTotalVisits(response.data.total_visits);
+            const data = response.data;
+            setChartData(data.counts);
+            setTotalVisits(data.total_visits);
         } catch (error)
         {
             console.error('Error fetching data:', error);
@@ -66,6 +65,9 @@ const VisitorChart = () =>
 
     return (
         <Grid>
+            <label className='total-label'>
+                {getPeriodLabel(timeFrame)}: {totalVisits}
+            </label>
             <label className='period-label'>
                 {getPeriodLabel(timeFrame)}: {totalVisits}
             </label>
