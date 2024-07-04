@@ -85,38 +85,51 @@ def visit_count():
 def visitor_count():
     time_frame = request.args.get("timeFrame", "1Day")
     now = datetime.now()
+
     if time_frame == "1Day":
-        start_date = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        increment = timedelta(hours=1)
+        date_format = "%Y-%m-%d %H:%M"
     elif time_frame == "1Week":
-        start_date = (now - timedelta(days=7)).strftime("%Y-%m-%d")
+        start_date = now - timedelta(days=7)
+        increment = timedelta(days=1)
+        date_format = "%Y-%m-%d"
     elif time_frame == "1Month":
-        start_date = (now - timedelta(days=30)).strftime("%Y-%m-%d")
+        start_date = now - timedelta(days=30)
+        increment = timedelta(days=1)
+        date_format = "%Y-%m-%d"
     elif time_frame == "3Month":
-        start_date = (now - timedelta(days=90)).strftime("%Y-%m-%d")
+        start_date = now - timedelta(days=90)
+        increment = timedelta(days=1)
+        date_format = "%Y-%m-%d"
     elif time_frame == "1Y":
-        start_date = (now - timedelta(days=365)).strftime("%Y-%m-%d")
+        start_date = now - timedelta(days=365)
+        increment = timedelta(days=1)
+        date_format = "%Y-%m-%d"
     elif time_frame == "Max":
-        start_date = "1970-01-01"
+        start_date = datetime(1970, 1, 1)
+        increment = timedelta(days=1)
+        date_format = "%Y-%m-%d"
     else:
         return jsonify({"error": "Invalid time frame"}), 400
 
-    visits = db.visits_collection.get_visits_by_time_frame(start_date)
+    visits = db.visits_collection.get_visits_by_time_frame(
+        start_date.strftime(date_format)
+    )
 
-    # Fill missing dates with zero counts
     date_counts = {visit["date"]: visit["count"] for visit in visits}
     dates = []
     counts = []
     total_visits = 0
-    current_date = datetime.strptime(start_date, "%Y-%m-%d")
-    end_date = now
+    current_date = start_date
 
-    while current_date <= end_date:
-        date_str = current_date.strftime("%Y-%m-%d")
+    while current_date <= now:
+        date_str = current_date.strftime(date_format)
         count = date_counts.get(date_str, 0)
         dates.append(date_str)
         counts.append(count)
         total_visits += count
-        current_date += timedelta(days=1)
+        current_date += increment
 
     return jsonify({"dates": dates, "counts": counts, "total_visits": total_visits})
 

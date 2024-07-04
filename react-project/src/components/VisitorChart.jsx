@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { SparkLineChart } from '@mui/x-charts';
-import { ButtonGroup, Button, Typography } from '@mui/material';
+import { ButtonGroup, Button } from '@mui/material';
 import axios from 'axios';
+import './VisitorChart.css';
 
 const VisitorChart = () =>
 {
@@ -65,7 +66,9 @@ const VisitorChart = () =>
 
     return (
         <Grid>
-            <Typography variant="h6">{getPeriodLabel(timeFrame)}: {totalVisits}</Typography>
+            <label className='period-label'>
+                {getPeriodLabel(timeFrame)}: {totalVisits}
+            </label>
             <SparkLineChart data={chartData} width={400} height={100} />
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                 <Button onClick={() => handleTimeFrameChange('1Day')}>1D</Button>
