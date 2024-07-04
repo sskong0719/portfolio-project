@@ -4,17 +4,14 @@ import { ButtonGroup, Button, Typography } from '@mui/material';
 import axios from 'axios';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-const VisitorChart = () =>
-{
+const VisitorChart = () => {
     const [timeFrame, setTimeFrame] = useState('1Day');
     const [chartData, setChartData] = useState([]);
     const [totalVisits, setTotalVisits] = useState(0);
 
-    const fetchData = async (frame) =>
-    {
+    const fetchData = async (frame) => {
         const token = localStorage.getItem('token');
-        try
-        {
+        try {
             const response = await axios.get(`/api/visitor-count?timeFrame=${frame}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -22,35 +19,30 @@ const VisitorChart = () =>
             });
             const data = response.data;
             const formattedData = data.dates.map((date, index) => ({
-                date: new Date(date).getTime(), // Convert to timestamp
+                date: new Date(date).toISOString(), // Ensure dates are parsed correctly
                 count: data.counts[index]
             }));
             console.log('Formatted Data:', formattedData); // Debugging: Log formatted data
             setChartData(formattedData);
             setTotalVisits(data.total_visits);
-        } catch (error)
-        {
+        } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
-    const handleTimeFrameChange = (frame) =>
-    {
+    const handleTimeFrameChange = (frame) => {
         setTimeFrame(frame);
         fetchData(frame);
     };
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         fetchData(timeFrame);
         const interval = setInterval(() => fetchData(timeFrame), 30000);
         return () => clearInterval(interval);
     }, [timeFrame]);
 
-    const getPeriodLabel = (frame) =>
-    {
-        switch (frame)
-        {
+    const getPeriodLabel = (frame) => {
+        switch (frame) {
             case '1Day':
                 return 'Today';
             case '1Week':
@@ -75,7 +67,7 @@ const VisitorChart = () =>
             </Grid>
             <Grid item xs={12} style={{ height: '400px' }}>
                 <LineChart
-                    xAxis={[{ data: chartData.map(item => item.date), scaleType: 'time' }]}
+                    xAxis={[{ data: chartData.map(item => new Date(item.date)), scaleType: 'time', valueFormatter: (value) => new Date(value).toLocaleString() }]}
                     series={[{ data: chartData.map(item => item.count) }]}
                     height={300}
                     margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
