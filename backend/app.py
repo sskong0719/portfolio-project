@@ -87,7 +87,7 @@ def visitor_count():
     now = datetime.now()
 
     if time_frame == "1Day":
-        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        start_date = now - timedelta(days=1)
         increment = timedelta(hours=1)
         date_format = "%Y-%m-%d %H"
     elif time_frame == "1Week":
