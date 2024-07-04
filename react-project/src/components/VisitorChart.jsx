@@ -22,7 +22,7 @@ const VisitorChart = () =>
             });
             const data = response.data;
             const formattedData = data.dates.map((date, index) => ({
-                date: new Date(date).toISOString(), // Ensure dates are parsed correctly
+                date: new Date(date), // Ensure dates are parsed correctly
                 count: data.counts[index]
             }));
             setChartData(formattedData);
@@ -74,7 +74,7 @@ const VisitorChart = () =>
             </Grid>
             <Grid item xs={12} style={{ height: '400px' }}>
                 <LineChart
-                    xAxis={[{ data: chartData.map(item => item.date), scaleType: 'time' }]}
+                    xAxis={[{ data: chartData.map(item => item.date), scaleType: 'time', valueFormatter: (value) => new Date(value).toLocaleString() }]}
                     series={[{ data: chartData.map(item => item.count) }]}
                     height={300}
                     margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
