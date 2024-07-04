@@ -12,9 +12,14 @@ const VisitorChart = () =>
 
     const fetchData = async (frame) =>
     {
+        const token = localStorage.getItem('token');
         try
         {
-            const response = await axios.get(`/api/visitor-count?timeFrame=${frame}`);
+            const response = await axios.get(`/api/visitor-count?timeFrame=${frame}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             const data = response.data.counts;
             setChartData(data);
             setTotalVisits(response.data.total_visits);
