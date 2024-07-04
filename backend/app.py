@@ -89,42 +89,42 @@ def visitor_count():
     if time_frame == "1Day":
         start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
         increment = timedelta(hours=1)
-        date_format = "%Y-%m-%d %H:%M:%S"
+        date_format = "%Y-%m-%d %H"
     elif time_frame == "1Week":
         start_date = (now - timedelta(days=7)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         increment = timedelta(hours=1)
-        date_format = "%Y-%m-%d %H:%M:%S"
+        date_format = "%Y-%m-%d %H"
     elif time_frame == "1Month":
         start_date = (now - timedelta(days=30)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         increment = timedelta(hours=1)
-        date_format = "%Y-%m-%d %H:%M:%S"
+        date_format = "%Y-%m-%d %H"
     elif time_frame == "3Month":
         start_date = (now - timedelta(days=90)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         increment = timedelta(hours=6)
-        date_format = "%Y-%m-%d %H:%M:%S"
+        date_format = "%Y-%m-%d %H"
     elif time_frame == "1Y":
         start_date = (now - timedelta(days=365)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         increment = timedelta(days=1)
-        date_format = "%Y-%m-%d"
+        date_format = "%Y-%m-%d %H"
     elif time_frame == "Max":
         start_date = datetime(1970, 1, 1).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         increment = timedelta(days=1)
-        date_format = "%Y-%m-%d"
+        date_format = "%Y-%m-%d %H"
     else:
         return jsonify({"error": "Invalid time frame"}), 400
 
     visits = db.visits_collection.get_visits_by_time_frame(
-        start_date.strftime("%Y-%m-%d %H:%M:%S")
+        start_date.strftime(date_format)
     )
 
     date_counts = {visit["date"]: visit["count"] for visit in visits}
