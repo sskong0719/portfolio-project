@@ -84,10 +84,10 @@ def visit_count():
 @jwt_required()
 def visitor_count():
     time_frame = request.args.get("timeFrame", "1Day")
-    now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    now = datetime.now()
 
     if time_frame == "1Day":
-        start_date = now
+        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
         increment = timedelta(hours=1)
         date_format = "%Y-%m-%d %H"
     elif time_frame == "1Week":
