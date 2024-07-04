@@ -22,5 +22,17 @@ class VisitsCollection:
         return visits["count"] if visits else 0
 
     def get_visits_by_time_frame(self, start_date):
-        results = list(self.visits_collection.find({"date": {"$gte": start_date}}))
-        return results
+        pipeline = [
+            {"$match": {"date": {"$gte": start_date}}},
+            {
+                "$group": {
+                    "_id": {
+                        "$substr": ["$date", 0, 13]
+                    },  # Group by year-month-day hour
+                    "count": {"$sum": "$count"},
+                }
+            },
+            {"$sort": {"_id": 1}},
+        ]
+        results = list(self.visits_collection.aggregate(pipeline))
+        return [{"date": item["_id"], "count": item["count"]} for item in results]

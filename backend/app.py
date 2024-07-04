@@ -89,7 +89,7 @@ def visitor_count():
     if time_frame == "1Day":
         start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
         increment = timedelta(hours=1)
-        date_format = "%Y-%m-%d %H:%M"
+        date_format = "%Y-%m-%d %H"
     elif time_frame == "1Week":
         start_date = now - timedelta(days=7)
         increment = timedelta(days=1)
@@ -113,9 +113,7 @@ def visitor_count():
     else:
         return jsonify({"error": "Invalid time frame"}), 400
 
-    visits = db.visits_collection.get_visits_by_time_frame(
-        start_date.strftime(date_format)
-    )
+    visits = db.visits_collection.get_visits_by_time_frame(start_date.strftime("%Y-%m-%d %H"))
 
     date_counts = {visit["date"]: visit["count"] for visit in visits}
     dates = []
