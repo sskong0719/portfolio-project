@@ -91,15 +91,15 @@ def visitor_count():
         increment = timedelta(hours=1)
         date_format = "%Y-%m-%d %H"
     elif time_frame == "1Week":
-        start_date = now - timedelta(days=7)
+        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=7)
         increment = timedelta(hours=1)  # Adjust to use hourly increments
         date_format = "%Y-%m-%d %H"
     elif time_frame == "1Month":
-        start_date = now - timedelta(days=30)
+        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=30)
         increment = timedelta(days=1)
         date_format = "%Y-%m-%d %H"
     elif time_frame == "3Month":
-        start_date = now - timedelta(days=90)
+        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=90)
         increment = timedelta(days=1)
         date_format = "%Y-%m-%d %H"
     elif time_frame == "1Y":
