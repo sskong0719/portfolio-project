@@ -87,7 +87,7 @@ def visitor_count():
     now = datetime.now()
 
     if time_frame == "1Day":
-        start_date = now - timedelta(days=1)
+        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
         increment = timedelta(hours=1)
         date_format = "%Y-%m-%d %H"
     elif time_frame == "1Week":
@@ -113,25 +113,54 @@ def visitor_count():
             hour=0, minute=0, second=0, microsecond=0
         )
         increment = timedelta(days=1)
-        date_format = "%Y-%m-%d %H"
+        date_format = "%Y-%m-%d"
     elif time_frame == "Max":
         start_date = datetime(1970, 1, 1).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         increment = timedelta(days=1)
-        date_format = "%Y-%m-%d %H"
+        date_format = "%Y-%m-%d"
     else:
         return jsonify({"error": "Invalid time frame"}), 400
 
+    # Fetch total count at the end of the previous period
+    if time_frame == "1Day":
+        previous_day = (start_date - timedelta(days=1)).strftime("%Y-%m-%d")
+        starting_count = db.visits_collection.get_total_count_at_end_of_date(
+            previous_day
+        )
+    elif time_frame == "1Week":
+        previous_week = (start_date - timedelta(days=7)).strftime("%Y-%m-%d")
+        starting_count = db.visits_collection.get_total_count_at_end_of_date(
+            previous_week
+        )
+    elif time_frame == "1Month":
+        previous_month = (start_date - timedelta(days=30)).strftime("%Y-%m-%d")
+        starting_count = db.visits_collection.get_total_count_at_end_of_date(
+            previous_month
+        )
+    elif time_frame == "3Month":
+        previous_3months = (start_date - timedelta(days=90)).strftime("%Y-%m-%d")
+        starting_count = db.visits_collection.get_total_count_at_end_of_date(
+            previous_3months
+        )
+    elif time_frame == "1Y":
+        previous_year = (start_date - timedelta(days=365)).strftime("%Y-%m-%d")
+        starting_count = db.visits_collection.get_total_count_at_end_of_date(
+            previous_year
+        )
+    else:
+        starting_count = 0
+
     visits = db.visits_collection.get_visits_by_time_frame(
-        start_date.strftime(date_format)
+        start_date.strftime("%Y-%m-%d %H")
     )
 
-    date_counts = {visit["date"]: visit["count"] for visit in visits}
+    date_counts = {visit["timestamp"][:13]: visit["count"] for visit in visits}
     dates = []
     counts = []
-    total_visits = 0
-    cumulative_count = 0
+    total_visits = starting_count
+    cumulative_count = starting_count
     current_date = start_date
 
     while current_date <= now:
