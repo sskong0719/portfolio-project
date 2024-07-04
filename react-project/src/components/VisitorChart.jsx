@@ -1,51 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
-import { SparkLineChart } from '@mui/x-charts';
 import { ButtonGroup, Button, Typography } from '@mui/material';
 import axios from 'axios';
+import { LineChart } from '@mui/x-charts/LineChart';
 
-const VisitorChart = () =>
-{
+const VisitorChart = () => {
     const [timeFrame, setTimeFrame] = useState('1Day');
     const [chartData, setChartData] = useState([]);
     const [totalVisits, setTotalVisits] = useState(0);
 
-    const fetchData = async (frame) =>
-    {
+    const fetchData = async (frame) => {
         const token = localStorage.getItem('token');
-        try
-        {
+        try {
             const response = await axios.get(`/api/visitor-count?timeFrame=${frame}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
             const data = response.data;
-            setChartData(data.counts);
+            const formattedData = data.dates.map((date, index) => ({
+                date,
+                count: data.counts[index]
+            }));
+            setChartData(formattedData);
             setTotalVisits(data.total_visits);
-        } catch (error)
-        {
+        } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
-    const handleTimeFrameChange = (frame) =>
-    {
+    const handleTimeFrameChange = (frame) => {
         setTimeFrame(frame);
         fetchData(frame);
     };
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         fetchData(timeFrame);
         const interval = setInterval(() => fetchData(timeFrame), 30000);
         return () => clearInterval(interval);
     }, [timeFrame]);
 
-    const getPeriodLabel = (frame) =>
-    {
-        switch (frame)
-        {
+    const getPeriodLabel = (frame) => {
+        switch (frame) {
             case '1Day':
                 return 'Today';
             case '1Week':
@@ -64,22 +60,29 @@ const VisitorChart = () =>
     };
 
     return (
-        <Grid>
-            <label className='total-label'>
-                {getPeriodLabel(timeFrame)}: {totalVisits}
-            </label>
-            <label className='period-label'>
-                {getPeriodLabel(timeFrame)}: {totalVisits}
-            </label>
-            <SparkLineChart data={chartData} width={400} height={100} />
-            <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Button onClick={() => handleTimeFrameChange('1Day')}>1D</Button>
-                <Button onClick={() => handleTimeFrameChange('1Week')}>1W</Button>
-                <Button onClick={() => handleTimeFrameChange('1Month')}>1M</Button>
-                <Button onClick={() => handleTimeFrameChange('3Month')}>3M</Button>
-                <Button onClick={() => handleTimeFrameChange('1Y')}>1Y</Button>
-                <Button onClick={() => handleTimeFrameChange('Max')}>Max</Button>
-            </ButtonGroup>
+        <Grid container direction="column" spacing={2} style={{ height: '100vh' }}>
+            <Grid item>
+                <Typography variant="h6">{getPeriodLabel(timeFrame)}: {totalVisits}</Typography>
+            </Grid>
+            <Grid item xs={12} style={{ height: '400px' }}>
+                <LineChart
+                    xAxis={[{ data: chartData.map(item => item.date) }]}
+                    series={[{ data: chartData.map(item => item.count) }]}
+                    height={300}
+                    margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
+                    grid={{ vertical: true, horizontal: true }}
+                />
+            </Grid>
+            <Grid item>
+                <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                    <Button onClick={() => handleTimeFrameChange('1Day')}>1D</Button>
+                    <Button onClick={() => handleTimeFrameChange('1Week')}>1W</Button>
+                    <Button onClick={() => handleTimeFrameChange('1Month')}>1M</Button>
+                    <Button onClick={() => handleTimeFrameChange('3Month')}>3M</Button>
+                    <Button onClick={() => handleTimeFrameChange('1Y')}>1Y</Button>
+                    <Button onClick={() => handleTimeFrameChange('Max')}>Max</Button>
+                </ButtonGroup>
+            </Grid>
         </Grid>
     );
 };
