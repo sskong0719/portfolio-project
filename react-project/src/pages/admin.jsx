@@ -90,8 +90,8 @@ export default function Admin()
 
     return (
         <div className="admin-content">
-            {!isAuthenticated && !<LoginModal onLoginSuccess={handleLoginSuccess} />}
-            {!isAuthenticated && (
+            {!isAuthenticated && <LoginModal onLoginSuccess={handleLoginSuccess} />}
+            {isAuthenticated && (
                 <>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
