@@ -142,65 +142,6 @@ def visitor_count():
         current_date += increment
 
     return jsonify({"dates": dates, "counts": counts, "total_visits": total_visits})
-    time_frame = request.args.get("timeFrame", "1Day")
-    now = datetime.now()
-
-    if time_frame == "1Day":
-        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        increment = timedelta(hours=1)
-        date_format = "%Y-%m-%d %H"
-    elif time_frame == "1Week":
-        start_date = (now - timedelta(days=7)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        increment = timedelta(hours=1)
-        date_format = "%Y-%m-%d %H"
-    elif time_frame == "1Month":
-        start_date = (now - timedelta(days=30)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        increment = timedelta(days=1)
-        date_format = "%Y-%m-%d"
-    elif time_frame == "3Month":
-        start_date = (now - timedelta(days=90)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        increment = timedelta(days=1)
-        date_format = "%Y-%m-%d"
-    elif time_frame == "1Y":
-        start_date = (now - timedelta(days=365)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        increment = timedelta(days=1)
-        date_format = "%Y-%m-%d"
-    elif time_frame == "Max":
-        start_date = datetime(1970, 1, 1).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        increment = timedelta(days=1)
-        date_format = "%Y-%m-%d"
-    else:
-        return jsonify({"error": "Invalid time frame"}), 400
-
-    visits = db.visits_collection.get_visits_by_time_frame(
-        start_date.strftime("%Y-%m-%d %H")
-    )
-
-    date_counts = {visit["date"]: visit["count"] for visit in visits}
-    dates = []
-    counts = []
-    total_visits = 0
-    current_date = start_date
-
-    while current_date <= now:
-        date_str = current_date.strftime(date_format)
-        count = date_counts.get(date_str, 0)
-        dates.append(date_str)
-        counts.append(count)
-        total_visits += count
-        current_date += increment
-
-    return jsonify({"dates": dates, "counts": counts, "total_visits": total_visits})
 
 
 @app.route("/api/login", methods=["POST"])
