@@ -1,5 +1,5 @@
 from pymongo.collection import Collection
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class VisitsCollection:
     def __init__(self, db):
